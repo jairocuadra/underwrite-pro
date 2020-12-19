@@ -11,19 +11,20 @@
 <div class="row">
   <div class="col-12">
     <h1 class="float-left">{{ recipe.name }}</h1>
-    <div class="float-right">
+    <div class="float-right" appDropdown>
       <button
         mat-stroked-button
         color="primary"
         type="button"
         class="btn dropdown-toggle"
+        data-toggle="dropdown"
       >
-        Manage <span class="caret"></span>
+        Manage
       </button>
       <ul class="dropdown-menu">
-        <li><a href="">To Shopping List</a></li>
-        <li><a href="">Edit Recipe</a></li>
-        <li><a href="">Delete Recipe</a></li>
+        <li><a class="dropdown-item" href="#">Add to Shopping List</a></li>
+        <li><a class="dropdown-item" href="#">Edit</a></li>
+        <li><a class="dropdown-item" href="#">Delete</a></li>
       </ul>
     </div>
   </div>
