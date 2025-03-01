@@ -1,19 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 
+type ColumnId = 'todo' | 'in-progress' | 'completed';
+
 interface KanbanCard {
   id: string;
   title: string;
+  description: string;
   type: 'task' | 'rule' | 'evidence';
   role?: 'underwriter' | 'case-manager';
-  description: string;
-  priority: 'high' | 'medium' | 'low';
   dueDate?: Date;
-  assignee?: string;
-  evidenceType?: string;
-  ruleCategory?: string;
+  priority: 'low' | 'medium' | 'high';
 }
-
-type ColumnId = 'todo' | 'in-progress' | 'completed';
 
 @Component({
   selector: 'app-kanban-board',
@@ -22,108 +19,108 @@ type ColumnId = 'todo' | 'in-progress' | 'completed';
 })
 export class KanbanBoardComponent implements OnInit {
   columns: ColumnId[] = ['todo', 'in-progress', 'completed'];
+  
   columnTitles: Record<ColumnId, string> = {
     'todo': 'To Do',
     'in-progress': 'In Progress',
     'completed': 'Completed'
   };
-
+  
   cards: Record<ColumnId, KanbanCard[]> = {
     'todo': [
       {
-        id: '1',
-        title: 'Review Medical History',
+        id: 't1',
+        title: 'Review medical records',
+        description: 'Review latest medical records for John Smith',
         type: 'task',
         role: 'underwriter',
-        description: 'Complete medical history review for policy application',
-        priority: 'high',
-        dueDate: new Date('2024-03-15'),
-        assignee: 'John Smith'
+        dueDate: new Date('2025-03-15'),
+        priority: 'high'
       },
       {
-        id: '2',
-        title: 'Blood Pressure Assessment',
-        type: 'rule',
-        description: 'Evaluate blood pressure readings against policy guidelines',
-        priority: 'medium',
-        ruleCategory: 'Medical'
-      },
-      {
-        id: '3',
-        title: 'Request Lab Results',
-        type: 'evidence',
+        id: 't2',
+        title: 'Request lab work',
+        description: 'Request additional lab work for cholesterol levels',
+        type: 'task',
         role: 'case-manager',
-        description: 'Obtain recent laboratory test results',
-        priority: 'high',
-        evidenceType: 'Medical Records',
-        dueDate: new Date('2024-03-10')
+        dueDate: new Date('2025-03-10'),
+        priority: 'medium'
+      },
+      {
+        id: 'r1',
+        title: 'Diabetes assessment',
+        description: 'Apply diabetes risk assessment rule',
+        type: 'rule',
+        priority: 'high'
       }
     ],
     'in-progress': [
       {
-        id: '4',
-        title: 'Lifestyle Assessment',
-        type: 'rule',
-        description: 'Evaluate lifestyle factors and risk assessment',
-        priority: 'medium',
-        ruleCategory: 'Risk Assessment'
+        id: 'e1',
+        title: 'APS from Dr. Johnson',
+        description: 'Attending Physician Statement from primary care doctor',
+        type: 'evidence',
+        dueDate: new Date('2025-03-05'),
+        priority: 'high'
       },
       {
-        id: '5',
-        title: 'Process APS Records',
-        type: 'task',
-        role: 'case-manager',
-        description: 'Review and process attending physician statements',
-        priority: 'high',
-        dueDate: new Date('2024-03-12'),
-        assignee: 'Sarah Johnson'
+        id: 'r2',
+        title: 'Smoker status verification',
+        description: 'Verify smoker status based on lab results',
+        type: 'rule',
+        priority: 'medium'
       }
     ],
     'completed': [
       {
-        id: '6',
-        title: 'Initial Health Screening',
-        type: 'evidence',
+        id: 't3',
+        title: 'Initial application review',
+        description: 'Complete initial review of application',
+        type: 'task',
         role: 'underwriter',
-        description: 'Review initial health screening results',
-        priority: 'high',
-        evidenceType: 'Health Screening',
-        dueDate: new Date('2024-03-05')
+        priority: 'high'
+      },
+      {
+        id: 'e2',
+        title: 'Blood test results',
+        description: 'Blood panel results from LabCorp',
+        type: 'evidence',
+        priority: 'medium'
       }
     ]
   };
 
   constructor() { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+  }
 
   getCardsByColumn(column: ColumnId): KanbanCard[] {
-    return this.cards[column] || [];
+    return this.cards[column];
   }
 
   onDrop(event: DragEvent, targetColumn: ColumnId): void {
     event.preventDefault();
-    const cardId = (event.dataTransfer?.getData('text/plain') || '').trim();
+    const cardId = event.dataTransfer?.getData('text/plain');
+    
     if (!cardId) return;
-
-    // Find the card and its current column
-    let sourceColumn: ColumnId | undefined;
-    let card: KanbanCard | undefined;
-
-    for (const [col, cards] of Object.entries(this.cards)) {
-      const foundCard = cards.find(c => c.id === cardId);
-      if (foundCard) {
-        sourceColumn = col as ColumnId;
-        card = foundCard;
+    
+    // Find the card in any column
+    let sourceColumn: ColumnId | null = null;
+    let card: KanbanCard | null = null;
+    
+    for (const col of this.columns) {
+      const cardIndex = this.cards[col].findIndex(c => c.id === cardId);
+      if (cardIndex >= 0) {
+        sourceColumn = col;
+        card = this.cards[col][cardIndex];
+        this.cards[col].splice(cardIndex, 1);
         break;
       }
     }
-
+    
     if (card && sourceColumn && sourceColumn !== targetColumn) {
-      // Remove from source column
-      this.cards[sourceColumn] = this.cards[sourceColumn].filter(c => c.id !== cardId);
-      // Add to target column
-      this.cards[targetColumn] = [...this.cards[targetColumn], card];
+      this.cards[targetColumn].push(card);
     }
   }
 }

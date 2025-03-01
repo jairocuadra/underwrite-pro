@@ -1,39 +1,63 @@
 <div class="related-policies">
-  <h2>Related Business Policies</h2>
+  <h2 class="section-title">(4) Related Business Policies</h2>
   
-  <mat-table [dataSource]="dataSource" class="policy-table">
-    <!-- Policy Number Column -->
-    <ng-container matColumnDef="policyNumber">
-      <mat-header-cell *matHeaderCellDef>Policy Number</mat-header-cell>
-      <mat-cell *matCellDef="let policy">{{policy.policyNumber}}</mat-cell>
-    </ng-container>
-
-    <!-- Applicant Name Column -->
-    <ng-container matColumnDef="applicantName">
-      <mat-header-cell *matHeaderCellDef>Applicant Name</mat-header-cell>
-      <mat-cell *matCellDef="let policy">{{policy.applicantName}}</mat-cell>
+  <mat-table [dataSource]="businessPolicies" class="policies-table">
+    <!-- Policy Column -->
+    <ng-container matColumnDef="policy">
+      <mat-header-cell *matHeaderCellDef>Policy</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.policy}}</mat-cell>
     </ng-container>
 
     <!-- Status Column -->
     <ng-container matColumnDef="status">
       <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
-      <mat-cell *matCellDef="let policy">
-        <span class="status-badge" [ngClass]="policy.status.toLowerCase()">
-          {{policy.status}}
+      <mat-cell *matCellDef="let element">
+        <span class="status-badge" [ngClass]="element.status.toLowerCase()">
+          {{element.status}}
         </span>
       </mat-cell>
     </ng-container>
 
-    <!-- Type Column -->
-    <ng-container matColumnDef="type">
-      <mat-header-cell *matHeaderCellDef>Policy Type</mat-header-cell>
-      <mat-cell *matCellDef="let policy">{{policy.type}}</mat-cell>
+    <!-- Insured Column -->
+    <ng-container matColumnDef="insured">
+      <mat-header-cell *matHeaderCellDef>Insured</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.insured}}</mat-cell>
     </ng-container>
 
-    <!-- Effective Date Column -->
-    <ng-container matColumnDef="effectiveDate">
-      <mat-header-cell *matHeaderCellDef>Effective Date</mat-header-cell>
-      <mat-cell *matCellDef="let policy">{{policy.effectiveDate | date:'mediumDate'}}</mat-cell>
+    <!-- Issued Date Column -->
+    <ng-container matColumnDef="issuedDate">
+      <mat-header-cell *matHeaderCellDef>Issued Date</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.issuedDate}}</mat-cell>
+    </ng-container>
+
+    <!-- Business Name Column -->
+    <ng-container matColumnDef="businessName">
+      <mat-header-cell *matHeaderCellDef>Business Name</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.businessName}}</mat-cell>
+    </ng-container>
+
+    <!-- Tax ID Column -->
+    <ng-container matColumnDef="taxId">
+      <mat-header-cell *matHeaderCellDef>Tax ID</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.taxId}}</mat-cell>
+    </ng-container>
+
+    <!-- Category Column -->
+    <ng-container matColumnDef="category">
+      <mat-header-cell *matHeaderCellDef>Category</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.category}}</mat-cell>
+    </ng-container>
+
+    <!-- Previous POI Flag Column -->
+    <ng-container matColumnDef="previousPOIFlag">
+      <mat-header-cell *matHeaderCellDef>Previous POI Flag</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.previousPOIFlag}}</mat-cell>
+    </ng-container>
+
+    <!-- Audit POI Column -->
+    <ng-container matColumnDef="auditPOI">
+      <mat-header-cell *matHeaderCellDef>Audit POI</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.auditPOI}}</mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

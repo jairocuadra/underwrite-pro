@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { EditModeModalComponent } from '../shared/edit-mode-modal/edit-mode-modal.component';
 
 interface BusinessPolicy {
@@ -15,9 +16,9 @@ interface BusinessPolicy {
 }
 
 interface NavItem {
-  label: string;
+  name: string;
+  route: string;
   icon: string;
-  route?: string;
 }
 
 @Component({
@@ -88,22 +89,23 @@ export class UnderwritingWorkbenchComponent {
   ];
 
   workboardItems: NavItem[] = [
-    { label: 'Applicant & Underwriting', icon: 'person' },
-    { label: 'Product', icon: 'inventory_2' },
-    { label: 'Policy Details', icon: 'description' },
-    { label: 'Advisor', icon: 'support_agent' },
-    { label: 'Bene/Owner/Payor', icon: 'groups' },
-    { label: 'Associated Policies', icon: 'content_copy' },
-    { label: 'Related Business Policies', icon: 'business' },
-    { label: 'Save Age', icon: 'event' },
-    { label: 'Policy Dates', icon: 'date_range' },
-    { label: 'PIA - Post Issue APS', icon: 'fact_check' }
+    { name: 'Workboard', route: 'workboard', icon: 'dashboard' },
+    { name: 'Applicant & Underwriting', route: 'applicant', icon: 'person' },
+    { name: 'Product', route: 'product', icon: 'inventory_2' },
+    { name: 'Advisor', route: 'advisor', icon: 'support_agent' },
+    { name: 'Bene/Owner/Payor', route: 'beneficiary', icon: 'people' },
+    { name: 'Associated Policies', route: 'associated-policies', icon: 'policy' },
+    { name: 'Related Business Policies', route: 'related-business-policies', icon: 'business' },
+    { name: 'Save Age', route: 'save-age', icon: 'event' },
+    { name: 'Policy Dates', route: 'policy-dates', icon: 'date_range' },
+    { name: 'PIA - Post Issue APS', route: 'post-issue', icon: 'description' }
   ];
 
   isEditMode = false;
-  isNavExpanded = true;
+  isNavCollapsed = false;
+  isHeaderCollapsed = false;
 
-  constructor(private dialog: MatDialog) {}
+  constructor(private dialog: MatDialog, private router: Router) {}
 
   onEditModeChange(enabled: boolean) {
     if (enabled) {
@@ -125,6 +127,14 @@ export class UnderwritingWorkbenchComponent {
   }
 
   toggleNav() {
-    this.isNavExpanded = !this.isNavExpanded;
+    this.isNavCollapsed = !this.isNavCollapsed;
+  }
+
+  toggleHeader() {
+    this.isHeaderCollapsed = !this.isHeaderCollapsed;
+  }
+
+  navigateTo(route: string) {
+    this.router.navigate(['underwriting', route]);
   }
 } 

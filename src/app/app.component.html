@@ -1,4 +1,4 @@
-<div class="app-root">
+<div class="app-root" [ngClass]="{'dark-theme': darkMode$ | async}">
   <app-header (sidenavToggle)="sidenav.toggle()"></app-header>
   <app-mode-banner *ngIf="isWorkbenchRoute" [isEditMode]="isEditMode" (editModeChange)="onEditModeChange($event)"></app-mode-banner>
   
@@ -30,4 +30,9 @@
       </div>
     </mat-sidenav-content>
   </mat-sidenav-container>
+  
+  <!-- Accessibility note for screen readers about theme -->
+  <div class="sr-only" aria-live="polite">
+    {{ (darkMode$ | async) ? 'Dark mode is enabled' : 'Light mode is enabled' }}
+  </div>
 </div>

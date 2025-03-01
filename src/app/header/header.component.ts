@@ -1,5 +1,7 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { ThemeService } from '../shared/services/theme.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -8,8 +10,14 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   @Output() sidenavToggle = new EventEmitter<void>();
+  darkMode$: Observable<boolean>;
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private themeService: ThemeService
+  ) {
+    this.darkMode$ = this.themeService.darkMode$;
+  }
 
   ngOnInit(): void {}
 
@@ -19,5 +27,9 @@ export class HeaderComponent implements OnInit {
 
   toggleSidenav() {
     this.sidenavToggle.emit();
+  }
+
+  toggleDarkMode() {
+    this.themeService.toggleDarkMode();
   }
 }

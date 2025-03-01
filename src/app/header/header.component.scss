@@ -1,24 +1,19 @@
 .app-header {
-  background: #ffffff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  position: fixed;
+  background: var(--header-bg);
+  box-shadow: var(--shadow-sm);
+  position: sticky;
   top: 0;
-  left: 0;
-  right: 0;
   z-index: 1000;
-  height: 64px;
-  display: flex;
-  align-items: center;
+  transition: background-color var(--transition-speed), box-shadow var(--transition-speed);
 
   .header-container {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 16px;
+    padding: 0.75rem 2rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 2rem;
-    width: 100%;
   }
 
   .header-left {
@@ -31,12 +26,14 @@
       align-items: center;
       gap: 0.5rem;
       text-decoration: none;
-      color: #2c3e50;
+      color: var(--text-primary);
       font-size: 1.25rem;
       font-weight: 600;
+      transition: color var(--transition-speed);
 
       mat-icon {
-        color: #3498db;
+        color: var(--primary-color);
+        transition: color var(--transition-speed);
       }
     }
   }
@@ -51,25 +48,28 @@
       left: 1rem;
       top: 50%;
       transform: translateY(-50%);
-      color: #718096;
+      color: var(--text-tertiary);
+      transition: color var(--transition-speed);
     }
 
     .search-input {
       width: 100%;
       padding: 0.75rem 1rem 0.75rem 3rem;
-      border: 1px solid #e2e8f0;
+      border: 1px solid var(--border-color);
       border-radius: 8px;
       font-size: 0.95rem;
       outline: none;
-      transition: all 0.2s ease;
+      background-color: var(--bg-color);
+      color: var(--text-primary);
+      transition: all var(--transition-speed);
 
       &:focus {
-        border-color: #3498db;
-        box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.1);
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 2px rgba(var(--primary-color), 0.1);
       }
 
       &::placeholder {
-        color: #a0aec0;
+        color: var(--text-tertiary);
       }
     }
   }
@@ -84,8 +84,70 @@
         font-size: 32px;
         height: 32px;
         width: 32px;
-        color: #2c3e50;
+        color: var(--text-primary);
+        transition: color var(--transition-speed);
       }
     }
   }
 }
+
+// Dark mode toggle button styles
+.mat-menu-item {
+  .mat-icon {
+    margin-right: 8px;
+    color: var(--text-primary);
+    transition: color var(--transition-speed);
+  }
+  
+  &:hover {
+    background-color: var(--bg-tertiary);
+  }
+}
+
+// Ensure menu panel has proper styling
+::ng-deep .mat-menu-panel {
+  background-color: var(--menu-bg);
+  color: var(--text-primary);
+  
+  .mat-menu-content {
+    padding: 0;
+  }
+  
+  .mat-menu-item {
+    color: var(--text-primary);
+    
+    .mat-icon {
+      color: var(--text-primary);
+    }
+    
+    &:hover {
+      background-color: var(--bg-tertiary);
+    }
+  }
+  
+  .mat-divider {
+    border-top-color: var(--border-color);
+  }
+}
+
+// Ensure proper styling for dark mode
+:host-context(.dark-theme) {
+  .app-header {
+    .header-right {
+      .user-profile {
+        mat-icon {
+          color: var(--text-primary);
+        }
+      }
+    }
+  }
+  
+  ::ng-deep .mat-menu-panel {
+    .mat-menu-item {
+      .mat-icon {
+        color: var(--text-primary);
+      }
+    }
+  }
+}
+

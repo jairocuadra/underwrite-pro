@@ -31,6 +31,10 @@
           <mat-icon>settings</mat-icon>
           <span>Settings</span>
         </button>
+        <button mat-menu-item (click)="toggleDarkMode()">
+          <mat-icon>{{ (darkMode$ | async) ? 'light_mode' : 'dark_mode' }}</mat-icon>
+          <span>{{ (darkMode$ | async) ? 'Light Mode' : 'Dark Mode' }}</span>
+        </button>
         <mat-divider></mat-divider>
         <button mat-menu-item>
           <mat-icon>exit_to_app</mat-icon>

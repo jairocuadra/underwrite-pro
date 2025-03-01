@@ -1,0 +1,82 @@
+// Light theme variables
+:root {
+  // Primary colors
+  --primary-color: #3498db;
+  --primary-light: #5dade2;
+  --primary-dark: #2980b9;
+  
+  // Background colors
+  --bg-color: #ffffff;
+  --bg-secondary: #f8f9fa;
+  --bg-tertiary: #f1f3f5;
+  
+  // Text colors
+  --text-primary: #333333;
+  --text-secondary: #6b7280;
+  --text-tertiary: #9ca3af;
+  
+  // Border colors
+  --border-color: #e5e7eb;
+  --border-light: #f3f4f6;
+  
+  // Component colors
+  --card-bg: #ffffff;
+  --header-bg: #ffffff;
+  --sidebar-bg: #ffffff;
+  --menu-bg: #ffffff;
+  --tooltip-bg: #374151;
+  
+  // Status colors
+  --success: #10b981;
+  --warning: #f59e0b;
+  --error: #ef4444;
+  --info: #3b82f6;
+  
+  // Shadow
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+  
+  // Transition
+  --transition-speed: 0.3s;
+}
+
+// Dark theme variables
+.dark-theme {
+  // Primary colors (slightly adjusted for dark mode)
+  --primary-color: #60a5fa;
+  --primary-light: #93c5fd;
+  --primary-dark: #3b82f6;
+  
+  // Background colors
+  --bg-color: #1f2937;
+  --bg-secondary: #111827;
+  --bg-tertiary: #374151;
+  
+  // Text colors
+  --text-primary: #f9fafb;
+  --text-secondary: #e5e7eb;
+  --text-tertiary: #9ca3af;
+  
+  // Border colors
+  --border-color: #374151;
+  --border-light: #4b5563;
+  
+  // Component colors
+  --card-bg: #1f2937;
+  --header-bg: #111827;
+  --sidebar-bg: #111827;
+  --menu-bg: #1f2937;
+  --tooltip-bg: #e5e7eb;
+  
+  // Status colors (slightly adjusted for dark mode)
+  --success: #34d399;
+  --warning: #fbbf24;
+  --error: #f87171;
+  --info: #60a5fa;
+  
+  // Shadow (darker for dark mode)
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.5);
+} 

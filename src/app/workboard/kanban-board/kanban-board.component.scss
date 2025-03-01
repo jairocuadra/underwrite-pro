@@ -1,178 +1,167 @@
 .kanban-board {
-  display: flex;
-  gap: 24px;
-  padding: 24px;
-  height: calc(100vh - 168px); // Accounting for header and mode banner
-  overflow-x: auto;
-
-  .kanban-column {
-    flex: 1;
-    min-width: 300px;
-    background: #f8fafc;
-    border-radius: 12px;
-    display: flex;
-    flex-direction: column;
-
-    .column-header {
-      padding: 16px;
-      background: #fff;
-      border-radius: 12px 12px 0 0;
-      border-bottom: 1px solid #e2e8f0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-
-      h3 {
-        margin: 0;
-        font-size: 16px;
-        font-weight: 600;
-        color: #1a202c;
-      }
-
-      .card-count {
-        background: #e2e8f0;
-        padding: 2px 8px;
-        border-radius: 12px;
-        font-size: 14px;
-        color: #4a5568;
-      }
-    }
-
-    .column-content {
-      padding: 16px;
-      flex: 1;
-      overflow-y: auto;
-
-      &::-webkit-scrollbar {
-        width: 6px;
-      }
-
-      &::-webkit-scrollbar-track {
-        background: #f8fafc;
-      }
-
-      &::-webkit-scrollbar-thumb {
-        background: #cbd5e0;
-        border-radius: 3px;
-      }
-    }
+  padding: 0 0 20px 0;
+  
+  .board-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #2d3748;
   }
-
-  .kanban-card {
-    background: #fff;
-    border-radius: 8px;
-    padding: 16px;
-    margin-bottom: 12px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    border: 1px solid #e2e8f0;
-    cursor: grab;
-    transition: all 0.2s ease;
-
-    &:hover {
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      transform: translateY(-2px);
-    }
-
-    .card-header {
+  
+  .board-container {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+    
+    .column {
+      flex: 1;
+      min-width: 300px;
+      background: #f7fafc;
+      border-radius: 8px;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 12px;
-
-      .card-type {
+      flex-direction: column;
+      
+      .column-header {
+        padding: 16px;
         display: flex;
+        justify-content: space-between;
         align-items: center;
-        gap: 6px;
-        font-size: 13px;
-        font-weight: 500;
-        padding: 4px 8px;
-        border-radius: 4px;
-
-        mat-icon {
-          font-size: 16px;
-          width: 16px;
-          height: 16px;
+        border-bottom: 1px solid #e2e8f0;
+        
+        h3 {
+          font-size: 1.1rem;
+          font-weight: 600;
+          margin: 0;
+          color: #4a5568;
         }
-
-        &.task {
-          background: #ebf8ff;
-          color: #3498db;
-        }
-
-        &.rule {
-          background: #fef3c7;
-          color: #d97706;
-        }
-
-        &.evidence {
-          background: #dcfce7;
-          color: #059669;
+        
+        .card-count {
+          background: #e2e8f0;
+          color: #4a5568;
+          border-radius: 12px;
+          padding: 2px 8px;
+          font-size: 0.8rem;
+          font-weight: 500;
         }
       }
-
-      .card-priority {
-        font-size: 12px;
-        font-weight: 500;
-        padding: 2px 6px;
-        border-radius: 4px;
-
-        &.high {
-          background: #fee2e2;
-          color: #dc2626;
-        }
-
-        &.medium {
-          background: #fef3c7;
-          color: #d97706;
-        }
-
-        &.low {
-          background: #dcfce7;
-          color: #059669;
-        }
-      }
-    }
-
-    .card-title {
-      margin: 0 0 8px;
-      font-size: 14px;
-      font-weight: 600;
-      color: #1a202c;
-    }
-
-    .card-description {
-      margin: 0 0 12px;
-      font-size: 13px;
-      color: #4a5568;
-      line-height: 1.4;
-    }
-
-    .card-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      font-size: 12px;
-      color: #64748b;
-
-      > div {
+      
+      .column-content {
+        padding: 16px;
+        flex: 1;
+        min-height: 200px;
         display: flex;
-        align-items: center;
-        gap: 4px;
-
-        mat-icon {
-          font-size: 14px;
-          width: 14px;
-          height: 14px;
+        flex-direction: column;
+        gap: 12px;
+        
+        .kanban-card {
+          background: white;
+          border-radius: 6px;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+          padding: 16px;
+          cursor: grab;
+          transition: all 0.2s ease;
+          
+          &:hover {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+          }
+          
+          &:active {
+            cursor: grabbing;
+          }
+          
+          .card-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            
+            .card-type, .card-priority {
+              font-size: 0.7rem;
+              font-weight: 600;
+              text-transform: uppercase;
+              padding: 4px 8px;
+              border-radius: 4px;
+            }
+            
+            .card-type {
+              &.task {
+                background: #ebf8ff;
+                color: #3182ce;
+              }
+              
+              &.rule {
+                background: #faf5ff;
+                color: #805ad5;
+              }
+              
+              &.evidence {
+                background: #e6fffa;
+                color: #319795;
+              }
+            }
+            
+            .card-priority {
+              &.high {
+                background: #fff5f5;
+                color: #e53e3e;
+              }
+              
+              &.medium {
+                background: #fffaf0;
+                color: #dd6b20;
+              }
+              
+              &.low {
+                background: #f0fff4;
+                color: #38a169;
+              }
+            }
+          }
+          
+          .card-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin: 0 0 8px 0;
+            color: #2d3748;
+          }
+          
+          .card-description {
+            font-size: 0.9rem;
+            color: #718096;
+            margin: 0 0 12px 0;
+          }
+          
+          .card-footer {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: #718096;
+            
+            .card-role, .card-due-date {
+              display: flex;
+              align-items: center;
+              gap: 4px;
+              
+              mat-icon {
+                font-size: 16px;
+                width: 16px;
+                height: 16px;
+              }
+            }
+          }
         }
-      }
-
-      .role-indicator {
-        &[data-role="underwriter"] {
-          color: #3498db;
-        }
-
-        &[data-role="case-manager"] {
-          color: #059669;
+        
+        .empty-column {
+          flex: 1;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #a0aec0;
+          font-style: italic;
+          border: 2px dashed #e2e8f0;
+          border-radius: 6px;
+          padding: 20px;
         }
       }
     }

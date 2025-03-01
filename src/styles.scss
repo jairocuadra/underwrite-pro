@@ -1,16 +1,193 @@
 @import "@angular/material/prebuilt-themes/indigo-pink.css";
+@import "styles/themes.scss";
 
 html,
 body {
   height: 100%;
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  background-color: #f8fafc;
-  color: #2d3748;
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  transition: background-color var(--transition-speed), color var(--transition-speed);
 }
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+// Apply theme variables to Angular Material components
+.mat-app-background {
+  background-color: var(--bg-color);
+}
+
+.mat-card {
+  background-color: var(--card-bg);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-sm) !important;
+}
+
+.mat-toolbar {
+  background-color: var(--header-bg);
+  color: var(--text-primary);
+}
+
+.mat-drawer {
+  background-color: var(--sidebar-bg);
+  color: var(--text-primary);
+}
+
+.mat-menu-panel {
+  background-color: var(--menu-bg);
+}
+
+.mat-menu-item {
+  color: var(--text-primary);
+}
+
+.mat-menu-item .mat-icon {
+  color: var(--text-primary);
+}
+
+.mat-divider {
+  border-top-color: var(--border-color);
+}
+
+.mat-icon {
+  color: var(--text-primary);
+}
+
+// Apply theme to sidenav
+mat-sidenav-container {
+  background-color: var(--bg-color) !important;
+  color: var(--text-primary);
+}
+
+mat-sidenav {
+  background-color: var(--sidebar-bg);
+  color: var(--text-primary);
+  border-right: 1px solid var(--border-color);
+}
+
+mat-sidenav-content {
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+}
+
+// Apply theme to tables
+.mat-table {
+  background-color: var(--card-bg);
+  color: var(--text-primary);
+}
+
+.mat-row, .mat-header-row {
+  border-bottom-color: var(--border-color);
+}
+
+.mat-cell, .mat-header-cell {
+  color: var(--text-primary);
+}
+
+// Apply theme to buttons
+.mat-button, .mat-raised-button, .mat-stroked-button, .mat-flat-button {
+  color: var(--text-primary);
+}
+
+// Apply theme to inputs
+.mat-form-field {
+  color: var(--text-primary);
+}
+
+.mat-form-field-label {
+  color: var(--text-secondary);
+}
+
+.mat-input-element {
+  color: var(--text-primary);
+  caret-color: var(--primary-color);
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  color: var(--border-color);
+}
+
+// Dark theme specific overrides for Angular Material
+.dark-theme {
+  .mat-menu-item:hover:not([disabled]) {
+    background: rgba(255, 255, 255, 0.08);
+  }
+  
+  .mat-form-field-appearance-outline .mat-form-field-outline {
+    color: var(--border-color);
+  }
+  
+  .mat-input-element {
+    caret-color: var(--primary-color);
+  }
+  
+  .mat-form-field-label {
+    color: var(--text-secondary);
+  }
+  
+  .mat-table {
+    background: var(--card-bg);
+  }
+  
+  .mat-row, .mat-header-row {
+    border-bottom-color: var(--border-color);
+  }
+  
+  .mat-cell, .mat-header-cell {
+    color: var(--text-primary);
+  }
+  
+  // Fix for icon colors in dark mode
+  .mat-icon {
+    color: var(--text-primary);
+  }
+  
+  .mat-menu-item .mat-icon {
+    color: var(--text-primary);
+  }
+}
+
+// Apply theme to workboard and related components
+.workboard-container, 
+.related-policies, 
+.workbench-header,
+.kanban-board,
+.kanban-column,
+.task-card {
+  background-color: var(--card-bg);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+}
+
+// Apply theme to status badges
+.status-badge {
+  &.active {
+    background-color: var(--success);
+  }
+  
+  &.pending {
+    background-color: var(--warning);
+  }
+  
+  &.lapsed {
+    background-color: var(--error);
+  }
+}
+
+// Apply theme to app container
+.app-container {
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+}
+
+// Apply theme to mode banner
+.mode-banner {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border-color);
 }
