@@ -14,6 +14,12 @@ interface BusinessPolicy {
   auditPOI: string;
 }
 
+interface NavItem {
+  label: string;
+  icon: string;
+  route?: string;
+}
+
 @Component({
   selector: 'app-underwriting-workbench',
   templateUrl: './underwriting-workbench.component.html',
@@ -81,19 +87,21 @@ export class UnderwritingWorkbenchComponent {
     }
   ];
 
-  workboardItems = [
-    'Applicant & Underwriting',
-    'Product',
-    'Advisor',
-    'Bene/Owner/Payor',
-    'Associated Policies',
-    'Related Business Policies',
-    'Save Age',
-    'Policy Dates',
-    'PIA - Post Issue APS'
+  workboardItems: NavItem[] = [
+    { label: 'Applicant & Underwriting', icon: 'person' },
+    { label: 'Product', icon: 'inventory_2' },
+    { label: 'Policy Details', icon: 'description' },
+    { label: 'Advisor', icon: 'support_agent' },
+    { label: 'Bene/Owner/Payor', icon: 'groups' },
+    { label: 'Associated Policies', icon: 'content_copy' },
+    { label: 'Related Business Policies', icon: 'business' },
+    { label: 'Save Age', icon: 'event' },
+    { label: 'Policy Dates', icon: 'date_range' },
+    { label: 'PIA - Post Issue APS', icon: 'fact_check' }
   ];
 
   isEditMode = false;
+  isNavExpanded = true;
 
   constructor(private dialog: MatDialog) {}
 
@@ -114,5 +122,9 @@ export class UnderwritingWorkbenchComponent {
       // Handle exit edit mode - could show another dialog for exit comments
       this.isEditMode = false;
     }
+  }
+
+  toggleNav() {
+    this.isNavExpanded = !this.isNavExpanded;
   }
 } 

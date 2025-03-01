@@ -22,6 +22,8 @@ import { HeaderComponent } from './header/header.component';
 import { UnderwritingWorkbenchComponent } from './underwriting-workbench/underwriting-workbench.component';
 import { ModeBannerComponent } from './shared/mode-banner/mode-banner.component';
 import { EditModeModalComponent } from './shared/edit-mode-modal/edit-mode-modal.component';
+import { KanbanBoardComponent } from './workboard/kanban-board/kanban-board.component';
+import { RelatedPoliciesComponent } from './related-policies/related-policies.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { EditModeModalComponent } from './shared/edit-mode-modal/edit-mode-modal
     HeaderComponent,
     UnderwritingWorkbenchComponent,
     ModeBannerComponent,
-    EditModeModalComponent
+    EditModeModalComponent,
+    KanbanBoardComponent,
+    RelatedPoliciesComponent
   ],
   imports: [
     BrowserModule,

@@ -8,7 +8,7 @@
 }
 
 .workbench-container {
-  padding: 16px;
+  padding: 104px 16px 16px;
 }
 
 .workbench-header {
@@ -305,10 +305,39 @@
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 20px;
+    transition: all 0.3s ease;
 
-    h3 {
-      @extend .section-title;
+    &.collapsed {
+      width: 80px;
+      padding: 20px 12px;
+
+      .nav-header {
+        h3 {
+          display: none;
+        }
+      }
+
+      .nav-link {
+        justify-content: center;
+        padding: 12px !important;
+      }
+    }
+
+    .nav-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       margin-bottom: 1.5rem;
+
+      h3 {
+        margin: 0;
+      }
+
+      .toggle-nav {
+        width: 32px;
+        height: 32px;
+        line-height: 32px;
+      }
     }
 
     .nav-list {
@@ -328,12 +357,15 @@
           border-radius: 6px;
           transition: all 0.2s ease;
           gap: 12px;
+          white-space: nowrap;
+          overflow: hidden;
 
           mat-icon {
             color: #718096;
             font-size: 20px;
             width: 20px;
             height: 20px;
+            flex-shrink: 0;
           }
 
           span {

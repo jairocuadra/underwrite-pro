@@ -4,16 +4,44 @@
   background-color: #f3f4f6;
   border-bottom: 1px solid #e5e7eb;
   transition: all 0.3s ease;
+  position: fixed;
+  top: 64px; // Height of the header
+  left: 0;
+  right: 0;
+  z-index: 999;
 
   &.edit-mode {
-    background-color: #fef3c7;
-    border-bottom-color: #fcd34d;
+    background-color: #3498db; // Updated to match theme blue
+    border-bottom: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    .banner-content {
+      mat-icon {
+        color: white;
+      }
+
+      .banner-text {
+        color: white;
+      }
+
+      button {
+        color: white;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.1);
+        }
+      }
+    }
   }
 
   .banner-content {
     display: flex;
     align-items: center;
     gap: 12px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 16px;
 
     mat-icon {
       font-size: 18px;

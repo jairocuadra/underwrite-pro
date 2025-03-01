@@ -1,0 +1,42 @@
+<div class="related-policies">
+  <h2>Related Business Policies</h2>
+  
+  <mat-table [dataSource]="dataSource" class="policy-table">
+    <!-- Policy Number Column -->
+    <ng-container matColumnDef="policyNumber">
+      <mat-header-cell *matHeaderCellDef>Policy Number</mat-header-cell>
+      <mat-cell *matCellDef="let policy">{{policy.policyNumber}}</mat-cell>
+    </ng-container>
+
+    <!-- Applicant Name Column -->
+    <ng-container matColumnDef="applicantName">
+      <mat-header-cell *matHeaderCellDef>Applicant Name</mat-header-cell>
+      <mat-cell *matCellDef="let policy">{{policy.applicantName}}</mat-cell>
+    </ng-container>
+
+    <!-- Status Column -->
+    <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
+      <mat-cell *matCellDef="let policy">
+        <span class="status-badge" [ngClass]="policy.status.toLowerCase()">
+          {{policy.status}}
+        </span>
+      </mat-cell>
+    </ng-container>
+
+    <!-- Type Column -->
+    <ng-container matColumnDef="type">
+      <mat-header-cell *matHeaderCellDef>Policy Type</mat-header-cell>
+      <mat-cell *matCellDef="let policy">{{policy.type}}</mat-cell>
+    </ng-container>
+
+    <!-- Effective Date Column -->
+    <ng-container matColumnDef="effectiveDate">
+      <mat-header-cell *matHeaderCellDef>Effective Date</mat-header-cell>
+      <mat-cell *matCellDef="let policy">{{policy.effectiveDate | date:'mediumDate'}}</mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>

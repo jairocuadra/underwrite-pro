@@ -201,19 +201,24 @@
   <!-- Main Content -->
   <div class="main-content">
     <!-- Left Navigation -->
-    <nav class="left-nav">
-      <h3 class="section-title">Navigation</h3>
+    <nav class="left-nav" [class.collapsed]="!isNavExpanded">
+      <div class="nav-header">
+        <h3 class="section-title">Navigation</h3>
+        <button mat-icon-button (click)="toggleNav()" class="toggle-nav">
+          <mat-icon>{{ isNavExpanded ? 'chevron_left' : 'chevron_right' }}</mat-icon>
+        </button>
+      </div>
       <ul class="nav-list">
         <li class="nav-item active">
           <a href="#" class="nav-link">
             <mat-icon>dashboard</mat-icon>
-            <span>Workboard</span>
+            <span *ngIf="isNavExpanded">Workboard</span>
           </a>
         </li>
         <li class="nav-item" *ngFor="let item of workboardItems">
           <a href="#" class="nav-link">
-            <mat-icon>chevron_right</mat-icon>
-            <span>{{item}}</span>
+            <mat-icon>{{item.icon}}</mat-icon>
+            <span *ngIf="isNavExpanded">{{item.label}}</span>
           </a>
         </li>
       </ul>

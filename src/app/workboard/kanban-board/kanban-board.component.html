@@ -1,0 +1,55 @@
+<div class="kanban-board">
+  <div class="kanban-column" *ngFor="let column of columns" [attr.data-column]="column">
+    <div class="column-header">
+      <h3>{{ columnTitles[column] }}</h3>
+      <span class="card-count">{{ getCardsByColumn(column).length }}</span>
+    </div>
+    <div class="column-content" 
+         (dragover)="$event.preventDefault()" 
+         (drop)="onDrop($event, column)">
+      <div class="kanban-card" 
+           *ngFor="let card of getCardsByColumn(column)" 
+           [attr.data-id]="card.id"
+           draggable="true"
+           (dragstart)="$event.dataTransfer?.setData('text/plain', card.id)">
+        <div class="card-header">
+          <div class="card-type" [ngClass]="card.type">
+            <mat-icon>
+              {{ card.type === 'task' ? 'assignment' : 
+                 card.type === 'rule' ? 'gavel' : 
+                 'description' }}
+            </mat-icon>
+            {{ card.type | titlecase }}
+          </div>
+          <div class="card-priority" [ngClass]="card.priority">
+            {{ card.priority | titlecase }}
+          </div>
+        </div>
+        <h4 class="card-title">{{ card.title }}</h4>
+        <p class="card-description">{{ card.description }}</p>
+        <div class="card-meta">
+          <div class="role-indicator" *ngIf="card.role" [attr.data-role]="card.role">
+            <mat-icon>person</mat-icon>
+            {{ card.role | titlecase }}
+          </div>
+          <div class="due-date" *ngIf="card.dueDate">
+            <mat-icon>event</mat-icon>
+            {{ card.dueDate | date:'shortDate' }}
+          </div>
+          <div class="assignee" *ngIf="card.assignee">
+            <mat-icon>account_circle</mat-icon>
+            {{ card.assignee }}
+          </div>
+          <div class="evidence-type" *ngIf="card.evidenceType">
+            <mat-icon>folder</mat-icon>
+            {{ card.evidenceType }}
+          </div>
+          <div class="rule-category" *ngIf="card.ruleCategory">
+            <mat-icon>category</mat-icon>
+            {{ card.ruleCategory }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
