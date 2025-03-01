@@ -1,15 +1,25 @@
 import { Component } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'my-recipe-app';
-  loadedFeature = 'recipe';
+  isWorkbenchRoute = false;
+  isEditMode = false;
 
-  onNavigate(feature: string) {
-    this.loadedFeature = feature;
+  constructor(private router: Router) {
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe((event: any) => {
+      this.isWorkbenchRoute = event.url.includes('/workbench');
+    });
+  }
+
+  onEditModeChange(enabled: boolean) {
+    this.isEditMode = enabled;
   }
 }

@@ -1,0 +1,285 @@
+<app-mode-banner
+  [isEditMode]="isEditMode"
+  (editModeChange)="onEditModeChange($event)"
+></app-mode-banner>
+
+<div class="workbench-container">
+  <!-- Header Section -->
+  <div class="workbench-header">
+    <div class="application-info">
+      <h2>Application #{{applicationId}}</h2>
+      
+      <div class="applicant-details">
+        <div class="detail-item">
+          <div class="label">Applicant Name</div>
+          <div class="value">{{applicantName}}</div>
+        </div>
+        <div class="detail-item">
+          <div class="label">Coverage Amount</div>
+          <div class="value">{{amount}}</div>
+        </div>
+        <div class="detail-item">
+          <div class="label">Gender</div>
+          <div class="value">{{gender}}</div>
+        </div>
+        <div class="detail-item">
+          <div class="label">Age</div>
+          <div class="value">{{age}} years</div>
+        </div>
+      </div>
+
+      <div class="application-details">
+        <div class="detail-item">
+          <div class="label">Product</div>
+          <div class="value">{{product}}</div>
+        </div>
+        <div class="detail-item">
+          <div class="label">Application Number</div>
+          <div class="value">{{applicationNumber}}</div>
+        </div>
+        <div class="detail-item">
+          <div class="label">Application Method</div>
+          <div class="value">{{applicationMethod}}</div>
+        </div>
+        <div class="detail-item">
+          <div class="label">Assigned UW</div>
+          <div class="value">{{assignedUW}}</div>
+        </div>
+        <div class="detail-item">
+          <div class="label">Total Active & Pending Face Amount</div>
+          <div class="value">{{totalFaceAmount}}</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Case Status -->
+    <div class="case-status">
+      <h3 class="section-title">Case Status</h3>
+      <div class="status-details">
+        <div class="detail-item">
+          <div class="label">Overall Trending Decision (w/o Rx)</div>
+          <div class="value highlight">{{status}}</div>
+        </div>
+        <div class="detail-item">
+          <div class="label">Reason(s)</div>
+          <div class="value">{{reason}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Application Tracker -->
+  <div class="application-tracker" role="region" aria-label="Application Progress Tracker">
+    <h3 class="section-title">Application Progress</h3>
+    <div class="tracker-steps" role="list">
+      <div class="step completed" role="listitem">
+        <div class="step-indicator">
+          <div class="step-icon">
+            <mat-icon>done</mat-icon>
+          </div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-content">
+          <span class="step-label">New</span>
+          <span class="step-date">Jan 15, 2024</span>
+        </div>
+      </div>
+
+      <div class="step completed" role="listitem">
+        <div class="step-indicator">
+          <div class="step-icon">
+            <mat-icon>done</mat-icon>
+          </div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-content">
+          <span class="step-label">Application Started</span>
+          <span class="step-date">Jan 16, 2024</span>
+        </div>
+      </div>
+
+      <div class="step completed" role="listitem">
+        <div class="step-indicator">
+          <div class="step-icon">
+            <mat-icon>done</mat-icon>
+          </div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-content">
+          <span class="step-label">Application Signed</span>
+          <span class="step-date">Jan 17, 2024</span>
+        </div>
+      </div>
+
+      <div class="step active" role="listitem" aria-current="step">
+        <div class="step-indicator">
+          <div class="step-icon">
+            <mat-icon>pending_actions</mat-icon>
+          </div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-content">
+          <span class="step-label">Further Evidence Required</span>
+          <span class="step-date">Current Step</span>
+          <span class="step-description">Additional documentation needed</span>
+        </div>
+      </div>
+
+      <div class="step" role="listitem">
+        <div class="step-indicator">
+          <div class="step-icon">
+            <mat-icon>circle</mat-icon>
+          </div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-content">
+          <span class="step-label">Underwriter Review</span>
+        </div>
+      </div>
+
+      <div class="step" role="listitem">
+        <div class="step-indicator">
+          <div class="step-icon">
+            <mat-icon>circle</mat-icon>
+          </div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-content">
+          <span class="step-label">Approved</span>
+        </div>
+      </div>
+
+      <div class="step" role="listitem">
+        <div class="step-indicator">
+          <div class="step-icon">
+            <mat-icon>circle</mat-icon>
+          </div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-content">
+          <span class="step-label">Offer Made</span>
+        </div>
+      </div>
+
+      <div class="step" role="listitem">
+        <div class="step-indicator">
+          <div class="step-icon">
+            <mat-icon>circle</mat-icon>
+          </div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-content">
+          <span class="step-label">Offer Accepted</span>
+        </div>
+      </div>
+
+      <div class="step" role="listitem">
+        <div class="step-indicator">
+          <div class="step-icon">
+            <mat-icon>circle</mat-icon>
+          </div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-content">
+          <span class="step-label">Paid</span>
+        </div>
+      </div>
+
+      <div class="step" role="listitem">
+        <div class="step-indicator">
+          <div class="step-icon">
+            <mat-icon>circle</mat-icon>
+          </div>
+        </div>
+        <div class="step-content">
+          <span class="step-label">Active</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- Left Navigation -->
+    <nav class="left-nav">
+      <h3 class="section-title">Navigation</h3>
+      <ul class="nav-list">
+        <li class="nav-item active">
+          <a href="#" class="nav-link">
+            <mat-icon>dashboard</mat-icon>
+            <span>Workboard</span>
+          </a>
+        </li>
+        <li class="nav-item" *ngFor="let item of workboardItems">
+          <a href="#" class="nav-link">
+            <mat-icon>chevron_right</mat-icon>
+            <span>{{item}}</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Related Business Policies -->
+    <div class="related-policies">
+      <h3 class="section-title">(4) Related Business Policies</h3>
+      <mat-table [dataSource]="businessPolicies">
+        <!-- Policy Column -->
+        <ng-container matColumnDef="policy">
+          <mat-header-cell *matHeaderCellDef>Policy</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.policy}}</mat-cell>
+        </ng-container>
+
+        <!-- Status Column -->
+        <ng-container matColumnDef="status">
+          <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.status}}</mat-cell>
+        </ng-container>
+
+        <!-- Insured Column -->
+        <ng-container matColumnDef="insured">
+          <mat-header-cell *matHeaderCellDef>Insured</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.insured}}</mat-cell>
+        </ng-container>
+
+        <!-- Issued Date Column -->
+        <ng-container matColumnDef="issuedDate">
+          <mat-header-cell *matHeaderCellDef>Issued Date</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.issuedDate}}</mat-cell>
+        </ng-container>
+
+        <!-- Business Name Column -->
+        <ng-container matColumnDef="businessName">
+          <mat-header-cell *matHeaderCellDef>Business Name</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.businessName}}</mat-cell>
+        </ng-container>
+
+        <!-- Tax ID Column -->
+        <ng-container matColumnDef="taxId">
+          <mat-header-cell *matHeaderCellDef>Tax ID</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.taxId}}</mat-cell>
+        </ng-container>
+
+        <!-- Category Column -->
+        <ng-container matColumnDef="category">
+          <mat-header-cell *matHeaderCellDef>Category</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.category}}</mat-cell>
+        </ng-container>
+
+        <!-- Previous POI Flag Column -->
+        <ng-container matColumnDef="previousPOIFlag">
+          <mat-header-cell *matHeaderCellDef>Previous POI Flag</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.previousPOIFlag}}</mat-cell>
+        </ng-container>
+
+        <!-- Audit POI Column -->
+        <ng-container matColumnDef="auditPOI">
+          <mat-header-cell *matHeaderCellDef>Audit POI</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.auditPOI}}</mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+    </div>
+  </div>
+</div> 

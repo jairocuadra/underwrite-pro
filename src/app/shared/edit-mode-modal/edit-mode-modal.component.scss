@@ -1,0 +1,43 @@
+.edit-mode-modal {
+  min-width: 400px;
+  max-width: 600px;
+  padding: 16px;
+
+  h2 {
+    margin: 0 0 24px;
+    color: #1f2937;
+    font-size: 20px;
+    font-weight: 500;
+  }
+
+  mat-dialog-content {
+    padding: 0;
+    margin: 0;
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+  }
+
+  .full-width {
+    width: 100%;
+  }
+
+  mat-dialog-actions {
+    margin: 24px -16px -16px;
+    padding: 16px;
+    background-color: #f9fafb;
+    border-top: 1px solid #e5e7eb;
+
+    button + button {
+      margin-left: 8px;
+    }
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+} 

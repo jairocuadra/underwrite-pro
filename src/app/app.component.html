@@ -1,9 +1,33 @@
-<app-header (featureSelected)="onNavigate($event)"></app-header>
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <app-recipes *ngIf="loadedFeature === 'recipe'"> </app-recipes>
-      <app-shopping-list *ngIf="loadedFeature !== 'recipe'"></app-shopping-list>
-    </div>
-  </div>
+<div class="app-root">
+  <app-header (sidenavToggle)="sidenav.toggle()"></app-header>
+  <app-mode-banner *ngIf="isWorkbenchRoute" [isEditMode]="isEditMode" (editModeChange)="onEditModeChange($event)"></app-mode-banner>
+  
+  <mat-sidenav-container>
+    <mat-sidenav #sidenav mode="over">
+      <nav class="sidenav-nav">
+        <a mat-button class="nav-item" routerLink="/workbench" routerLinkActive="active">
+          <mat-icon>work</mat-icon>
+          <span>Workbench</span>
+        </a>
+        <a mat-button class="nav-item" routerLink="/cases" routerLinkActive="active">
+          <mat-icon>folder</mat-icon>
+          <span>Cases</span>
+        </a>
+        <a mat-button class="nav-item" routerLink="/reports" routerLinkActive="active">
+          <mat-icon>bar_chart</mat-icon>
+          <span>Reports</span>
+        </a>
+        <a mat-button class="nav-item" routerLink="/settings" routerLinkActive="active">
+          <mat-icon>settings</mat-icon>
+          <span>Settings</span>
+        </a>
+      </nav>
+    </mat-sidenav>
+    
+    <mat-sidenav-content>
+      <div class="app-container">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
 </div>

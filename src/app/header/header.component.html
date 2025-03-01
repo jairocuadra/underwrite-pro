@@ -1,57 +1,42 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-none mb-3">
-  <a class="navbar-brand font-weight-bold p-2" href="#">
-    <mat-icon
-      aria-hidden="false"
-      aria-label="Example home icon"
-      class="align-middle"
-      >local_dining</mat-icon
-    ><span class="ml-2 align-middle">My Recipes</span></a
-  >
-  <button
-    class="navbar-toggler"
-    type="button"
-    data-toggle="collapse"
-    data-target="#navbarSupportedContent"
-    aria-controls="navbarSupportedContent"
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-  >
-    <span class="navbar-toggler-icon"></span>
-  </button>
+<header class="app-header">
+  <div class="header-container">
+    <!-- Left section with menu and logo -->
+    <div class="header-left">
+      <button mat-icon-button class="menu-button" (click)="toggleSidenav()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <a routerLink="/" class="brand">
+        <mat-icon>assignment</mat-icon>
+        <span>UnderwritePro</span>
+      </a>
+    </div>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <h3 class="m-0">
-          <a class="nav-link" href="#" (click)="onSelect('recipe')">Recipes</a>
-        </h3>
-      </li>
-      <li class="nav-item">
-        <h3 class="m-0">
-          <a class="nav-link" href="#" (click)="onSelect('shopping-list')"
-            >Shopping List</a
-          >
-        </h3>
-      </li>
-    </ul>
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item dropdown" appDropdown>
-        <h3
-          class="nav-link dropdown-toggle py-2 pl-0m-0"
-          href="#"
-          id="navbarDropdown"
-          role="button"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false"
-        >
-          Manage
-        </h3>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Save</a>
-          <a class="dropdown-item" href="#">Fetch</a>
-        </div>
-      </li>
-    </ul>
+    <!-- Center section with search -->
+    <div class="search-container">
+      <mat-icon>search</mat-icon>
+      <input type="text" placeholder="Search cases..." class="search-input">
+    </div>
+
+    <!-- Right section with user profile -->
+    <div class="header-right">
+      <button mat-icon-button [matMenuTriggerFor]="userMenu" class="user-profile">
+        <mat-icon>account_circle</mat-icon>
+      </button>
+      <mat-menu #userMenu="matMenu">
+        <button mat-menu-item>
+          <mat-icon>person</mat-icon>
+          <span>Profile</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>settings</mat-icon>
+          <span>Settings</span>
+        </button>
+        <mat-divider></mat-divider>
+        <button mat-menu-item>
+          <mat-icon>exit_to_app</mat-icon>
+          <span>Sign Out</span>
+        </button>
+      </mat-menu>
+    </div>
   </div>
-</nav>
+</header>

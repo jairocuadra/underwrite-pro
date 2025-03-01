@@ -1,0 +1,11 @@
+<div class="mode-banner" [class.edit-mode]="isEditMode">
+  <div class="banner-content">
+    <mat-icon>{{ isEditMode ? 'edit' : 'visibility' }}</mat-icon>
+    <span class="banner-text">
+      {{ isEditMode ? 'You are currently editing this case' : 'View only mode' }}
+    </span>
+    <button mat-button (click)="toggleEditMode()">
+      {{ isEditMode ? 'Finish Editing' : 'Enable Edit Mode' }}
+    </button>
+  </div>
+</div> 

@@ -1,0 +1,445 @@
+// Shared heading style
+.section-title {
+  color: #374151;
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  letter-spacing: 0.3px;
+}
+
+.workbench-container {
+  padding: 16px;
+}
+
+.workbench-header {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 24px;
+
+  .read-only-banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+
+    .read-only-text {
+      color: #666;
+    }
+  }
+
+  .application-info {
+    h2 {
+      font-size: 15px;
+      font-weight: 500;
+      color: #6b7280;
+      margin-bottom: 20px;
+      letter-spacing: 0.3px;
+    }
+
+    .applicant-details {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+
+      .detail-item {
+        .label {
+          font-size: 13px;
+          color: #6b7280;
+          margin-bottom: 4px;
+        }
+
+        .value {
+          font-size: 15px;
+          color: #111827;
+          font-weight: 500;
+        }
+      }
+    }
+
+    .application-details {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 16px;
+      padding-top: 16px;
+      border-top: 1px solid #e5e7eb;
+
+      .detail-item {
+        .label {
+          font-size: 13px;
+          color: #6b7280;
+          margin-bottom: 4px;
+        }
+
+        .value {
+          font-size: 14px;
+          color: #374151;
+        }
+      }
+    }
+  }
+
+  .case-status {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid #e5e7eb;
+
+    .section-title {
+      margin-bottom: 12px;
+    }
+
+    .status-details {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 16px;
+
+      .detail-item {
+        .label {
+          font-size: 13px;
+          color: #6b7280;
+          margin-bottom: 4px;
+        }
+
+        .value {
+          font-size: 14px;
+          color: #374151;
+          
+          &.highlight {
+            color: #2563eb;
+            font-weight: 500;
+          }
+        }
+      }
+    }
+  }
+}
+
+.application-tracker {
+  padding: 2rem;
+  background: linear-gradient(to right, #f8f9fa, #ffffff);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  margin: 2rem 0;
+
+  .tracker-title {
+    @extend .section-title;
+  }
+
+  .tracker-steps {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding: 1rem 0;
+    gap: 0;
+    position: relative;
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e0 #f8f9fa;
+
+    &::-webkit-scrollbar {
+      height: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: #f8f9fa;
+      border-radius: 3px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #cbd5e0;
+      border-radius: 3px;
+    }
+  }
+
+  .step {
+    flex: 1;
+    min-width: 150px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0;
+
+    .step-indicator {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      position: relative;
+      margin-bottom: 1rem;
+
+      .step-icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 2;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        border: 2px solid #e2e8f0;
+        position: relative;
+        z-index: 2;
+
+        mat-icon {
+          font-size: 20px;
+          width: 20px;
+          height: 20px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+
+      .step-line {
+        height: 2px;
+        background: #e2e8f0;
+        flex: 1;
+        position: relative;
+        z-index: 1;
+      }
+    }
+
+    .step-content {
+      padding: 0 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+
+      .step-label {
+        font-weight: 500;
+        color: #2d3748;
+        font-size: 0.9rem;
+      }
+
+      .step-date {
+        color: #718096;
+        font-size: 0.8rem;
+      }
+
+      .step-description {
+        color: #718096;
+        font-size: 0.8rem;
+        font-style: italic;
+      }
+    }
+
+    // Completed step styling
+    &.completed {
+      .step-icon {
+        background: #ffffff;
+        border-color: #3498db;
+        
+        ::ng-deep mat-icon {
+          color: #3498db;
+        }
+      }
+
+      .step-line {
+        background: #3498db;
+      }
+
+      .step-label {
+        color: #2b6cb0;
+      }
+    }
+
+    // Active step styling
+    &.active {
+      .step-icon {
+        background: #ebf8ff;
+        border: 2px solid #3498db;
+        
+        ::ng-deep mat-icon {
+          color: #3498db;
+        }
+      }
+
+      .step-content {
+        .step-label {
+          color: #2b6cb0;
+          font-weight: 600;
+        }
+
+        .step-date {
+          color: #3498db;
+          font-weight: 500;
+        }
+      }
+    }
+
+    // Future step styling
+    &:not(.completed):not(.active) {
+      .step-icon {
+        background: #fff;
+        border-color: #e2e8f0;
+        
+        ::ng-deep mat-icon {
+          color: #cbd5e0;
+        }
+      }
+    }
+
+    // Last step (no line needed)
+    &:last-child {
+      .step-line {
+        display: none;
+      }
+    }
+  }
+}
+
+.main-content {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+
+  .left-nav {
+    width: 280px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+
+    h3 {
+      @extend .section-title;
+      margin-bottom: 1.5rem;
+    }
+
+    .nav-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      .nav-item {
+        margin-bottom: 4px;
+
+        .nav-link {
+          display: flex;
+          align-items: center;
+          padding: 12px 16px;
+          color: #4a5568;
+          text-decoration: none;
+          border-radius: 6px;
+          transition: all 0.2s ease;
+          gap: 12px;
+
+          mat-icon {
+            color: #718096;
+            font-size: 20px;
+            width: 20px;
+            height: 20px;
+          }
+
+          span {
+            font-size: 0.95rem;
+          }
+
+          &:hover {
+            background: #f7fafc;
+            color: #2b6cb0;
+
+            mat-icon {
+              color: #3498db;
+            }
+          }
+        }
+
+        &.active {
+          .nav-link {
+            background: #ebf8ff;
+            color: #2b6cb0;
+            font-weight: 500;
+
+            mat-icon {
+              color: #3498db;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .related-policies {
+    flex: 1;
+
+    h3 {
+      @extend .section-title;
+    }
+
+    mat-table {
+      width: 100%;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+      mat-header-row {
+        background-color: #f5f5f5;
+      }
+
+      mat-header-cell {
+        font-weight: bold;
+        color: #333;
+      }
+
+      mat-cell {
+        color: #666;
+      }
+
+      mat-row:hover {
+        background-color: #f8f8f8;
+      }
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .application-tracker {
+    padding: 1rem;
+
+    .tracker-steps {
+      padding: 0.5rem 0;
+    }
+
+    .step {
+      min-width: 120px;
+      padding: 0;
+
+      .step-content {
+        padding: 0 4px;
+      }
+    }
+  }
+}
+
+// High contrast mode support
+@media (forced-colors: active) {
+  .application-tracker {
+    .step {
+      &.completed .step-icon,
+      &.active .step-icon {
+        border: 2px solid CanvasText;
+      }
+
+      .step-line {
+        background: CanvasText;
+      }
+    }
+  }
+}
+
+// Reduced motion preference
+@media (prefers-reduced-motion: reduce) {
+  .application-tracker {
+    .step {
+      .step-icon {
+        transition: none;
+      }
+    }
+  }
+} 
