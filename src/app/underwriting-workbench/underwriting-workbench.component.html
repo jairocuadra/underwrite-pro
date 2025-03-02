@@ -231,8 +231,12 @@
             <span>{{getMobileNavName(item.name)}}</span>
           </button>
         </div>
-        <div class="scroll-indicator left" #leftIndicator></div>
-        <div class="scroll-indicator right" #rightIndicator></div>
+        <button class="scroll-indicator left" #leftIndicator (click)="scrollLeft()" [class.visible]="canScrollLeft">
+          <mat-icon>chevron_left</mat-icon>
+        </button>
+        <button class="scroll-indicator right" #rightIndicator (click)="scrollRight()" [class.visible]="canScrollRight">
+          <mat-icon>chevron_right</mat-icon>
+        </button>
       </div>
 
       <!-- Desktop Navigation List - Hidden on small screens -->

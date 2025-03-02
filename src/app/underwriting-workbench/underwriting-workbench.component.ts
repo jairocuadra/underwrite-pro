@@ -111,6 +111,10 @@ export class UnderwritingWorkbenchComponent implements OnInit, AfterViewInit {
   @ViewChild('leftIndicator') leftIndicator!: ElementRef;
   @ViewChild('rightIndicator') rightIndicator!: ElementRef;
 
+  canScrollLeft = false;
+  canScrollRight = false;
+  private scrollAmount = 200; // Amount to scroll in pixels
+
   constructor(private dialog: MatDialog, private router: Router) {}
 
   ngOnInit() {
@@ -192,6 +196,32 @@ export class UnderwritingWorkbenchComponent implements OnInit, AfterViewInit {
   }
   
   /**
+   * Scrolls the tab container to the left
+   */
+  scrollLeft() {
+    const scrollContainer = document.querySelector('.tab-scroll-container') as HTMLElement;
+    if (scrollContainer) {
+      scrollContainer.scrollBy({
+        left: -this.scrollAmount,
+        behavior: 'smooth'
+      });
+    }
+  }
+
+  /**
+   * Scrolls the tab container to the right
+   */
+  scrollRight() {
+    const scrollContainer = document.querySelector('.tab-scroll-container') as HTMLElement;
+    if (scrollContainer) {
+      scrollContainer.scrollBy({
+        left: this.scrollAmount,
+        behavior: 'smooth'
+      });
+    }
+  }
+
+  /**
    * Sets up scroll indicators for the tab navigation
    */
   setupScrollIndicators() {
@@ -200,19 +230,11 @@ export class UnderwritingWorkbenchComponent implements OnInit, AfterViewInit {
     
     const updateIndicators = () => {
       // Show left indicator if scrolled right
-      if (scrollContainer.scrollLeft > 20) {
-        this.leftIndicator.nativeElement.classList.add('visible');
-      } else {
-        this.leftIndicator.nativeElement.classList.remove('visible');
-      }
+      this.canScrollLeft = scrollContainer.scrollLeft > 20;
       
       // Show right indicator if more content to scroll
       const maxScrollLeft = scrollContainer.scrollWidth - scrollContainer.clientWidth - 20;
-      if (scrollContainer.scrollLeft < maxScrollLeft) {
-        this.rightIndicator.nativeElement.classList.add('visible');
-      } else {
-        this.rightIndicator.nativeElement.classList.remove('visible');
-      }
+      this.canScrollRight = scrollContainer.scrollLeft < maxScrollLeft;
     };
     
     // Initial update
