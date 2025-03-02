@@ -113,7 +113,7 @@ export class UnderwritingWorkbenchComponent implements OnInit, AfterViewInit {
 
   canScrollLeft = false;
   canScrollRight = false;
-  private scrollAmount = 200; // Amount to scroll in pixels
+  private scrollAmount = 200;
 
   constructor(private dialog: MatDialog, private router: Router) {}
 
@@ -136,7 +136,6 @@ export class UnderwritingWorkbenchComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    // Set up scroll indicators for the tab navigation
     setTimeout(() => {
       this.setupScrollIndicators();
     }, 100);
@@ -195,9 +194,6 @@ export class UnderwritingWorkbenchComponent implements OnInit, AfterViewInit {
     return shortNames[fullName] || fullName;
   }
   
-  /**
-   * Scrolls the tab container to the left
-   */
   scrollLeft() {
     const scrollContainer = document.querySelector('.tab-scroll-container') as HTMLElement;
     if (scrollContainer) {
@@ -208,9 +204,6 @@ export class UnderwritingWorkbenchComponent implements OnInit, AfterViewInit {
     }
   }
 
-  /**
-   * Scrolls the tab container to the right
-   */
   scrollRight() {
     const scrollContainer = document.querySelector('.tab-scroll-container') as HTMLElement;
     if (scrollContainer) {
@@ -221,29 +214,18 @@ export class UnderwritingWorkbenchComponent implements OnInit, AfterViewInit {
     }
   }
 
-  /**
-   * Sets up scroll indicators for the tab navigation
-   */
   setupScrollIndicators() {
     const scrollContainer = document.querySelector('.tab-scroll-container') as HTMLElement;
     if (!scrollContainer || !this.leftIndicator || !this.rightIndicator) return;
     
     const updateIndicators = () => {
-      // Show left indicator if scrolled right
       this.canScrollLeft = scrollContainer.scrollLeft > 20;
-      
-      // Show right indicator if more content to scroll
       const maxScrollLeft = scrollContainer.scrollWidth - scrollContainer.clientWidth - 20;
       this.canScrollRight = scrollContainer.scrollLeft < maxScrollLeft;
     };
     
-    // Initial update
     updateIndicators();
-    
-    // Update on scroll
     scrollContainer.addEventListener('scroll', updateIndicators);
-    
-    // Update on window resize
     window.addEventListener('resize', updateIndicators);
   }
 } 
