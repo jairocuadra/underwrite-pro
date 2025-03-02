@@ -6,7 +6,7 @@
 <div class="workbench-container">
   <!-- Compact Header Section -->
   <div class="workbench-header" [class.collapsed]="isHeaderCollapsed">
-    <div class="header-top">
+    <div class="header-top" (click)="toggleHeader()">
       <div class="application-id">
         <h2>Application #{{applicationId}}</h2>
       </div>
@@ -34,7 +34,7 @@
         </div>
       </div>
       
-      <button mat-icon-button class="toggle-header-btn" (click)="toggleHeader()">
+      <button mat-icon-button class="toggle-header-btn" (click)="$event.stopPropagation()">
         <mat-icon>{{ isHeaderCollapsed ? 'expand_more' : 'expand_less' }}</mat-icon>
       </button>
     </div>
@@ -215,14 +215,13 @@
     <!-- Left Navigation -->
     <nav class="left-nav" [class.collapsed]="isNavCollapsed">
       <div class="nav-header">
-        <h3 class="section-title">Navigation</h3>
         <button mat-icon-button (click)="toggleNav()" class="toggle-btn">
           <mat-icon>{{ isNavCollapsed ? 'chevron_right' : 'chevron_left' }}</mat-icon>
         </button>
       </div>
       <ul class="nav-list">
         <li class="nav-item" *ngFor="let item of workboardItems" [routerLinkActive]="'active'">
-          <a class="nav-link" [routerLink]="['/underwriting', item.route]">
+          <a class="nav-link" [routerLink]="['/underwriting', item.route]" [matTooltip]="isNavCollapsed ? item.name : ''" matTooltipPosition="right">
             <mat-icon>{{ item.icon }}</mat-icon>
             <span *ngIf="!isNavCollapsed">{{ item.name }}</span>
           </a>

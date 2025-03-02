@@ -4,9 +4,10 @@
   --primary-color: #3498db;
   --primary-light: #5dade2;
   --primary-dark: #2980b9;
+  --primary-rgb: 52, 152, 219;
   
   // Background colors
-  --bg-color: #ffffff;
+  --bg-color: #f5f7fa;
   --bg-secondary: #f8f9fa;
   --bg-tertiary: #f1f3f5;
   
@@ -31,6 +32,18 @@
   --warning: #f59e0b;
   --error: #ef4444;
   --info: #3b82f6;
+  --success-rgb: 16, 185, 129;
+  --warning-rgb: 245, 158, 11;
+  --error-rgb: 239, 68, 68;
+  --info-rgb: 59, 130, 246;
+  
+  // Warning mode colors
+  --warning-bg: #fef3c7;
+  --warning-border: #fcd34d;
+  
+  // Edit mode colors
+  --edit-mode-bg: #e6f2ff;
+  --edit-mode-border: #60a5fa;
   
   // Shadow
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
@@ -47,6 +60,7 @@
   --primary-color: #60a5fa;
   --primary-light: #93c5fd;
   --primary-dark: #3b82f6;
+  --primary-rgb: 96, 165, 250;
   
   // Background colors
   --bg-color: #1f2937;
@@ -74,9 +88,35 @@
   --warning: #fbbf24;
   --error: #f87171;
   --info: #60a5fa;
+  --success-rgb: 52, 211, 153;
+  --warning-rgb: 251, 191, 36;
+  --error-rgb: 248, 113, 113;
+  --info-rgb: 96, 165, 250;
+  
+  // Warning mode colors
+  --warning-bg: #422006;
+  --warning-border: #92400e;
+  
+  // Edit mode colors - improved for better visibility
+  --edit-mode-bg: #1e3a8a;
+  --edit-mode-border: #60a5fa;
+  
+  // Form element colors for better visibility in dark mode
+  --input-bg: #2d3748;
+  --input-border: #4a5568;
+  --input-focus-border: #60a5fa;
+  --input-placeholder: #a0aec0;
+  --input-text: #f7fafc;
+  --label-text: #e2e8f0;
+  --button-text: #ffffff;
   
   // Shadow (darker for dark mode)
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
   --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
   --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.5);
+  
+  // Enhanced contrast for workbench components
+  --workbench-header-bg: #2d3748;
+  --workbench-nav-bg: #2d3748;
+  --column-bg: #2d3748;
 } 

@@ -111,7 +111,8 @@ export class UnderwritingWorkbenchComponent {
     if (enabled) {
       const dialogRef = this.dialog.open(EditModeModalComponent, {
         width: '500px',
-        disableClose: true
+        disableClose: true,
+        panelClass: 'edit-mode-dialog-panel'
       });
 
       dialogRef.afterClosed().subscribe(result => {

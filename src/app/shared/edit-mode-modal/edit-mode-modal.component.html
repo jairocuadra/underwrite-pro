@@ -1,7 +1,7 @@
 <div class="edit-mode-modal">
   <h2 mat-dialog-title>Enter Edit Mode</h2>
   
-  <mat-dialog-content>
+  <mat-dialog-content class="edit-mode-dialog-content">
     <form [formGroup]="editForm">
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Select Role</mat-label>
@@ -46,7 +46,7 @@
     </form>
   </mat-dialog-content>
 
-  <mat-dialog-actions align="end">
+  <mat-dialog-actions align="end" class="edit-mode-dialog-actions">
     <button mat-button (click)="onCancel()">Cancel</button>
     <button
       mat-raised-button

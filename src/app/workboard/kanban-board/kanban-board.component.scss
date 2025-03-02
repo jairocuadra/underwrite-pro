@@ -5,7 +5,7 @@
     font-size: 1.5rem;
     font-weight: 600;
     margin-bottom: 20px;
-    color: #2d3748;
+    color: var(--text-primary);
   }
   
   .board-container {
@@ -17,28 +17,29 @@
     .column {
       flex: 1;
       min-width: 300px;
-      background: #f7fafc;
+      background: var(--bg-secondary);
       border-radius: 8px;
       display: flex;
       flex-direction: column;
+      box-shadow: var(--shadow-sm);
       
       .column-header {
         padding: 16px;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        border-bottom: 1px solid #e2e8f0;
+        border-bottom: 1px solid var(--border-color);
         
         h3 {
           font-size: 1.1rem;
           font-weight: 600;
           margin: 0;
-          color: #4a5568;
+          color: var(--text-primary);
         }
         
         .card-count {
-          background: #e2e8f0;
-          color: #4a5568;
+          background: var(--bg-tertiary);
+          color: var(--text-secondary);
           border-radius: 12px;
           padding: 2px 8px;
           font-size: 0.8rem;
@@ -55,15 +56,15 @@
         gap: 12px;
         
         .kanban-card {
-          background: white;
+          background: var(--card-bg);
           border-radius: 6px;
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-          padding: 16px;
+          box-shadow: var(--shadow-sm);
+          padding: 8px;
           cursor: grab;
           transition: all 0.2s ease;
           
           &:hover {
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--shadow-md);
             transform: translateY(-2px);
           }
           
@@ -74,47 +75,96 @@
           .card-header {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
+            background: transparent;
             
             .card-type, .card-priority {
-              font-size: 0.7rem;
-              font-weight: 600;
-              text-transform: uppercase;
-              padding: 4px 8px;
-              border-radius: 4px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              
+              .badge {
+                padding: 3px 6px;
+                border-radius: 4px;
+                font-size: 0.75rem;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                
+                mat-icon {
+                  font-size: 16px;
+                  width: 16px;
+                  height: 16px;
+                  line-height: 16px;
+                }
+              }
             }
             
             .card-type {
-              &.task {
-                background: #ebf8ff;
-                color: #3182ce;
+              &.task .badge {
+                background-color: rgba(33, 150, 243, 0.15);
+                color: var(--info);
+                
+                mat-icon {
+                  color: var(--info);
+                }
               }
               
-              &.rule {
-                background: #faf5ff;
-                color: #805ad5;
+              &.rule .badge {
+                background-color: rgba(156, 39, 176, 0.15);
+                color: #9c27b0;
+                
+                mat-icon {
+                  color: #9c27b0;
+                }
               }
               
-              &.evidence {
-                background: #e6fffa;
-                color: #319795;
+              &.evidence .badge {
+                background-color: rgba(76, 175, 80, 0.15);
+                color: var(--success);
+                
+                mat-icon {
+                  color: var(--success);
+                }
               }
             }
             
             .card-priority {
-              &.high {
-                background: #fff5f5;
-                color: #e53e3e;
+              cursor: pointer;
+              transition: all 0.2s ease;
+              
+              &:hover {
+                transform: scale(1.05);
               }
               
-              &.medium {
-                background: #fffaf0;
-                color: #dd6b20;
+              &.high .badge {
+                background-color: rgba(244, 67, 54, 0.15);
+                color: var(--error);
+                
+                mat-icon {
+                  color: var(--error);
+                }
               }
               
-              &.low {
-                background: #f0fff4;
-                color: #38a169;
+              &.medium .badge {
+                background-color: rgba(255, 152, 0, 0.15);
+                color: var(--warning);
+                
+                mat-icon {
+                  color: var(--warning);
+                }
+              }
+              
+              &.low .badge {
+                background-color: rgba(76, 175, 80, 0.15);
+                color: var(--success);
+                
+                mat-icon {
+                  color: var(--success);
+                }
               }
             }
           }
@@ -122,21 +172,22 @@
           .card-title {
             font-size: 1rem;
             font-weight: 600;
-            margin: 0 0 8px 0;
-            color: #2d3748;
+            margin: 0 0 6px 0;
+            color: var(--text-primary);
           }
           
           .card-description {
             font-size: 0.9rem;
-            color: #718096;
-            margin: 0 0 12px 0;
+            color: var(--text-secondary);
+            margin: 0 0 8px 0;
           }
           
           .card-footer {
             display: flex;
             justify-content: space-between;
             font-size: 0.8rem;
-            color: #718096;
+            color: var(--text-tertiary);
+            background: transparent;
             
             .card-role, .card-due-date {
               display: flex;
@@ -147,6 +198,7 @@
                 font-size: 16px;
                 width: 16px;
                 height: 16px;
+                color: var(--text-tertiary);
               }
             }
           }
@@ -157,13 +209,266 @@
           display: flex;
           align-items: center;
           justify-content: center;
-          color: #a0aec0;
+          color: var(--text-tertiary);
           font-style: italic;
-          border: 2px dashed #e2e8f0;
+          border: 2px dashed var(--border-color);
           border-radius: 6px;
           padding: 20px;
         }
       }
     }
   }
+}
+
+// Tooltip styling with improved dark mode support
+::ng-deep .mat-tooltip {
+  font-size: 12px;
+  padding: 8px 12px;
+  background-color: var(--tooltip-bg, rgba(0, 0, 0, 0.9));
+  color: var(--text-primary);
+  border-radius: 4px;
+  box-shadow: var(--shadow-md);
+  max-width: 250px;
+  
+  .dark-theme & {
+    background-color: var(--bg-tertiary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+  }
+}
+
+// Right Drawer Styles
+.right-drawer {
+  position: fixed;
+  top: 0;
+  right: -400px;
+  width: 400px;
+  height: 100vh;
+  background: var(--bg-secondary);
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  transition: right 0.3s ease-in-out;
+  overflow-y: auto;
+  
+  &.open {
+    right: 0;
+  }
+  
+  .drawer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    border-bottom: 1px solid var(--border-color);
+    
+    .close-button {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px;
+      border-radius: 50%;
+      transition: background-color 0.2s;
+      
+      &:hover {
+        background-color: var(--bg-tertiary);
+      }
+      
+      mat-icon {
+        font-size: 24px;
+      }
+    }
+    
+    .drawer-title {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      
+      .card-type-badge {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 12px;
+        border-radius: 4px;
+        font-weight: 600;
+        
+        &.task {
+          background-color: rgba(33, 150, 243, 0.15);
+          color: var(--info);
+          
+          mat-icon {
+            color: var(--info);
+          }
+        }
+        
+        &.rule {
+          background-color: rgba(156, 39, 176, 0.15);
+          color: #9c27b0;
+          
+          mat-icon {
+            color: #9c27b0;
+          }
+        }
+        
+        &.evidence {
+          background-color: rgba(76, 175, 80, 0.15);
+          color: var(--success);
+          
+          mat-icon {
+            color: var(--success);
+          }
+        }
+      }
+    }
+  }
+  
+  .drawer-content {
+    padding: 24px;
+    
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 0 0 24px 0;
+      color: var(--text-primary);
+    }
+    
+    .detail-section {
+      margin-bottom: 24px;
+      
+      h3 {
+        font-size: 1rem;
+        font-weight: 600;
+        margin: 0 0 8px 0;
+        color: var(--text-secondary);
+      }
+      
+      p {
+        font-size: 1rem;
+        line-height: 1.5;
+        color: var(--text-primary);
+        margin: 0;
+      }
+      
+      .priority-badge, .role-badge, .date-badge, .status-badge {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+        border-radius: 4px;
+        font-size: 0.9rem;
+        width: fit-content;
+        
+        mat-icon {
+          font-size: 18px;
+          width: 18px;
+          height: 18px;
+        }
+      }
+      
+      .priority-badge {
+        &.high {
+          background-color: rgba(244, 67, 54, 0.15);
+          color: var(--error);
+          
+          mat-icon {
+            color: var(--error);
+          }
+        }
+        
+        &.medium {
+          background-color: rgba(255, 152, 0, 0.15);
+          color: var(--warning);
+          
+          mat-icon {
+            color: var(--warning);
+          }
+        }
+        
+        &.low {
+          background-color: rgba(76, 175, 80, 0.15);
+          color: var(--success);
+          
+          mat-icon {
+            color: var(--success);
+          }
+        }
+      }
+      
+      .role-badge {
+        background-color: rgba(33, 150, 243, 0.15);
+        color: var(--info);
+        
+        mat-icon {
+          color: var(--info);
+        }
+      }
+      
+      .date-badge {
+        background-color: rgba(156, 39, 176, 0.15);
+        color: #9c27b0;
+        
+        mat-icon {
+          color: #9c27b0;
+        }
+      }
+      
+      .status-badge {
+        background-color: rgba(33, 150, 243, 0.15);
+        color: var(--info);
+        
+        mat-icon {
+          color: var(--info);
+        }
+      }
+    }
+    
+    .type-specific-content {
+      margin-top: 32px;
+      
+      .action-button {
+        width: 100%;
+        margin-top: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 8px 16px;
+        
+        mat-icon {
+          font-size: 18px;
+        }
+      }
+    }
+  }
+}
+
+// Overlay for drawer
+.drawer-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  opacity: 0;
+  animation: fadeIn 0.3s forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+// Body class when drawer is open
+:host-context(body.drawer-open) {
+  overflow: hidden;
+}
+
+// Make cards clickable
+.kanban-card {
+  cursor: pointer;
 }

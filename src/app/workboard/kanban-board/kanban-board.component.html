@@ -15,14 +15,21 @@
         <div class="kanban-card" 
              *ngFor="let card of getCardsByColumn(column)"
              draggable="true"
-             (dragstart)="$event.dataTransfer?.setData('text/plain', card.id)">
+             (dragstart)="$event.dataTransfer?.setData('text/plain', card.id)"
+             (click)="openCardDetails(card)">
           
           <div class="card-header">
             <div class="card-type" [ngClass]="card.type">
-              {{ card.type | titlecase }}
+              <span class="badge">
+                <mat-icon>{{ getCardTypeIcon(card.type) }}</mat-icon>
+                {{ getCardTypeTooltip(card.type) }}
+              </span>
             </div>
-            <div class="card-priority" [ngClass]="card.priority">
-              {{ card.priority | titlecase }}
+            <div class="card-priority" [ngClass]="card.priority" (click)="cyclePriority(card); $event.stopPropagation()">
+              <span class="badge">
+                <mat-icon>flag</mat-icon>
+                {{ card.priority }}
+              </span>
             </div>
           </div>
           
@@ -47,4 +54,100 @@
       </div>
     </div>
   </div>
+  
+  <!-- Right Drawer -->
+  <div class="right-drawer" [ngClass]="{'open': selectedCard}">
+    <div class="drawer-header">
+      <button class="close-button" (click)="closeCardDetails()">
+        <mat-icon>close</mat-icon>
+      </button>
+      <div class="drawer-title">
+        <div class="card-type-badge" [ngClass]="selectedCard ? selectedCard.type : ''">
+          <mat-icon>{{ selectedCard ? getCardTypeIcon(selectedCard.type) : '' }}</mat-icon>
+          <span>{{ selectedCard ? getCardTypeTooltip(selectedCard.type) : '' }}</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="drawer-content" *ngIf="selectedCard">
+      <h2>{{ selectedCard.title }}</h2>
+      
+      <div class="detail-section">
+        <h3>Description</h3>
+        <p>{{ selectedCard.description }}</p>
+      </div>
+      
+      <div class="detail-section">
+        <h3>Priority</h3>
+        <div class="priority-badge" [ngClass]="selectedCard.priority">
+          <mat-icon>flag</mat-icon>
+          <span>{{ selectedCard.priority | titlecase }}</span>
+        </div>
+      </div>
+      
+      <div class="detail-section" *ngIf="selectedCard.role">
+        <h3>Assigned To</h3>
+        <div class="role-badge">
+          <mat-icon>person</mat-icon>
+          <span>{{ selectedCard.role === 'underwriter' ? 'Underwriter' : 'Case Manager' }}</span>
+        </div>
+      </div>
+      
+      <div class="detail-section" *ngIf="selectedCard.dueDate">
+        <h3>Due Date</h3>
+        <div class="date-badge">
+          <mat-icon>event</mat-icon>
+          <span>{{ selectedCard.dueDate | date:'MMMM d, y' }}</span>
+        </div>
+      </div>
+      
+      <!-- Type-specific content -->
+      <div class="type-specific-content" [ngSwitch]="selectedCard.type">
+        <div *ngSwitchCase="'task'" class="task-details">
+          <div class="detail-section">
+            <h3>Task Status</h3>
+            <div class="status-badge">
+              <mat-icon>check_circle</mat-icon>
+              <span>{{ getColumnForCard(selectedCard.id) | titlecase }}</span>
+            </div>
+          </div>
+          <button mat-raised-button color="primary" class="action-button">
+            <mat-icon>check</mat-icon>
+            Mark as Complete
+          </button>
+        </div>
+        
+        <div *ngSwitchCase="'rule'" class="rule-details">
+          <div class="detail-section">
+            <h3>Rule Status</h3>
+            <div class="status-badge">
+              <mat-icon>gavel</mat-icon>
+              <span>{{ getColumnForCard(selectedCard.id) | titlecase }}</span>
+            </div>
+          </div>
+          <button mat-raised-button color="primary" class="action-button">
+            <mat-icon>play_arrow</mat-icon>
+            Run Assessment
+          </button>
+        </div>
+        
+        <div *ngSwitchCase="'evidence'" class="evidence-details">
+          <div class="detail-section">
+            <h3>Evidence Status</h3>
+            <div class="status-badge">
+              <mat-icon>description</mat-icon>
+              <span>{{ getColumnForCard(selectedCard.id) | titlecase }}</span>
+            </div>
+          </div>
+          <button mat-raised-button color="primary" class="action-button">
+            <mat-icon>visibility</mat-icon>
+            View Document
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Overlay for drawer -->
+  <div class="drawer-overlay" *ngIf="selectedCard" (click)="closeCardDetails()"></div>
 </div>

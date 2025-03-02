@@ -1,6 +1,6 @@
 // Shared heading style
 .section-title {
-  color: #374151;
+  color: var(--text-primary);
   font-size: 15px;
   font-weight: 600;
   margin-bottom: 16px;
@@ -9,18 +9,19 @@
 
 .workbench-container {
   padding: 16px;
+  background-color: var(--bg-color);
 }
 
 .workbench-header {
-  background: white;
+  background: var(--workbench-header-bg, var(--card-bg));
   border-radius: 8px;
   padding: 16px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-sm);
   margin-bottom: 16px;
   transition: all 0.3s ease;
 
   &.collapsed {
-    padding: 12px 16px;
+    padding: 8px 16px;
   }
 
   .header-top {
@@ -28,14 +29,29 @@
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
+    gap: 12px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    
+    &:hover {
+      background-color: var(--bg-tertiary);
+      border-radius: 6px;
+    }
 
     .application-id {
+      min-width: 180px;
+      max-width: 300px;
+      flex-shrink: 0;
+      
       h2 {
-        font-size: 15px;
+        font-size: 14px;
         font-weight: 500;
-        color: #6b7280;
+        color: var(--text-secondary);
         margin: 0;
         letter-spacing: 0.3px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
     }
 
@@ -45,36 +61,40 @@
       gap: 16px;
       flex: 1;
       justify-content: flex-end;
-      margin: 0 16px;
+      margin: 0 8px;
 
       .detail-item {
         .label {
           font-size: 12px;
-          color: #6b7280;
+          color: var(--text-secondary);
           margin-bottom: 2px;
+          text-align: left;
         }
 
         .value {
           font-size: 14px;
-          color: #111827;
+          color: var(--text-primary);
           font-weight: 500;
+          text-align: left;
 
           &.highlight {
-            color: #2563eb;
+            color: var(--primary-color);
           }
         }
       }
     }
 
     .toggle-header-btn {
-      color: #718096;
+      color: var(--text-secondary);
+      flex-shrink: 0;
+      z-index: 2; // Ensure button is above the clickable area
     }
   }
 
   .header-details {
     margin-top: 16px;
     padding-top: 16px;
-    border-top: 1px solid #e5e7eb;
+    border-top: 1px solid var(--border-color);
     display: flex;
     flex-wrap: wrap;
     gap: 24px;
@@ -95,16 +115,16 @@
         .detail-item {
           .label {
             font-size: 12px;
-            color: #6b7280;
+            color: var(--text-secondary);
             margin-bottom: 2px;
           }
 
           .value {
             font-size: 14px;
-            color: #374151;
+            color: var(--text-primary);
             
             &.highlight {
-              color: #2563eb;
+              color: var(--primary-color);
               font-weight: 500;
             }
           }
@@ -116,9 +136,9 @@
 
 .application-tracker {
   padding: 16px;
-  background: linear-gradient(to right, #f8f9fa, #ffffff);
+  background: linear-gradient(to right, var(--bg-secondary), var(--card-bg));
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow-md);
   margin-bottom: 16px;
 
   .tracker-header {
@@ -140,19 +160,19 @@
     gap: 0;
     position: relative;
     scrollbar-width: thin;
-    scrollbar-color: #cbd5e0 #f8f9fa;
+    scrollbar-color: var(--border-color) var(--bg-secondary);
 
     &::-webkit-scrollbar {
       height: 6px;
     }
 
     &::-webkit-scrollbar-track {
-      background: #f8f9fa;
+      background: var(--bg-secondary);
       border-radius: 3px;
     }
 
     &::-webkit-scrollbar-thumb {
-      background-color: #cbd5e0;
+      background-color: var(--border-color);
       border-radius: 3px;
     }
   }
@@ -177,14 +197,14 @@
         width: 28px;
         height: 28px;
         border-radius: 50%;
-        background: #fff;
+        background: var(--card-bg);
         display: flex;
         align-items: center;
         justify-content: center;
         z-index: 2;
         transition: all 0.3s ease;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        border: 2px solid #e2e8f0;
+        box-shadow: var(--shadow-sm);
+        border: 2px solid var(--border-light);
         position: relative;
         z-index: 2;
 
@@ -195,12 +215,13 @@
           display: flex;
           align-items: center;
           justify-content: center;
+          color: var(--text-tertiary);
         }
       }
 
       .step-line {
         height: 2px;
-        background: #e2e8f0;
+        background: var(--border-light);
         flex: 1;
         position: relative;
         z-index: 1;
@@ -215,13 +236,13 @@
 
       .step-label {
         font-weight: 500;
-        color: #2d3748;
+        color: var(--text-primary);
         font-size: 0.8rem;
         white-space: nowrap;
       }
 
       .step-date {
-        color: #718096;
+        color: var(--text-tertiary);
         font-size: 0.7rem;
       }
     }
@@ -229,42 +250,42 @@
     // Completed step styling
     &.completed {
       .step-icon {
-        background: #ffffff;
-        border-color: #3498db;
+        background: var(--card-bg);
+        border-color: var(--primary-color);
         
-        ::ng-deep mat-icon {
-          color: #3498db;
+        mat-icon {
+          color: var(--primary-color);
         }
       }
 
       .step-line {
-        background: #3498db;
+        background: var(--primary-color);
       }
 
       .step-label {
-        color: #2b6cb0;
+        color: var(--primary-dark);
       }
     }
 
     // Active step styling
     &.active {
       .step-icon {
-        background: #ebf8ff;
-        border: 2px solid #3498db;
+        background: var(--bg-tertiary);
+        border: 2px solid var(--primary-color);
         
-        ::ng-deep mat-icon {
-          color: #3498db;
+        mat-icon {
+          color: var(--primary-color);
         }
       }
 
       .step-content {
         .step-label {
-          color: #2b6cb0;
+          color: var(--primary-dark);
           font-weight: 600;
         }
 
         .step-date {
-          color: #3498db;
+          color: var(--primary-color);
           font-weight: 500;
         }
       }
@@ -273,11 +294,11 @@
     // Future step styling
     &:not(.completed):not(.active) {
       .step-icon {
-        background: #fff;
-        border-color: #e2e8f0;
+        background: var(--card-bg);
+        border-color: var(--border-light);
         
-        ::ng-deep mat-icon {
-          color: #cbd5e0;
+        mat-icon {
+          color: var(--text-tertiary);
         }
       }
     }
@@ -297,32 +318,34 @@
 
   .left-nav {
     width: 280px;
-    background: #ffffff;
+    background: var(--workbench-nav-bg, var(--card-bg));
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-sm);
     padding: 16px;
     transition: width 0.3s ease;
     
     &.collapsed {
       width: 70px;
+      padding: 16px 8px;
       
       .nav-link {
         justify-content: center;
+      }
+      
+      .nav-header {
+        justify-content: center;
+        margin-bottom: 20px;
       }
     }
 
     .nav-header {
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-end;
       align-items: center;
       margin-bottom: 16px;
       
-      h3 {
-        margin: 0;
-      }
-      
       .toggle-btn {
-        color: #718096;
+        color: var(--text-secondary);
       }
     }
 
@@ -343,14 +366,14 @@
           display: flex;
           align-items: center;
           padding: 10px 12px;
-          color: #4a5568;
+          color: var(--text-primary);
           text-decoration: none;
           border-radius: 6px;
           transition: all 0.2s ease;
           gap: 12px;
 
           mat-icon {
-            color: #718096;
+            color: var(--text-secondary);
             font-size: 20px;
             width: 20px;
             height: 20px;
@@ -361,23 +384,23 @@
           }
 
           &:hover {
-            background: #f7fafc;
-            color: #2b6cb0;
+            background: var(--bg-secondary);
+            color: var(--primary-dark);
 
             mat-icon {
-              color: #3498db;
+              color: var(--primary-color);
             }
           }
         }
 
         &.active {
           .nav-link {
-            background: #ebf8ff;
-            color: #2b6cb0;
+            background: var(--bg-tertiary);
+            color: var(--primary-dark);
             font-weight: 500;
 
             mat-icon {
-              color: #3498db;
+              color: var(--primary-color);
             }
           }
         }
@@ -387,9 +410,9 @@
 
   .content-area {
     flex: 1;
-    background: #ffffff;
+    background: var(--card-bg);
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-sm);
     padding: 16px;
     overflow: auto;
   }
@@ -404,35 +427,49 @@
 
   mat-table {
     width: 100%;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: var(--card-bg);
+    box-shadow: var(--shadow-sm);
 
     mat-header-row {
-      background-color: #f5f5f5;
+      background-color: var(--bg-secondary);
     }
 
     mat-header-cell {
       font-weight: bold;
-      color: #333;
+      color: var(--text-primary);
     }
 
     mat-cell {
-      color: #666;
+      color: var(--text-secondary);
     }
 
     mat-row:hover {
-      background-color: #f8f8f8;
+      background-color: var(--bg-tertiary);
     }
   }
+}
+
+// Tooltip styling
+::ng-deep .mat-tooltip {
+  background-color: var(--tooltip-bg);
+  color: var(--text-primary);
+  font-size: 12px;
+  padding: 6px 10px;
+  border-radius: 4px;
 }
 
 // Responsive adjustments
 @media (max-width: 992px) {
   .workbench-header {
     .header-top {
+      .application-id {
+        min-width: 150px;
+      }
+      
       .essential-info {
-        margin: 12px 0;
-        justify-content: flex-start;
+        margin: 8px 0;
+        justify-content: flex-end;
+        gap: 12px;
       }
     }
   }
@@ -472,6 +509,48 @@
           
           .nav-item {
             margin-bottom: 0;
+          }
+        }
+      }
+    }
+  }
+
+  .workbench-header {
+    &.collapsed {
+      padding: 8px 12px;
+    }
+    
+    .header-top {
+      flex-direction: row;
+      
+      .application-id {
+        min-width: auto;
+        max-width: 100%;
+        margin-bottom: 4px;
+        flex-basis: 100%;
+        
+        h2 {
+          font-size: 14px;
+        }
+      }
+      
+      .essential-info {
+        justify-content: space-between;
+        width: 100%;
+        margin: 4px 0;
+        gap: 8px;
+        
+        .detail-item {
+          flex-basis: calc(50% - 8px);
+          
+          .label {
+            font-size: 11px;
+            text-align: left;
+          }
+          
+          .value {
+            font-size: 14px;
+            text-align: left;
           }
         }
       }

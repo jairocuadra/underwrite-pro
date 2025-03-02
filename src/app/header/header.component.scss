@@ -1,10 +1,10 @@
 .app-header {
   background: var(--header-bg);
-  box-shadow: var(--shadow-sm);
-  position: sticky;
-  top: 0;
+  box-shadow: none;
+  position: relative;
   z-index: 1000;
   transition: background-color var(--transition-speed), box-shadow var(--transition-speed);
+  border-bottom: 1px solid var(--border-color);
 
   .header-container {
     max-width: 1400px;

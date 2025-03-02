@@ -6,7 +6,7 @@ body {
   height: 100%;
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  background-color: var(--bg-color);
+  background-color: #f5f7fa;
   color: var(--text-primary);
   transition: background-color var(--transition-speed), color var(--transition-speed);
 }
@@ -119,15 +119,16 @@ mat-sidenav-content {
   }
   
   .mat-form-field-appearance-outline .mat-form-field-outline {
-    color: var(--border-color);
+    color: var(--input-border);
   }
   
   .mat-input-element {
     caret-color: var(--primary-color);
+    color: var(--input-text);
   }
   
   .mat-form-field-label {
-    color: var(--text-secondary);
+    color: var(--label-text);
   }
   
   .mat-table {
@@ -149,6 +150,80 @@ mat-sidenav-content {
   
   .mat-menu-item .mat-icon {
     color: var(--text-primary);
+  }
+  
+  // Dialog styles for dark mode
+  .mat-dialog-container {
+    background-color: var(--card-bg);
+    color: var(--text-primary);
+  }
+  
+  .mat-dialog-title {
+    color: var(--text-primary);
+  }
+  
+  .mat-dialog-content {
+    color: var(--text-primary);
+  }
+  
+  .mat-dialog-actions {
+    background-color: var(--bg-secondary);
+    border-top: 1px solid var(--border-color);
+  }
+  
+  .mat-select-value {
+    color: var(--input-text);
+  }
+  
+  .mat-select-arrow {
+    color: var(--label-text);
+  }
+  
+  .mat-option {
+    color: var(--input-text);
+  }
+  
+  .mat-option:hover:not(.mat-option-disabled),
+  .mat-option:focus:not(.mat-option-disabled) {
+    background: rgba(255, 255, 255, 0.08);
+  }
+  
+  .mat-select-panel {
+    background: var(--input-bg);
+  }
+  
+  .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+    color: var(--input-focus-border);
+  }
+  
+  .mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid .mat-form-field-outline-thick {
+    color: var(--error);
+  }
+  
+  .mat-hint {
+    color: var(--input-placeholder);
+  }
+  
+  .mat-error {
+    color: var(--error);
+  }
+  
+  // Improve form elements in dark mode
+  input::placeholder, textarea::placeholder {
+    color: var(--input-placeholder) !important;
+    opacity: 1;
+  }
+  
+  .mat-form-field-appearance-outline .mat-form-field-flex {
+    background-color: var(--input-bg);
+  }
+  
+  .mat-raised-button.mat-primary {
+    color: var(--button-text);
+  }
+  
+  .mat-select-panel {
+    background: var(--input-bg);
   }
 }
 
@@ -183,6 +258,7 @@ mat-sidenav-content {
 .app-container {
   background-color: var(--bg-color);
   color: var(--text-primary);
+  padding-top: 0;
 }
 
 // Apply theme to mode banner
@@ -190,4 +266,70 @@ mat-sidenav-content {
   background-color: var(--bg-secondary);
   color: var(--text-primary);
   border-bottom: 1px solid var(--border-color);
+  width: 100vw;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  z-index: 10;
+  
+  &.edit-mode {
+    background-color: var(--edit-mode-bg);
+    border-bottom-color: var(--edit-mode-border);
+  }
+}
+
+// Header wrapper styling
+.header-wrapper {
+  width: 100%;
+  z-index: 100;
+}
+
+// Apply theme to edit mode modal
+.edit-mode-modal {
+  background-color: var(--card-bg);
+  color: var(--text-primary);
+}
+
+// Apply theme to dialog panel
+.edit-mode-dialog-panel {
+  .mat-dialog-container {
+    background-color: var(--card-bg);
+    color: var(--text-primary);
+  }
+}
+
+// Dark mode specific dialog panel
+.dark-theme .edit-mode-dialog-panel {
+  .mat-dialog-container {
+    background-color: var(--card-bg);
+    color: var(--text-primary);
+  }
+  
+  .mat-form-field-appearance-outline .mat-form-field-flex {
+    background-color: var(--input-bg);
+  }
+  
+  input, textarea, .mat-select-value {
+    color: var(--input-text);
+  }
+  
+  .mat-form-field-label {
+    color: var(--label-text);
+  }
+  
+  .mat-hint {
+    color: var(--input-placeholder);
+  }
+  
+  .mat-raised-button.mat-primary {
+    color: var(--button-text);
+    background-color: var(--primary-color);
+  }
+  
+  .mat-button {
+    color: var(--text-primary);
+  }
 }

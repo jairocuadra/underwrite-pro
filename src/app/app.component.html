@@ -1,6 +1,8 @@
 <div class="app-root" [ngClass]="{'dark-theme': darkMode$ | async}">
-  <app-header (sidenavToggle)="sidenav.toggle()"></app-header>
-  <app-mode-banner *ngIf="isWorkbenchRoute" [isEditMode]="isEditMode" (editModeChange)="onEditModeChange($event)"></app-mode-banner>
+  <div class="header-wrapper">
+    <app-header (sidenavToggle)="sidenav.toggle()"></app-header>
+    <app-mode-banner *ngIf="isWorkbenchRoute" [isEditMode]="isEditMode" (editModeChange)="onEditModeChange($event)"></app-mode-banner>
+  </div>
   
   <mat-sidenav-container>
     <mat-sidenav #sidenav mode="over">

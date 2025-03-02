@@ -5,14 +5,15 @@
 
   h2 {
     margin: 0 0 24px;
-    color: #1f2937;
+    color: var(--text-primary);
     font-size: 20px;
     font-weight: 500;
   }
 
-  mat-dialog-content {
+  .edit-mode-dialog-content {
     padding: 0;
     margin: 0;
+    color: var(--text-primary);
 
     form {
       display: flex;
@@ -25,19 +26,44 @@
     width: 100%;
   }
 
-  mat-dialog-actions {
+  .edit-mode-dialog-actions {
     margin: 24px -16px -16px;
     padding: 16px;
-    background-color: #f9fafb;
-    border-top: 1px solid #e5e7eb;
+    background-color: var(--bg-secondary);
+    border-top: 1px solid var(--border-color);
 
     button + button {
       margin-left: 8px;
+    }
+
+    button[color="primary"] {
+      color: white;
     }
   }
 
   textarea {
     resize: vertical;
     min-height: 100px;
+  }
+
+  ::placeholder {
+    color: var(--text-tertiary);
+    opacity: 0.7;
+  }
+
+  .mat-form-field-label {
+    color: var(--text-secondary);
+  }
+
+  .mat-form-field.mat-focused .mat-form-field-label {
+    color: var(--primary-color);
+  }
+
+  .mat-select-value {
+    color: var(--text-primary);
+  }
+
+  .mat-hint {
+    color: var(--text-tertiary);
   }
 } 

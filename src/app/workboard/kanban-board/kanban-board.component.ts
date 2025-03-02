@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 
 type ColumnId = 'todo' | 'in-progress' | 'completed';
+type CardType = 'task' | 'rule' | 'evidence';
+type Priority = 'low' | 'medium' | 'high';
 
 interface KanbanCard {
   id: string;
   title: string;
   description: string;
-  type: 'task' | 'rule' | 'evidence';
+  type: CardType;
   role?: 'underwriter' | 'case-manager';
   dueDate?: Date;
-  priority: 'low' | 'medium' | 'high';
+  priority: Priority;
 }
 
 @Component({
@@ -25,6 +27,9 @@ export class KanbanBoardComponent implements OnInit {
     'in-progress': 'In Progress',
     'completed': 'Completed'
   };
+  
+  // Selected card for the drawer
+  selectedCard: KanbanCard | null = null;
   
   cards: Record<ColumnId, KanbanCard[]> = {
     'todo': [
@@ -51,6 +56,8 @@ export class KanbanBoardComponent implements OnInit {
         title: 'Diabetes assessment',
         description: 'Apply diabetes risk assessment rule',
         type: 'rule',
+        role: 'underwriter',
+        dueDate: new Date('2025-03-20'),
         priority: 'high'
       }
     ],
@@ -60,6 +67,7 @@ export class KanbanBoardComponent implements OnInit {
         title: 'APS from Dr. Johnson',
         description: 'Attending Physician Statement from primary care doctor',
         type: 'evidence',
+        role: 'case-manager',
         dueDate: new Date('2025-03-05'),
         priority: 'high'
       },
@@ -68,6 +76,8 @@ export class KanbanBoardComponent implements OnInit {
         title: 'Smoker status verification',
         description: 'Verify smoker status based on lab results',
         type: 'rule',
+        role: 'underwriter',
+        dueDate: new Date('2025-03-12'),
         priority: 'medium'
       }
     ],
@@ -78,6 +88,7 @@ export class KanbanBoardComponent implements OnInit {
         description: 'Complete initial review of application',
         type: 'task',
         role: 'underwriter',
+        dueDate: new Date('2025-03-01'),
         priority: 'high'
       },
       {
@@ -85,6 +96,8 @@ export class KanbanBoardComponent implements OnInit {
         title: 'Blood test results',
         description: 'Blood panel results from LabCorp',
         type: 'evidence',
+        role: 'case-manager',
+        dueDate: new Date('2025-02-28'),
         priority: 'medium'
       }
     ]
@@ -97,6 +110,62 @@ export class KanbanBoardComponent implements OnInit {
 
   getCardsByColumn(column: ColumnId): KanbanCard[] {
     return this.cards[column];
+  }
+
+  getCardTypeIcon(type: CardType): string {
+    switch (type) {
+      case 'task':
+        return 'assignment';
+      case 'rule':
+        return 'gavel';
+      case 'evidence':
+        return 'description';
+      default:
+        return 'help_outline';
+    }
+  }
+
+  getCardTypeTooltip(type: CardType): string {
+    switch (type) {
+      case 'task':
+        return 'Task';
+      case 'rule':
+        return 'Rule';
+      case 'evidence':
+        return 'Evidence';
+      default:
+        return 'Unknown Type';
+    }
+  }
+
+  cyclePriority(card: KanbanCard): void {
+    const priorities: Priority[] = ['high', 'medium', 'low'];
+    const currentIndex = priorities.indexOf(card.priority);
+    const nextIndex = (currentIndex + 1) % priorities.length;
+    card.priority = priorities[nextIndex];
+  }
+
+  // Open the drawer with the selected card
+  openCardDetails(card: KanbanCard): void {
+    this.selectedCard = card;
+    document.body.classList.add('drawer-open');
+  }
+
+  // Close the drawer
+  closeCardDetails(): void {
+    this.selectedCard = null;
+    document.body.classList.remove('drawer-open');
+  }
+
+  // Get the column for a specific card by ID
+  getColumnForCard(cardId: string): string {
+    for (const column of this.columns) {
+      const cardExists = this.cards[column].some(card => card.id === cardId);
+      if (cardExists) {
+        return this.columnTitles[column];
+      }
+    }
+    return '';
   }
 
   onDrop(event: DragEvent, targetColumn: ColumnId): void {
