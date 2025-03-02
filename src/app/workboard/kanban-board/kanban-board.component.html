@@ -25,10 +25,9 @@
                 {{ getCardTypeTooltip(card.type) }}
               </span>
             </div>
-            <div class="card-priority" [ngClass]="card.priority" (click)="cyclePriority(card); $event.stopPropagation()">
+            <div class="card-priority" [ngClass]="card.priority" (click)="cyclePriority(card); $event.stopPropagation()" [matTooltip]="card.priority | titlecase">
               <span class="badge">
                 <mat-icon>flag</mat-icon>
-                {{ card.priority }}
               </span>
             </div>
           </div>
