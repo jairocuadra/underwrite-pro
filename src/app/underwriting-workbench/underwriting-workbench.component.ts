@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { EditModeModalComponent } from '../shared/edit-mode-modal/edit-mode-modal.component';
+import { filter } from 'rxjs/operators';
+import { NavigationEnd } from '@angular/router';
 
 interface BusinessPolicy {
   policy: string;
@@ -26,7 +28,7 @@ interface NavItem {
   templateUrl: './underwriting-workbench.component.html',
   styleUrls: ['./underwriting-workbench.component.scss']
 })
-export class UnderwritingWorkbenchComponent {
+export class UnderwritingWorkbenchComponent implements OnInit, AfterViewInit {
   applicationId = '5000000055';
   applicantName = 'John Smith';
   amount = '$500,000';
@@ -104,8 +106,37 @@ export class UnderwritingWorkbenchComponent {
   isEditMode = false;
   isNavCollapsed = false;
   isHeaderCollapsed = false;
+  activeRoute = 'workboard';
+
+  @ViewChild('leftIndicator') leftIndicator!: ElementRef;
+  @ViewChild('rightIndicator') rightIndicator!: ElementRef;
 
   constructor(private dialog: MatDialog, private router: Router) {}
+
+  ngOnInit() {
+    // Track route changes to update active navigation
+    this.router.events.pipe(
+      filter((event): event is NavigationEnd => event instanceof NavigationEnd)
+    ).subscribe((event) => {
+      const urlParts = event.url.split('/');
+      if (urlParts.length > 2) {
+        this.activeRoute = urlParts[2];
+      }
+    });
+
+    // Set initial active route
+    const urlParts = this.router.url.split('/');
+    if (urlParts.length > 2) {
+      this.activeRoute = urlParts[2];
+    }
+  }
+
+  ngAfterViewInit() {
+    // Set up scroll indicators for the tab navigation
+    setTimeout(() => {
+      this.setupScrollIndicators();
+    }, 100);
+  }
 
   onEditModeChange(enabled: boolean) {
     if (enabled) {
@@ -136,6 +167,61 @@ export class UnderwritingWorkbenchComponent {
   }
 
   navigateTo(route: string) {
-    this.router.navigate(['underwriting', route]);
+    this.activeRoute = route;
+    this.router.navigate(['/underwriting', route]);
+  }
+
+  /**
+   * Returns a shorter name for mobile navigation items
+   */
+  getMobileNavName(fullName: string): string {
+    const shortNames: {[key: string]: string} = {
+      'Workboard': 'Board',
+      'Applicant & Underwriting': 'Applicant',
+      'Product': 'Product',
+      'Advisor': 'Advisor',
+      'Bene/Owner/Payor': 'Bene/Owner',
+      'Associated Policies': 'Assoc Pol',
+      'Related Business Policies': 'Business',
+      'Save Age': 'Save Age',
+      'Policy Dates': 'Dates',
+      'PIA - Post Issue APS': 'PIA'
+    };
+    
+    return shortNames[fullName] || fullName;
+  }
+  
+  /**
+   * Sets up scroll indicators for the tab navigation
+   */
+  setupScrollIndicators() {
+    const scrollContainer = document.querySelector('.tab-scroll-container') as HTMLElement;
+    if (!scrollContainer || !this.leftIndicator || !this.rightIndicator) return;
+    
+    const updateIndicators = () => {
+      // Show left indicator if scrolled right
+      if (scrollContainer.scrollLeft > 20) {
+        this.leftIndicator.nativeElement.classList.add('visible');
+      } else {
+        this.leftIndicator.nativeElement.classList.remove('visible');
+      }
+      
+      // Show right indicator if more content to scroll
+      const maxScrollLeft = scrollContainer.scrollWidth - scrollContainer.clientWidth - 20;
+      if (scrollContainer.scrollLeft < maxScrollLeft) {
+        this.rightIndicator.nativeElement.classList.add('visible');
+      } else {
+        this.rightIndicator.nativeElement.classList.remove('visible');
+      }
+    };
+    
+    // Initial update
+    updateIndicators();
+    
+    // Update on scroll
+    scrollContainer.addEventListener('scroll', updateIndicators);
+    
+    // Update on window resize
+    window.addEventListener('resize', updateIndicators);
   }
 } 

@@ -332,6 +332,11 @@
     padding: 16px;
     transition: width 0.3s ease;
     
+    // Mobile navigation components - hidden by default on desktop
+    .mobile-tab-nav {
+      display: none;
+    }
+    
     &.collapsed {
       width: 70px;
       padding: 16px 8px;
@@ -411,6 +416,115 @@
               color: var(--primary-color);
             }
           }
+        }
+      }
+    }
+    
+    // Mobile Tab Navigation Styles
+    .mobile-tab-nav {
+      margin-bottom: 12px;
+      position: relative;
+      
+      .tab-scroll-container {
+        display: flex;
+        overflow-x: auto;
+        scrollbar-width: none; // Firefox
+        -ms-overflow-style: none; // IE and Edge
+        gap: 8px;
+        padding: 4px 0;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch; // Smooth scrolling on iOS
+        position: relative;
+        
+        &::-webkit-scrollbar {
+          display: none; // Chrome, Safari, Opera
+        }
+        
+        // Add padding to allow for overscroll effect
+        &::after {
+          content: '';
+          padding-right: 8px;
+        }
+      }
+      
+      .tab-button {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 80px;
+        height: 70px;
+        padding: 6px;
+        border-radius: 8px;
+        background: var(--bg-secondary);
+        border: none;
+        color: var(--text-primary);
+        cursor: pointer;
+        transition: all 0.2s ease;
+        flex-shrink: 0;
+        
+        mat-icon {
+          font-size: 20px;
+          margin-bottom: 4px;
+          color: var(--text-secondary);
+        }
+        
+        span {
+          font-size: 0.75rem;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          width: 100%;
+          text-align: center;
+          line-height: 1.2;
+        }
+        
+        &.active {
+          background: var(--primary-color);
+          color: white;
+          
+          mat-icon {
+            color: white;
+          }
+        }
+        
+        &:hover:not(.active) {
+          background: var(--bg-tertiary);
+          
+          mat-icon {
+            color: var(--primary-color);
+          }
+        }
+      }
+      
+      // Scroll indicators
+      .scroll-indicator {
+        position: absolute;
+        top: 50%;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: rgba(0, 0, 0, 0.1);
+        transform: translateY(-50%);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+        z-index: 10;
+        
+        &.visible {
+          opacity: 1;
+        }
+        
+        &.left {
+          left: 0;
+          background: linear-gradient(to right, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0));
+          box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        &.right {
+          right: 0;
+          background: linear-gradient(to left, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0));
+          box-shadow: -2px 0 4px rgba(0, 0, 0, 0.1);
         }
       }
     }
@@ -522,18 +636,40 @@
     
     .left-nav {
       width: 100%;
+      padding: 12px;
+      
+      // Show mobile navigation components
+      .mobile-tab-nav {
+        display: block;
+        margin-bottom: 8px;
+      }
+      
+      // Hide desktop navigation
+      .nav-list {
+        display: none;
+      }
+      
+      // Hide collapse button on mobile
+      .nav-header {
+        display: none;
+      }
       
       &.collapsed {
         width: 100%;
+        padding: 12px;
+      }
+      
+      .tab-button {
+        width: 70px;
+        height: 65px;
+        padding: 5px;
         
-        .nav-list {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 8px;
-          
-          .nav-item {
-            margin-bottom: 0;
-          }
+        mat-icon {
+          margin-bottom: 3px;
+        }
+        
+        span {
+          font-size: 0.7rem;
         }
       }
     }
@@ -582,37 +718,17 @@
   }
 }
 
-// Add extra small screen adjustments
-@media (max-width: 480px) {
-  .application-tracker {
-    .tracker-steps {
-      gap: 0;
-    }
-    
-    .step {
-      min-width: 70px;
-      max-width: 80px;
+@media (max-width: 576px) {
+  .main-content {
+    .left-nav {
+      padding: 8px;
       
-      .step-indicator {
-        .step-icon {
-          width: 22px;
-          height: 22px;
-          
-          mat-icon {
-            font-size: 12px;
-            width: 12px;
-            height: 12px;
-          }
-        }
-      }
-      
-      .step-content {
-        .step-label {
-          font-size: 0.7rem;
-        }
+      .mobile-tab-nav {
+        margin-bottom: 4px;
         
-        .step-date {
-          font-size: 0.6rem;
+        .tab-scroll-container {
+          gap: 6px;
+          padding: 2px 0;
         }
       }
     }

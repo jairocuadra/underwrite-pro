@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 interface BusinessPolicy {
   policy: string;
@@ -17,7 +17,16 @@ interface BusinessPolicy {
   templateUrl: './related-policies.component.html',
   styleUrls: ['./related-policies.component.scss']
 })
-export class RelatedPoliciesComponent implements OnInit {
+export class RelatedPoliciesComponent implements OnInit, OnDestroy {
+  viewMode: 'table' | 'card' = 'table';
+  showViewSwitcher = true;
+  
+  // Breakpoint for switching to card-only view (in pixels)
+  private readonly TABLE_LEGIBILITY_BREAKPOINT = 992;
+  
+  // Resize event listener
+  private resizeListener: () => void;
+  
   displayedColumns: string[] = [
     'policy',
     'status',
@@ -77,8 +86,37 @@ export class RelatedPoliciesComponent implements OnInit {
     }
   ];
 
-  constructor() { }
+  constructor() {
+    // Initialize resize listener
+    this.resizeListener = () => this.checkScreenWidth();
+  }
 
   ngOnInit(): void {
+    this.checkScreenWidth();
+    
+    // Add event listener for window resize
+    window.addEventListener('resize', this.resizeListener);
+  }
+  
+  ngOnDestroy(): void {
+    // Remove event listener when component is destroyed
+    window.removeEventListener('resize', this.resizeListener);
+  }
+  
+  toggleView(mode: 'table' | 'card'): void {
+    this.viewMode = mode;
+  }
+  
+  private checkScreenWidth(): void {
+    const width = window.innerWidth;
+    
+    if (width < this.TABLE_LEGIBILITY_BREAKPOINT) {
+      // Below breakpoint: force card view and hide switcher
+      this.viewMode = 'card';
+      this.showViewSwitcher = false;
+    } else {
+      // Above breakpoint: show switcher and keep current view mode
+      this.showViewSwitcher = true;
+    }
   }
 }

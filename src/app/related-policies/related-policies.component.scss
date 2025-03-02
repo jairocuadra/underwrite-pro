@@ -1,34 +1,102 @@
 .related-policies {
   padding: 0 0 20px 0;
   
-  .section-title {
-    font-size: 1.5rem;
-    font-weight: 600;
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 20px;
-    color: #2d3748;
   }
   
+  .section-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+  }
+  
+  .view-switcher {
+    display: flex;
+    align-items: center;
+    
+    .toggle-button-group {
+      display: flex;
+      background-color: var(--bg-tertiary);
+      border-radius: 8px;
+      padding: 4px;
+      box-shadow: var(--shadow-sm);
+      
+      .toggle-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 6px 12px;
+        border: none;
+        background: transparent;
+        color: var(--text-secondary);
+        border-radius: 6px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        margin: 0;
+        font-size: 0.9rem;
+        
+        .mat-icon {
+          margin-right: 6px;
+          font-size: 18px;
+          height: 18px;
+          width: 18px;
+          line-height: 18px;
+          color: var(--text-secondary);
+        }
+        
+        &.active {
+          background-color: var(--card-bg);
+          color: var(--primary-color);
+          box-shadow: var(--shadow-sm);
+          font-weight: 500;
+          
+          .mat-icon {
+            color: var(--primary-color);
+          }
+        }
+        
+        &:hover:not(.active) {
+          background-color: rgba(var(--primary-rgb), 0.1);
+          
+          .mat-icon {
+            color: var(--text-primary);
+          }
+        }
+        
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+  }
+  
+  // Table View Styles
   .policies-table {
     width: 100%;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: var(--card-bg);
+    box-shadow: var(--shadow-md);
     border-radius: 8px;
     overflow: hidden;
 
     mat-header-row {
-      background-color: #f7fafc;
+      background-color: var(--bg-tertiary);
       min-height: 56px;
     }
 
     mat-header-cell {
       font-weight: 600;
-      color: #4a5568;
+      color: var(--text-primary);
       font-size: 0.9rem;
       padding: 0 16px;
     }
 
     mat-cell {
-      color: #4a5568;
+      color: var(--text-secondary);
       font-size: 0.9rem;
       padding: 0 16px;
     }
@@ -37,31 +105,91 @@
       min-height: 52px;
       
       &:hover {
-        background-color: #f7fafc;
+        background-color: var(--bg-tertiary);
+      }
+    }
+  }
+  
+  // Card View Styles
+  .policies-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+    
+    @media (max-width: 767px) {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  .policy-card {
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+    
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px;
+      background-color: var(--bg-tertiary);
+      border-bottom: 1px solid var(--border-color);
+      
+      .policy-number {
+        font-weight: 600;
+        font-size: 1rem;
+        color: var(--text-primary);
       }
     }
     
-    .status-badge {
-      display: inline-block;
-      padding: 4px 8px;
-      border-radius: 4px;
-      font-size: 0.8rem;
-      font-weight: 500;
+    .card-content {
+      padding: 16px;
       
-      &.active {
-        background-color: #e6fffa;
-        color: #319795;
+      .info-row {
+        display: flex;
+        margin-bottom: 8px;
+        
+        &:last-child {
+          margin-bottom: 0;
+        }
+        
+        .info-label {
+          width: 140px;
+          font-weight: 500;
+          color: var(--text-secondary);
+          font-size: 0.9rem;
+        }
+        
+        .info-value {
+          flex: 1;
+          color: var(--text-primary);
+          font-size: 0.9rem;
+        }
       }
-      
-      &.pending {
-        background-color: #ebf8ff;
-        color: #3182ce;
-      }
-      
-      &.lapsed {
-        background-color: #fff5f5;
-        color: #e53e3e;
-      }
+    }
+  }
+  
+  // Status Badge Styles (shared between table and card views)
+  .status-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    
+    &.active {
+      background-color: rgba(var(--success-rgb), 0.2);
+      color: var(--success);
+    }
+    
+    &.pending {
+      background-color: rgba(var(--info-rgb), 0.2);
+      color: var(--info);
+    }
+    
+    &.lapsed {
+      background-color: rgba(var(--error-rgb), 0.2);
+      color: var(--error);
     }
   }
 }

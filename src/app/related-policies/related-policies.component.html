@@ -1,7 +1,22 @@
 <div class="related-policies">
-  <h2 class="section-title">(4) Related Business Policies</h2>
+  <div class="section-header">
+    <h2 class="section-title">(4) Related Business Policies</h2>
+    <div class="view-switcher" *ngIf="showViewSwitcher">
+      <div class="toggle-button-group">
+        <button class="toggle-button" [ngClass]="{'active': viewMode === 'table'}" (click)="toggleView('table')" matTooltip="Table View">
+          <mat-icon>view_list</mat-icon>
+          <span class="button-label">Table</span>
+        </button>
+        <button class="toggle-button" [ngClass]="{'active': viewMode === 'card'}" (click)="toggleView('card')" matTooltip="Card View">
+          <mat-icon>view_module</mat-icon>
+          <span class="button-label">Cards</span>
+        </button>
+      </div>
+    </div>
+  </div>
   
-  <mat-table [dataSource]="businessPolicies" class="policies-table">
+  <!-- Table View -->
+  <mat-table [dataSource]="businessPolicies" class="policies-table" *ngIf="viewMode === 'table'">
     <!-- Policy Column -->
     <ng-container matColumnDef="policy">
       <mat-header-cell *matHeaderCellDef>Policy</mat-header-cell>
@@ -63,4 +78,46 @@
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
+  
+  <!-- Card View -->
+  <div class="policies-cards" *ngIf="viewMode === 'card'">
+    <div class="policy-card" *ngFor="let policy of businessPolicies">
+      <div class="card-header">
+        <div class="policy-number">{{policy.policy}}</div>
+        <span class="status-badge" [ngClass]="policy.status.toLowerCase()">
+          {{policy.status}}
+        </span>
+      </div>
+      <div class="card-content">
+        <div class="info-row">
+          <div class="info-label">Insured:</div>
+          <div class="info-value">{{policy.insured}}</div>
+        </div>
+        <div class="info-row">
+          <div class="info-label">Business:</div>
+          <div class="info-value">{{policy.businessName}}</div>
+        </div>
+        <div class="info-row">
+          <div class="info-label">Issued Date:</div>
+          <div class="info-value">{{policy.issuedDate}}</div>
+        </div>
+        <div class="info-row">
+          <div class="info-label">Tax ID:</div>
+          <div class="info-value">{{policy.taxId}}</div>
+        </div>
+        <div class="info-row">
+          <div class="info-label">Category:</div>
+          <div class="info-value">{{policy.category}}</div>
+        </div>
+        <div class="info-row">
+          <div class="info-label">Previous POI Flag:</div>
+          <div class="info-value">{{policy.previousPOIFlag}}</div>
+        </div>
+        <div class="info-row">
+          <div class="info-label">Audit POI:</div>
+          <div class="info-value">{{policy.auditPOI}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

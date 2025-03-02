@@ -215,15 +215,32 @@
     <!-- Left Navigation -->
     <nav class="left-nav" [class.collapsed]="isNavCollapsed">
       <div class="nav-header">
-        <button mat-icon-button (click)="toggleNav()" class="toggle-btn">
-          <mat-icon>{{ isNavCollapsed ? 'chevron_right' : 'chevron_left' }}</mat-icon>
+        <button mat-icon-button class="toggle-btn" (click)="isNavCollapsed = !isNavCollapsed" matTooltip="{{isNavCollapsed ? 'Expand' : 'Collapse'}} Navigation">
+          <mat-icon>{{isNavCollapsed ? 'chevron_right' : 'chevron_left'}}</mat-icon>
         </button>
       </div>
+
+      <!-- Mobile Tab Navigation - Horizontal scrollable tiles for all items -->
+      <div class="mobile-tab-nav">
+        <div class="tab-scroll-container">
+          <button *ngFor="let item of workboardItems" 
+                  class="tab-button" 
+                  [class.active]="activeRoute === item.route"
+                  (click)="navigateTo(item.route)">
+            <mat-icon>{{item.icon}}</mat-icon>
+            <span>{{getMobileNavName(item.name)}}</span>
+          </button>
+        </div>
+        <div class="scroll-indicator left" #leftIndicator></div>
+        <div class="scroll-indicator right" #rightIndicator></div>
+      </div>
+
+      <!-- Desktop Navigation List - Hidden on small screens -->
       <ul class="nav-list">
-        <li class="nav-item" *ngFor="let item of workboardItems" [routerLinkActive]="'active'">
-          <a class="nav-link" [routerLink]="['/underwriting', item.route]" [matTooltip]="isNavCollapsed ? item.name : ''" matTooltipPosition="right">
-            <mat-icon>{{ item.icon }}</mat-icon>
-            <span *ngIf="!isNavCollapsed">{{ item.name }}</span>
+        <li *ngFor="let item of workboardItems" class="nav-item" [class.active]="activeRoute === item.route">
+          <a class="nav-link" [routerLink]="['/underwriting', item.route]" routerLinkActive="active" [matTooltip]="isNavCollapsed ? item.name : ''" [matTooltipPosition]="'right'">
+            <mat-icon>{{item.icon}}</mat-icon>
+            <span *ngIf="!isNavCollapsed">{{item.name}}</span>
           </a>
         </li>
       </ul>
