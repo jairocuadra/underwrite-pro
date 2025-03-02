@@ -1,4 +1,4 @@
-@import '~@angular/material/theming';
+@use '@angular/material' as mat;
 
 // Define the blue palette
 $blue-palette: (
@@ -35,13 +35,20 @@ $blue-palette: (
 );
 
 // Define the accent palette (keeping pink for now)
-$accent-palette: $mat-pink;
+$custom-primary: mat.define-palette($blue-palette);
+$custom-accent: mat.define-palette(mat.$pink-palette);
+$custom-warn: mat.define-palette(mat.$red-palette);
 
 // Create the theme
-$custom-theme: mat-light-theme(
-  mat-palette($blue-palette),
-  mat-palette($accent-palette)
-);
+$custom-theme: mat.define-light-theme((
+  color: (
+    primary: $custom-primary,
+    accent: $custom-accent,
+    warn: $custom-warn,
+  ),
+  typography: mat.define-typography-config(),
+  density: 0,
+));
 
 // Apply the theme to Angular Material components
-@include angular-material-theme($custom-theme); 
+@include mat.all-component-themes($custom-theme); 
