@@ -1,0 +1,47 @@
+@import '~@angular/material/theming';
+
+// Define the blue palette
+$blue-palette: (
+  50: #e3f2fd,
+  100: #bbdefb,
+  200: #90caf9,
+  300: #64b5f6,
+  400: #42a5f5,
+  500: #3498db, // Primary color from our theme
+  600: #2980b9, // Primary dark from our theme
+  700: #1e88e5,
+  800: #1976d2,
+  900: #1565c0,
+  A100: #82b1ff,
+  A200: #448aff,
+  A400: #2979ff,
+  A700: #2962ff,
+  contrast: (
+    50: rgba(0, 0, 0, 0.87),
+    100: rgba(0, 0, 0, 0.87),
+    200: rgba(0, 0, 0, 0.87),
+    300: rgba(0, 0, 0, 0.87),
+    400: rgba(0, 0, 0, 0.87),
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: rgba(0, 0, 0, 0.87),
+    A200: white,
+    A400: white,
+    A700: white,
+  )
+);
+
+// Define the accent palette (keeping pink for now)
+$accent-palette: $mat-pink;
+
+// Create the theme
+$custom-theme: mat-light-theme(
+  mat-palette($blue-palette),
+  mat-palette($accent-palette)
+);
+
+// Apply the theme to Angular Material components
+@include angular-material-theme($custom-theme); 

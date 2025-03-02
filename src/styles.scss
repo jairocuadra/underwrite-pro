@@ -1,4 +1,4 @@
-@import "@angular/material/prebuilt-themes/indigo-pink.css";
+@import "styles/custom-theme.scss";
 @import "styles/themes.scss";
 
 html,
@@ -332,4 +332,45 @@ mat-sidenav-content {
   .mat-button {
     color: var(--text-primary);
   }
+}
+
+// Additional overrides to ensure consistent blue colors
+.mat-checkbox-checked.mat-primary .mat-checkbox-background {
+  background-color: var(--primary-color) !important;
+}
+
+.mat-radio-button.mat-primary .mat-radio-inner-circle {
+  background-color: var(--primary-color) !important;
+}
+
+.mat-radio-button.mat-primary .mat-radio-outer-circle {
+  border-color: var(--primary-color) !important;
+}
+
+.mat-radio-button.mat-primary.mat-radio-checked .mat-radio-outer-circle {
+  border-color: var(--primary-color) !important;
+}
+
+.mat-slide-toggle.mat-primary.mat-checked .mat-slide-toggle-thumb {
+  background-color: var(--primary-color) !important;
+}
+
+.mat-slide-toggle.mat-primary.mat-checked .mat-slide-toggle-bar {
+  background-color: rgba(var(--primary-rgb), 0.5) !important;
+}
+
+.mat-progress-bar.mat-primary .mat-progress-bar-fill::after {
+  background-color: var(--primary-color) !important;
+}
+
+.mat-progress-spinner.mat-primary circle {
+  stroke: var(--primary-color) !important;
+}
+
+.mat-datepicker-toggle-active {
+  color: var(--primary-color) !important;
+}
+
+.mat-calendar-body-selected {
+  background-color: var(--primary-color) !important;
 }

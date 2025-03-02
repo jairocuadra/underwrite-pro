@@ -38,6 +38,7 @@
 
     button[color="primary"] {
       color: white;
+      background-color: var(--primary-color);
     }
   }
 
@@ -56,7 +57,11 @@
   }
 
   .mat-form-field.mat-focused .mat-form-field-label {
-    color: var(--primary-color);
+    color: var(--primary-color) !important;
+  }
+
+  .mat-form-field.mat-focused .mat-form-field-outline-thick {
+    color: var(--primary-color) !important;
   }
 
   .mat-select-value {
@@ -65,5 +70,32 @@
 
   .mat-hint {
     color: var(--text-tertiary);
+  }
+  
+  // Override any remaining purple/indigo colors
+  ::ng-deep {
+    .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+      color: var(--primary-color) !important;
+    }
+    
+    .mat-form-field-ripple {
+      background-color: var(--primary-color) !important;
+    }
+    
+    .mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+      color: var(--primary-color) !important;
+    }
+    
+    .mat-form-field.mat-focused .mat-form-field-ripple {
+      background-color: var(--primary-color) !important;
+    }
+    
+    .mat-input-element {
+      caret-color: var(--primary-color) !important;
+    }
+    
+    .mat-form-field-invalid .mat-input-element {
+      caret-color: var(--error) !important;
+    }
   }
 } 

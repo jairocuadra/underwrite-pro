@@ -180,6 +180,7 @@
   .step {
     flex: 1;
     min-width: 100px;
+    max-width: none;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -207,6 +208,7 @@
         border: 2px solid var(--border-light);
         position: relative;
         z-index: 2;
+        flex-shrink: 0;
 
         mat-icon {
           font-size: 16px;
@@ -215,7 +217,6 @@
           display: flex;
           align-items: center;
           justify-content: center;
-          color: var(--text-tertiary);
         }
       }
 
@@ -225,6 +226,7 @@
         flex: 1;
         position: relative;
         z-index: 1;
+        margin: 0;
       }
     }
 
@@ -233,59 +235,65 @@
       display: flex;
       flex-direction: column;
       gap: 2px;
+      width: 100%;
 
       .step-label {
         font-weight: 500;
         color: var(--text-primary);
         font-size: 0.8rem;
         white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
 
       .step-date {
         color: var(--text-tertiary);
         font-size: 0.7rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
     }
 
     // Completed step styling
     &.completed {
       .step-icon {
-        background: var(--card-bg);
-        border-color: var(--primary-color);
+        background: rgba(76, 175, 80, 0.15);
+        border-color: var(--success);
         
         mat-icon {
-          color: var(--primary-color);
+          color: var(--success);
         }
       }
 
       .step-line {
-        background: var(--primary-color);
+        background: var(--success);
       }
 
       .step-label {
-        color: var(--primary-dark);
+        color: var(--success);
       }
     }
 
     // Active step styling
     &.active {
       .step-icon {
-        background: var(--bg-tertiary);
-        border: 2px solid var(--primary-color);
+        background: rgba(33, 150, 243, 0.15);
+        border: 2px solid var(--info);
         
         mat-icon {
-          color: var(--primary-color);
+          color: var(--info);
         }
       }
 
       .step-content {
         .step-label {
-          color: var(--primary-dark);
+          color: var(--info);
           font-weight: 600;
         }
 
         .step-date {
-          color: var(--primary-color);
+          color: var(--info);
           font-weight: 500;
         }
       }
@@ -295,10 +303,10 @@
     &:not(.completed):not(.active) {
       .step-icon {
         background: var(--card-bg);
-        border-color: var(--border-light);
+        border-color: var(--border-color);
         
         mat-icon {
-          color: var(--text-tertiary);
+          color: var(--text-secondary);
         }
       }
     }
@@ -481,14 +489,30 @@
 
     .tracker-steps {
       padding: 4px 0;
+      gap: 0;
     }
 
     .step {
+      flex: 0 0 auto;
       min-width: 80px;
+      max-width: 100px;
       padding: 0;
 
       .step-content {
         padding: 0 2px;
+      }
+      
+      .step-indicator {
+        .step-icon {
+          width: 24px;
+          height: 24px;
+          
+          mat-icon {
+            font-size: 14px;
+            width: 14px;
+            height: 14px;
+          }
+        }
       }
     }
   }
@@ -552,6 +576,43 @@
             font-size: 14px;
             text-align: left;
           }
+        }
+      }
+    }
+  }
+}
+
+// Add extra small screen adjustments
+@media (max-width: 480px) {
+  .application-tracker {
+    .tracker-steps {
+      gap: 0;
+    }
+    
+    .step {
+      min-width: 70px;
+      max-width: 80px;
+      
+      .step-indicator {
+        .step-icon {
+          width: 22px;
+          height: 22px;
+          
+          mat-icon {
+            font-size: 12px;
+            width: 12px;
+            height: 12px;
+          }
+        }
+      }
+      
+      .step-content {
+        .step-label {
+          font-size: 0.7rem;
+        }
+        
+        .step-date {
+          font-size: 0.6rem;
         }
       }
     }
