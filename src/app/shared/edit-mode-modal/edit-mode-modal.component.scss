@@ -2,6 +2,9 @@
   min-width: 400px;
   max-width: 600px;
   padding: 16px;
+  background-color: var(--card-bg);
+  color: var(--text-primary);
+  border-radius: 4px;
 
   h2 {
     margin: 0 0 24px;
@@ -37,23 +40,29 @@
     }
 
     button[color="primary"] {
-      color: white;
+      color: var(--button-text);
       background-color: var(--primary-color);
+    }
+    
+    button:not([color="primary"]) {
+      color: var(--text-primary);
     }
   }
 
   textarea {
     resize: vertical;
     min-height: 100px;
+    background-color: var(--input-bg);
+    color: var(--input-text);
   }
 
   ::placeholder {
-    color: var(--text-tertiary);
+    color: var(--input-placeholder) !important;
     opacity: 0.7;
   }
 
   .mat-form-field-label {
-    color: var(--text-secondary);
+    color: var(--label-text);
   }
 
   .mat-form-field.mat-focused .mat-form-field-label {
@@ -65,15 +74,23 @@
   }
 
   .mat-select-value {
-    color: var(--text-primary);
+    color: var(--input-text);
   }
 
   .mat-hint {
-    color: var(--text-tertiary);
+    color: var(--input-placeholder);
   }
   
   // Override any remaining purple/indigo colors
   ::ng-deep {
+    .mat-form-field-appearance-outline .mat-form-field-outline {
+      color: var(--input-border);
+    }
+    
+    .mat-form-field-appearance-outline .mat-form-field-outline-thick {
+      color: var(--input-border);
+    }
+    
     .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
       color: var(--primary-color) !important;
     }
@@ -92,10 +109,24 @@
     
     .mat-input-element {
       caret-color: var(--primary-color) !important;
+      color: var(--input-text) !important;
     }
     
     .mat-form-field-invalid .mat-input-element {
       caret-color: var(--error) !important;
+    }
+    
+    .mat-select-arrow {
+      color: var(--input-placeholder);
+    }
+    
+    .mat-form-field-appearance-outline .mat-form-field-flex {
+      background-color: var(--input-bg);
+      border-radius: 4px;
+    }
+    
+    .mat-error {
+      color: var(--error);
     }
   }
 } 

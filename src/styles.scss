@@ -283,41 +283,45 @@ mat-sidenav-content {
 // Apply theme to dialog panel
 .edit-mode-dialog-panel {
   .mat-dialog-container {
-    background-color: var(--card-bg);
-    color: var(--text-primary);
+    background-color: var(--card-bg) !important;
+    color: var(--text-primary) !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    border-radius: 4px !important;
   }
 }
 
 // Dark mode specific dialog panel
-.dark-theme .edit-mode-dialog-panel {
+.dark-theme .edit-mode-dialog-panel,
+.edit-mode-dialog-panel.dark-theme {
   .mat-dialog-container {
-    background-color: var(--card-bg);
-    color: var(--text-primary);
+    background-color: var(--card-bg) !important;
+    color: var(--text-primary) !important;
   }
   
   .mat-form-field-appearance-outline .mat-form-field-flex {
-    background-color: var(--input-bg);
+    background-color: var(--input-bg) !important;
   }
   
   input, textarea, .mat-select-value {
-    color: var(--input-text);
+    color: var(--input-text) !important;
   }
   
   .mat-form-field-label {
-    color: var(--label-text);
+    color: var(--label-text) !important;
   }
   
   .mat-hint {
-    color: var(--input-placeholder);
+    color: var(--input-placeholder) !important;
   }
   
   .mat-raised-button.mat-primary {
-    color: var(--button-text);
-    background-color: var(--primary-color);
+    color: var(--button-text) !important;
+    background-color: var(--primary-color) !important;
   }
   
   .mat-button {
-    color: var(--text-primary);
+    color: var(--text-primary) !important;
   }
 }
 
