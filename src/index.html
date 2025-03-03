@@ -7,72 +7,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' data: blob: filesystem: about: ws: wss: 'unsafe-eval' 'wasm-unsafe-eval'; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; trusted-types angular angular#bundler vega-embed">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <style>
-    body { font-family: Arial, sans-serif; padding: 20px; }
-    .debug-info { margin: 20px; padding: 15px; border: 1px solid #ddd; background-color: #f9f9f9; }
-    .status { padding: 5px; margin-bottom: 5px; }
-    .loaded { background-color: #d4edda; color: #155724; }
-    .error { background-color: #f8d7da; color: #721c24; }
-    .waiting { background-color: #fff3cd; color: #856404; }
-  </style>
 </head>
 <body>
-  <h1>UnderwritePro - Debug Mode</h1>
-  
-  <div class="debug-info">
-    <div id="status-html" class="status loaded">✅ HTML loaded successfully</div>
-    <div id="status-scripts" class="status waiting">⏳ Waiting for scripts to load...</div>
-    <div id="status-angular" class="status waiting">⏳ Waiting for Angular to initialize...</div>
-    <div id="status-bootstrap" class="status waiting">⏳ Waiting for application bootstrap...</div>
-    <div id="error-info" style="display:none;"></div>
-  </div>
-
-  <div class="debug-info">
-    <h3>Browser Information:</h3>
-    <div id="browser-info"></div>
-  </div>
-
-  <script>
-    // Display browser information
-    document.getElementById('browser-info').innerHTML = 
-      'UserAgent: ' + navigator.userAgent + '<br>' +
-      'Platform: ' + navigator.platform;
-
-    // Handle script loading errors
-    window.addEventListener('error', function(event) {
-      document.getElementById('status-scripts').className = 'status error';
-      document.getElementById('status-scripts').innerHTML = '❌ Error loading scripts';
-      
-      var errorInfo = document.getElementById('error-info');
-      errorInfo.style.display = 'block';
-      errorInfo.innerHTML += '<p><strong>Error:</strong> ' + event.message + 
-                            '<br><strong>Source:</strong> ' + event.filename + 
-                            '<br><strong>Line:</strong> ' + event.lineno + '</p>';
-    }, true);
-
-    // Try to detect when scripts are loaded
-    window.addEventListener('load', function() {
-      document.getElementById('status-scripts').className = 'status loaded';
-      document.getElementById('status-scripts').innerHTML = '✅ Scripts loaded';
-      
-      // Check if Angular is available
-      setTimeout(function() {
-        if (window.ng) {
-          document.getElementById('status-angular').className = 'status loaded';
-          document.getElementById('status-angular').innerHTML = '✅ Angular detected';
-        } else {
-          document.getElementById('status-angular').className = 'status error';
-          document.getElementById('status-angular').innerHTML = '❌ Angular not initialized';
-        }
-      }, 1000);
-    });
-  </script>
-
-  <hr>
-  <h2>Application Container:</h2>
   <app-root>
-    <div style="text-align: center; padding: 20px;">
-      If Angular initializes correctly, this text will be replaced by your application.
+    <div style="display: flex; justify-content: center; align-items: center; height: 100vh; font-family: Arial, sans-serif;">
+      <div style="text-align: center;">
+        <h2>Loading Underwrite Pro...</h2>
+        <p>Please wait while the application initializes.</p>
+      </div>
     </div>
   </app-root>
 </body>
