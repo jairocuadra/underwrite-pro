@@ -42,3 +42,13 @@ Thumbs.db
 # IMPORTANT - DO NOT EXCLUDE BUILD FILES!
 # The following exclusions are to ensure build files are NOT ignored
 !/dist/**/*
+
+# Jekyll site
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+
+# Bundler
+.bundle/
+vendor/
