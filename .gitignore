@@ -55,3 +55,10 @@ Thumbs.db
 !/src/**/*.js
 !/karma.conf.js
 !/e2e/**/*.js
+
+# Allow built files for GitHub Pages deployment
+# Do not exclude important built files for deployment
+!/dist/**/*
+!*.html
+!*.js
+!*.css

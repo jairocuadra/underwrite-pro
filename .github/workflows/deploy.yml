@@ -34,16 +34,64 @@ jobs:
       - name: Display Angular CLI version
         run: npx ng version
       
+      - name: Check workspace contents
+        run: |
+          echo "Current workspace contents:"
+          ls -la
+          echo "Node modules installed:"
+          ls -la node_modules/@angular
+      
       - name: Build
         run: npm run build -- --configuration=production --base-href="/underwrite-pro/" --verbose
+      
+      - name: Check build directory
+        run: |
+          echo "Did the dist directory get created?"
+          ls -la dist
+          echo "What's in the dist/underwrite-pro directory?"
+          ls -la dist/underwrite-pro
+          echo "Are JavaScript files present?"
+          find dist -name "*.js" | sort
+      
+      - name: Create manual copy of Angular files
+        run: |
+          mkdir -p manual_copy
+          cp -r dist/underwrite-pro/* manual_copy/
+          echo "Manual copy contents:"
+          ls -la manual_copy
       
       - name: Copy diagnostic files
         run: |
           cp test.html dist/underwrite-pro/
           cp 404.html dist/underwrite-pro/
           cp final_check.html dist/underwrite-pro/
-          echo "Angular build output directory:"
+          echo "Angular build output directory after adding diagnostic files:"
           ls -la dist/underwrite-pro/
+      
+      - name: Create index-backup.html
+        run: |
+          cp dist/underwrite-pro/index.html dist/underwrite-pro/index-backup.html
+      
+      - name: Create simple HTML file
+        run: |
+          echo '<!DOCTYPE html>
+          <html>
+          <head>
+              <meta charset="utf-8">
+              <title>Simple Test</title>
+              <base href="/underwrite-pro/">
+          </head>
+          <body>
+              <h1>Simple HTML Test</h1>
+              <p>If you can see this, static HTML files are being served correctly.</p>
+              <p>Try accessing these files:</p>
+              <ul>
+                  <li><a href="final_check.html">Final Check Diagnostic</a></li>
+                  <li><a href="index-backup.html">Original Angular index.html</a></li>
+                  <li><a href="test.html">Test Page</a></li>
+              </ul>
+          </body>
+          </html>' > dist/underwrite-pro/simple.html
       
       - name: Setup Pages
         uses: actions/configure-pages@v3
@@ -52,6 +100,12 @@ jobs:
         uses: actions/upload-pages-artifact@v4
         with:
           path: './dist/underwrite-pro'
+      
+      - name: Upload manual copy (backup)
+        uses: actions/upload-artifact@v3
+        with:
+          name: manual-angular-files
+          path: manual_copy
 
   deploy:
     environment:
