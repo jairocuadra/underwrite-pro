@@ -16,6 +16,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatCardModule } from '@angular/material/card';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,6 +30,7 @@ import { ModeBannerComponent } from './shared/mode-banner/mode-banner.component'
 import { EditModeModalComponent } from './shared/edit-mode-modal/edit-mode-modal.component';
 import { KanbanBoardComponent } from './workboard/kanban-board/kanban-board.component';
 import { RelatedPoliciesComponent } from './related-policies/related-policies.component';
+import { TestComponent } from './test/test.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +40,8 @@ import { RelatedPoliciesComponent } from './related-policies/related-policies.co
     ModeBannerComponent,
     EditModeModalComponent,
     KanbanBoardComponent,
-    RelatedPoliciesComponent
+    RelatedPoliciesComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +60,12 @@ import { RelatedPoliciesComponent } from './related-policies/related-policies.co
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatCardModule,
+    MatSnackBarModule,
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
