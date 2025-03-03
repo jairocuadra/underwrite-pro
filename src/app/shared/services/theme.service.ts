@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { OverlayContainer } from '@angular/cdk/overlay';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class ThemeService {
   
   darkMode$ = this.darkModeSubject.asObservable();
 
-  constructor() {
+  constructor(private overlayContainer: OverlayContainer) {
     // Apply the initial theme
     this.applyTheme(this.darkModeSubject.value);
     
@@ -52,10 +53,14 @@ export class ThemeService {
     // Apply to body for global styles
     if (isDark) {
       document.body.classList.add('dark-theme');
+      // Apply to overlay container
+      this.overlayContainer.getContainerElement().classList.add('dark-theme');
       // Set a CSS variable to help with transitions
       document.documentElement.style.setProperty('--is-dark-theme', '1');
     } else {
       document.body.classList.remove('dark-theme');
+      // Remove from overlay container
+      this.overlayContainer.getContainerElement().classList.remove('dark-theme');
       // Set a CSS variable to help with transitions
       document.documentElement.style.setProperty('--is-dark-theme', '0');
     }

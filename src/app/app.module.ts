@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { OverlayContainer, FullscreenOverlayContainer } from '@angular/cdk/overlay';
 
 // Material Imports
 import { MatIconModule } from '@angular/material/icon';
@@ -67,7 +68,9 @@ import { TestComponent } from './test/test.component';
     MatSnackBarModule,
     MatGridListModule
   ],
-  providers: [],
+  providers: [
+    { provide: OverlayContainer, useClass: FullscreenOverlayContainer }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
