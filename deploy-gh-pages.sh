@@ -35,6 +35,16 @@ find . -maxdepth 1 -not -path "./node_modules*" -not -path "./.git*" -not -path 
 echo "Copying files to root directory..."
 cp -r temp_deploy/* .
 
+# Ensure assets directory exists
+echo "Ensuring assets directory exists..."
+mkdir -p assets
+
+# Copy assets from src to assets directory if they don't exist
+echo "Copying assets from src if needed..."
+if [ -d "src/assets" ]; then
+  cp -r src/assets/* assets/ 2>/dev/null || true
+fi
+
 # Clean up temporary directory
 echo "Cleaning up temporary directory..."
 rm -rf temp_deploy
