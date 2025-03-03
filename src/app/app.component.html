@@ -1,8 +1,41 @@
-<div class="app-root">
-  <!-- Header should be outside the app-container since it's full width -->
-  <app-header></app-header>
+<div class="app-root" [ngClass]="{'dark-theme': darkMode$ | async}">
+  <!-- Group header components in a sticky container -->
+  <div class="header-wrapper">
+    <app-header (sidenavToggle)="sidenav.toggle()"></app-header>
+    <app-mode-banner *ngIf="isWorkbenchRoute" [isEditMode]="isEditMode" (editModeChange)="onEditModeChange($event)"></app-mode-banner>
+  </div>
   
-  <div class="app-container">
-    <router-outlet></router-outlet>
+  <mat-sidenav-container>
+    <mat-sidenav #sidenav mode="over">
+      <nav class="sidenav-nav">
+        <a mat-button class="nav-item" routerLink="/workbench" routerLinkActive="active">
+          <mat-icon>work</mat-icon>
+          <span>Workbench</span>
+        </a>
+        <a mat-button class="nav-item" routerLink="/cases" routerLinkActive="active">
+          <mat-icon>folder</mat-icon>
+          <span>Cases</span>
+        </a>
+        <a mat-button class="nav-item" routerLink="/reports" routerLinkActive="active">
+          <mat-icon>bar_chart</mat-icon>
+          <span>Reports</span>
+        </a>
+        <a mat-button class="nav-item" routerLink="/settings" routerLinkActive="active">
+          <mat-icon>settings</mat-icon>
+          <span>Settings</span>
+        </a>
+      </nav>
+    </mat-sidenav>
+    
+    <mat-sidenav-content>
+      <div class="app-container">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+  
+  <!-- Accessibility note for screen readers about theme -->
+  <div class="sr-only" aria-live="polite">
+    {{ (darkMode$ | async) ? 'Dark mode is enabled' : 'Light mode is enabled' }}
   </div>
 </div>

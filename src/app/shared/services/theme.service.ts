@@ -50,25 +50,32 @@ export class ThemeService {
   }
 
   private applyTheme(isDark: boolean): void {
-    // Apply to body for global styles
     if (isDark) {
       document.body.classList.add('dark-theme');
-      // Apply to overlay container
-      this.overlayContainer.getContainerElement().classList.add('dark-theme');
-      // Set a CSS variable to help with transitions
-      document.documentElement.style.setProperty('--is-dark-theme', '1');
+      // Make sure to add the class to the overlay container
+      const overlayElement = this.overlayContainer.getContainerElement();
+      overlayElement.classList.add('dark-theme');
+      
+      // Update meta theme color for mobile browsers
+      this.updateMetaThemeColor('#121212'); // Dark background color
     } else {
       document.body.classList.remove('dark-theme');
-      // Remove from overlay container
-      this.overlayContainer.getContainerElement().classList.remove('dark-theme');
-      // Set a CSS variable to help with transitions
-      document.documentElement.style.setProperty('--is-dark-theme', '0');
+      // Make sure to remove the class from the overlay container
+      const overlayElement = this.overlayContainer.getContainerElement();
+      overlayElement.classList.remove('dark-theme');
+      
+      // Update meta theme color for mobile browsers
+      this.updateMetaThemeColor('#f5f7fa'); // Light background color
     }
     
-    // Update meta theme-color for mobile browsers
+    // Store the user's preference
+    localStorage.setItem(this.darkModeKey, String(isDark));
+  }
+
+  private updateMetaThemeColor(color: string): void {
     const metaThemeColor = document.querySelector('meta[name="theme-color"]');
     if (metaThemeColor) {
-      metaThemeColor.setAttribute('content', isDark ? '#111827' : '#ffffff');
+      metaThemeColor.setAttribute('content', color);
     }
   }
 } 

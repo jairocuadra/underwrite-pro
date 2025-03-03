@@ -3,12 +3,8 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
   position: sticky;
   top: 0;
-  left: 0;
-  right: 0;
-  width: 100vw;
-  margin-left: calc(-50vw + 50%);
-  margin-right: calc(-50vw + 50%);
   z-index: 1000;
+  width: 100%;
   transition: background-color var(--transition-speed), box-shadow var(--transition-speed);
   border-bottom: 1px solid var(--border-color);
 
@@ -113,28 +109,28 @@
 }
 
 // Ensure menu panel has proper styling
-::ng-deep .mat-menu-panel {
-  background-color: var(--menu-bg);
-  color: var(--text-primary);
+:host ::ng-deep .mat-menu-panel {
+  background-color: var(--menu-bg) !important;
+  color: var(--text-primary) !important;
   
   .mat-menu-content {
     padding: 0;
   }
   
   .mat-menu-item {
-    color: var(--text-primary);
+    color: var(--text-primary) !important;
     
     .mat-icon {
-      color: var(--text-primary);
+      color: var(--text-primary) !important;
     }
     
     &:hover {
-      background-color: var(--bg-tertiary);
+      background-color: var(--bg-tertiary) !important;
     }
   }
   
   .mat-divider {
-    border-top-color: var(--border-color);
+    border-top-color: var(--border-color) !important;
   }
 }
 
@@ -153,7 +149,7 @@
   ::ng-deep .mat-menu-panel {
     .mat-menu-item {
       .mat-icon {
-        color: var(--text-primary);
+        color: var(--text-primary) !important;
       }
     }
   }

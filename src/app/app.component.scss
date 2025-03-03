@@ -15,6 +15,8 @@
   width: 100%;
   z-index: 100;
   background-color: var(--header-bg);
+  display: flex;
+  flex-direction: column;
 }
 
 app-header {

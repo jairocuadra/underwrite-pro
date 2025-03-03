@@ -266,24 +266,7 @@ mat-sidenav-content {
 }
 
 // Apply theme to mode banner
-.mode-banner {
-  background-color: var(--bg-secondary);
-  color: var(--text-primary);
-  border-bottom: 1px solid var(--border-color);
-  width: 100vw;
-  position: sticky;
-  top: 0;
-  left: 0;
-  right: 0;
-  margin-left: calc(-50vw + 50%);
-  margin-right: calc(-50vw + 50%);
-  z-index: 10;
-  
-  &.edit-mode {
-    background-color: var(--edit-mode-bg);
-    border-bottom-color: var(--edit-mode-border);
-  }
-}
+// Removing duplicate styles since they're defined in the component
 
 // Header wrapper styling
 .header-wrapper {
@@ -381,6 +364,50 @@ mat-sidenav-content {
 
 // Global styles for overlay containers to support proper theme inheritance
 .cdk-overlay-container {
+  z-index: 1000;
+  position: fixed;
+  pointer-events: none;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.cdk-overlay-backdrop {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  pointer-events: auto;
+  -webkit-tap-highlight-color: transparent;
+  transition: opacity 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  opacity: 0;
+}
+
+.cdk-overlay-backdrop.cdk-overlay-backdrop-showing {
+  opacity: 0.48;
+}
+
+.cdk-overlay-pane {
+  position: absolute;
+  pointer-events: auto;
+  box-sizing: border-box;
+  z-index: 1000;
+}
+
+.cdk-overlay-connected-position-bounding-box {
+  position: absolute;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  min-width: 1px;
+  min-height: 1px;
+}
+
+// Style the overlay content
+.cdk-overlay-container {
   .mat-dialog-container {
     background-color: var(--card-bg);
     color: var(--text-primary);
@@ -394,31 +421,57 @@ mat-sidenav-content {
   .mat-menu-item {
     color: var(--text-primary);
   }
-  
-  .dark-theme {
-    .mat-dialog-container {
-      background-color: var(--card-bg);
-      color: var(--text-primary);
-      
-      .mat-dialog-title,
-      .mat-dialog-content {
-        color: var(--text-primary);
-      }
-    }
+}
+
+// Dark theme styles for overlay content
+.dark-theme .cdk-overlay-container, 
+.cdk-overlay-container.dark-theme {
+  .mat-dialog-container {
+    background-color: var(--card-bg);
+    color: var(--text-primary);
     
-    .mat-menu-panel {
-      background-color: var(--menu-bg);
+    .mat-dialog-title,
+    .mat-dialog-content {
       color: var(--text-primary);
-    }
-    
-    .mat-menu-item {
-      color: var(--text-primary);
-      
-      &:hover {
-        background-color: rgba(255, 255, 255, 0.08);
-      }
     }
   }
+  
+  .mat-menu-panel {
+    background-color: var(--menu-bg);
+    color: var(--text-primary);
+  }
+  
+  .mat-menu-item {
+    color: var(--text-primary);
+    
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.08);
+    }
+  }
+}
+
+// Center dialogs properly
+.cdk-global-overlay-wrapper {
+  display: flex;
+  position: absolute;
+  z-index: 1000;
+  overflow: auto;
+  pointer-events: auto;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+/* Override for material menu positioning */
+.mat-menu-panel {
+  position: relative !important;
+  transform: none !important;
+  max-width: none !important;
+  overflow: visible !important;
+  min-width: 112px !important;
 }
 
 // Add any additional global styles below
