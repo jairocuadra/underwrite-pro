@@ -6,17 +6,8 @@ on:
       - main
   workflow_dispatch:
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
-
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -31,81 +22,23 @@ jobs:
       - name: Install dependencies
         run: npm ci
       
-      - name: Install Angular CLI
-        run: npm install -g @angular/cli@latest
+      - name: Install angular-cli-ghpages
+        run: npm install -g angular-cli-ghpages
       
-      - name: Display Angular CLI version
-        run: ng version
-      
-      - name: Clean any previous build
-        run: rm -rf dist
-      
-      - name: Build Angular app
-        run: ng build --configuration production --base-href "/underwrite-pro/"
-      
-      - name: Add CSP to Angular index.html
+      - name: Build and Deploy
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # Use sed to add CSP meta tag to the built index.html if not already present
-          if ! grep -q "Content-Security-Policy" dist/underwrite-pro/index.html; then
-            sed -i 's/<head>/<head>\n  <meta http-equiv="Content-Security-Policy" content="default-src '\''self'\''; script-src '\''self'\'' '\''unsafe-eval'\'' '\''unsafe-inline'\''; style-src '\''self'\'' '\''unsafe-inline'\''; img-src '\''self'\'' data:;">/' dist/underwrite-pro/index.html
-          fi
-      
-      - name: Add .nojekyll file
-        run: touch dist/underwrite-pro/.nojekyll
-      
-      - name: Copy index.html to 404.html for SPA routing
-        run: cp dist/underwrite-pro/index.html dist/underwrite-pro/404.html
-      
-      - name: Setup GitHub Pages on repository root level
-        run: |
-          # Create a Github Pages root directory
-          mkdir -p dist/github-pages-root
+          ng build --configuration production --base-href=/underwrite-pro/
           
-          # Copy the redirect HTML to serve as the root index.html
-          cp root-redirect.html dist/github-pages-root/index.html
+          # Add .nojekyll file (prevents GitHub Pages from ignoring files that begin with an underscore)
+          touch dist/underwrite-pro/.nojekyll
           
-          # Add .nojekyll file to the root as well
-          touch dist/github-pages-root/.nojekyll
+          # Fix the CSP issue by modifying the index.html
+          sed -i 's/<head>/<head>\n  <meta http-equiv="Content-Security-Policy" content="default-src '\''self'\''; script-src '\''self'\'' '\''unsafe-eval'\'' '\''unsafe-inline'\''; style-src '\''self'\'' '\''unsafe-inline'\''; img-src '\''self'\'' data:;">/' dist/underwrite-pro/index.html
           
-          # Copy Angular app to a subdirectory (will be accessed via /underwrite-pro/ path)
-          mkdir -p dist/github-pages-root/underwrite-pro
-          cp -r dist/underwrite-pro/* dist/github-pages-root/underwrite-pro/
-      
-      - name: Show build output structure
-        run: |
-          echo "GitHub Pages root structure:"
-          ls -la dist/github-pages-root/
+          # Create a 404.html file that's the same as index.html for proper SPA routing
+          cp dist/underwrite-pro/index.html dist/underwrite-pro/404.html
           
-          echo "Angular app in underwrite-pro subdirectory:"
-          ls -la dist/github-pages-root/underwrite-pro/
-          
-          echo "JavaScript files:"
-          find dist/github-pages-root -name "*.js" | sort
-          
-          echo "Content of Angular index.html (to verify CSP):"
-          cat dist/github-pages-root/underwrite-pro/index.html | head -15
-      
-      - name: Setup Pages
-        uses: actions/configure-pages@v3
-      
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v4
-        with:
-          path: './dist/github-pages-root'
-      
-      - name: Upload backup of build files (for debug)
-        uses: actions/upload-artifact@v3
-        with:
-          name: angular-build-files
-          path: dist/github-pages-root
-
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v2 
+          # Deploy using angular-cli-ghpages
+          npx -y angular-cli-ghpages --dir=dist/underwrite-pro --name="GitHub Actions" --email="actions@github.com" --no-silent 
