@@ -5,7 +5,7 @@ set -e
 
 # Build the project with the correct base-href for GitHub Pages
 echo "Building the project..."
-npm run build -- --configuration=production --base-href="/underwrite-pro/"
+export NODE_OPTIONS=--openssl-legacy-provider && npm run build -- --configuration=production --base-href="/underwrite-pro/"
 
 # Clean the root directory of old files (except for git and node_modules)
 echo "Cleaning destination directory..."
