@@ -7,19 +7,39 @@ set -e
 echo "Building the project..."
 export NODE_OPTIONS=--openssl-legacy-provider && npm run build -- --configuration=production --base-href="/underwrite-pro/"
 
-# Clean the root directory of old files (except for git and node_modules)
-echo "Cleaning destination directory..."
-find . -maxdepth 1 -not -path "./node_modules*" -not -path "./.git*" -not -path "." -not -path "./dist*" -not -path "./src*" -not -path "./e2e*" -not -path "./deploy-gh-pages.sh" -exec rm -rf {} \;
+# Create a temporary directory for the build output
+echo "Creating temporary directory..."
+mkdir -p temp_deploy
 
-# Copy files to root directory with proper permissions
-echo "Copying files to root directory..."
-cp -r dist/underwrite-pro/* .
+# Copy build output to temporary directory
+echo "Copying build output to temporary directory..."
+cp -r dist/underwrite-pro/* temp_deploy/
 
-# Ensure index.html has the correct base href
+# Ensure the base href is correct in index.html
 echo "Verifying base href in index.html..."
-sed -i '' 's|<base href=".*">|<base href="/underwrite-pro/">|g' index.html
+sed -i '' 's|<base href=".*">|<base href="/underwrite-pro/">|g' temp_deploy/index.html
 
-# Add files to git
+# Stash any changes in the working directory
+echo "Stashing any changes in the working directory..."
+git stash -u
+
+# Switch to main branch
+echo "Switching to main branch..."
+git checkout main
+
+# Clean the root directory (except for git, node_modules, and other essential files)
+echo "Cleaning destination directory..."
+find . -maxdepth 1 -not -path "./node_modules*" -not -path "./.git*" -not -path "." -not -path "./temp_deploy*" -not -path "./src*" -not -path "./e2e*" -not -path "./deploy-gh-pages.sh" -exec rm -rf {} \;
+
+# Copy files from temporary directory to root
+echo "Copying files to root directory..."
+cp -r temp_deploy/* .
+
+# Clean up temporary directory
+echo "Cleaning up temporary directory..."
+rm -rf temp_deploy
+
+# Add all files to git
 echo "Adding files to git..."
 git add .
 
