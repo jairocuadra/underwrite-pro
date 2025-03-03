@@ -7,9 +7,17 @@ set -e
 echo "Building the project..."
 npm run build -- --configuration=production --base-href="/underwrite-pro/"
 
-# Copy files to root directory
+# Clean the root directory of old files (except for git and node_modules)
+echo "Cleaning destination directory..."
+find . -maxdepth 1 -not -path "./node_modules*" -not -path "./.git*" -not -path "." -not -path "./dist*" -not -path "./src*" -not -path "./e2e*" -not -path "./deploy-gh-pages.sh" -exec rm -rf {} \;
+
+# Copy files to root directory with proper permissions
 echo "Copying files to root directory..."
 cp -r dist/underwrite-pro/* .
+
+# Ensure index.html has the correct base href
+echo "Verifying base href in index.html..."
+sed -i '' 's|<base href=".*">|<base href="/underwrite-pro/">|g' index.html
 
 # Add files to git
 echo "Adding files to git..."
