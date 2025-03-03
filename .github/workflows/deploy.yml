@@ -6,6 +6,10 @@ on:
       - main
   workflow_dispatch:
 
+permissions:
+  contents: write
+  pages: write
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -17,10 +21,9 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16
-          cache: 'npm'
       
       - name: Install dependencies
-        run: npm ci
+        run: npm install
       
       - name: Install angular-cli-ghpages
         run: npm install -g angular-cli-ghpages
