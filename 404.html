@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Redirecting...</title>
+    <script>
+        // Store the current URL path
+        const path = window.location.pathname;
+        const pathSegments = path.split('/');
+        const baseSegment = pathSegments[1]; // should be 'underwrite-pro'
+        
+        // Redirect to the base URL with the path as a fragment
+        if (baseSegment === 'underwrite-pro') {
+            // Remove the base segment
+            const routePath = '/' + pathSegments.slice(2).join('/');
+            if (routePath !== '/') {
+                window.location.href = '/underwrite-pro/#' + routePath;
+            } else {
+                window.location.href = '/underwrite-pro/';
+            }
+        } else {
+            window.location.href = '/underwrite-pro/';
+        }
+    </script>
+</head>
+<body>
+    <p>Redirecting...</p>
+</body>
+</html> 
