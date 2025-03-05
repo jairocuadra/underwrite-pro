@@ -6,7 +6,7 @@ import { RelatedPoliciesComponent } from './related-policies/related-policies.co
 import { TestComponent } from './test/test.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/underwriting', pathMatch: 'full' },
+  { path: '', redirectTo: '/underwriting/workboard', pathMatch: 'full' },
   { path: 'test', component: TestComponent },
   { 
     path: 'underwriting', 

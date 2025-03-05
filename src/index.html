@@ -1,24 +1,203 @@
 <!doctype html>
 <html lang="en">
-<head>
+  <head>
   <meta charset="utf-8">
   <title>Underwrite Pro</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' data: blob: filesystem: about: ws: wss: 'unsafe-eval' 'wasm-unsafe-eval'; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; trusted-types angular angular#bundler vega-embed dompurify 'allow-duplicates';">
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
   <script src="assets/cache-buster.js?v=1.0.0"></script>
-</head>
+  <style>
+    /* Loading screen styles */
+    .app-loading {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: rgba(245, 247, 250, 0.85);
+      z-index: 9999;
+      font-family: 'Roboto', sans-serif;
+      transition: opacity 0.5s ease-out;
+      backdrop-filter: blur(5px);
+    }
+    
+    /* Dark mode detection */
+    @media (prefers-color-scheme: dark) {
+      .app-loading {
+        background: rgba(26, 26, 46, 0.85);
+        color: #ffffff;
+      }
+      .app-loading .logo-text {
+        color: #ffffff;
+      }
+      .app-loading .spinner-segment {
+        border-color: rgba(255, 255, 255, 0.2);
+        border-top-color: #2196f3;
+      }
+      .app-loading .progress-bar {
+        background: rgba(255, 255, 255, 0.1);
+      }
+      .app-loading .progress-value {
+        background: #2196f3;
+      }
+    }
+    
+    .logo-container {
+      display: flex;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+    
+    .logo-icon {
+      width: 50px;
+      height: 50px;
+      background: #2196f3;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 15px;
+      box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .logo-icon:after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 50%);
+    }
+    
+    .logo-icon span {
+      color: white;
+      font-size: 28px;
+      font-weight: bold;
+    }
+    
+    .logo-text {
+      font-size: 28px;
+      font-weight: 500;
+      color: #333;
+      letter-spacing: 0.5px;
+    }
+    
+    .logo-text span {
+      color: #2196f3;
+      font-weight: 600;
+    }
+    
+    .spinner-container {
+      position: relative;
+      width: 60px;
+      height: 60px;
+      margin-bottom: 20px;
+    }
+    
+    .spinner-segment {
+      box-sizing: border-box;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border: 4px solid rgba(0, 0, 0, 0.1);
+      border-top-color: #2196f3;
+      border-radius: 50%;
+      animation: spinner 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    }
+    
+    .spinner-segment:nth-child(1) {
+      animation-delay: -0.45s;
+    }
+    
+    .spinner-segment:nth-child(2) {
+      animation-delay: -0.3s;
+    }
+    
+    .spinner-segment:nth-child(3) {
+      animation-delay: -0.15s;
+    }
+    
+    @keyframes spinner {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+    
+    .loading-text {
+      font-size: 16px;
+      color: #666;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+    
+    .progress-container {
+      width: 250px;
+      margin-top: 10px;
+    }
+    
+    .progress-bar {
+      height: 4px;
+      background: rgba(0, 0, 0, 0.05);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    
+    .progress-value {
+      width: 0;
+      height: 100%;
+      background: #2196f3;
+      border-radius: 2px;
+      animation: progress 2.5s ease-in-out infinite;
+    }
+    
+    @keyframes progress {
+      0% {
+        width: 0;
+      }
+      50% {
+        width: 70%;
+      }
+      100% {
+        width: 100%;
+      }
+    }
+  </style>
+  </head>
 <body>
   <app-root>
-    <div style="display: flex; justify-content: center; align-items: center; height: 100vh; font-family: Arial, sans-serif;">
-      <div style="text-align: center;">
-        <h2>Loading Underwrite Pro...</h2>
-        <p>Please wait while the application initializes.</p>
+    <div class="app-loading">
+      <div class="logo-container">
+        <div class="logo-icon">
+          <span>U</span>
+        </div>
+        <div class="logo-text">Underwrite<span>Pro</span></div>
+      </div>
+      <div class="spinner-container">
+        <div class="spinner-segment"></div>
+        <div class="spinner-segment"></div>
+        <div class="spinner-segment"></div>
+        <div class="spinner-segment"></div>
+      </div>
+      <div class="loading-text">Loading application...</div>
+      <div class="progress-container">
+        <div class="progress-bar">
+          <div class="progress-value"></div>
+        </div>
       </div>
     </div>
   </app-root>
-</body>
+  </body>
 </html>

@@ -5,7 +5,8 @@
 ></app-mode-banner> -->
 
 <div class="workbench-container">
-  <!-- Compact Header Section -->
+  <!-- Comment out the duplicate header -->
+  <!-- 
   <div class="workbench-header" [class.collapsed]="isHeaderCollapsed">
     <div class="header-top" (click)="toggleHeader()">
       <div class="application-id">
@@ -39,48 +40,119 @@
         <mat-icon>{{ isHeaderCollapsed ? 'expand_more' : 'expand_less' }}</mat-icon>
       </button>
     </div>
+  -->
     
-    <!-- Expandable Details Section -->
-    <div class="header-details" *ngIf="!isHeaderCollapsed">
-      <div class="details-section">
-        <h3 class="section-title">Application Details</h3>
-        <div class="details-grid">
-          <div class="detail-item">
-            <div class="label">Application Number</div>
-            <div class="value">{{applicationNumber}}</div>
+  <!-- Redesigned Application Details Component -->
+  <div class="redesigned-application-details">
+    <div class="details-card">
+      <div class="card-header" (click)="toggleRedesignedDetails()">
+        <h3 class="card-title">
+          <mat-icon>description</mat-icon>
+          ID #{{applicationId}}
+        </h3>
+        <div class="collapsed-info">
+          <div class="info-item" matTooltip="Applicant">
+            <mat-icon class="info-icon">person</mat-icon>
+            <span class="value highlight">{{applicantName}}</span>
           </div>
-          <div class="detail-item">
-            <div class="label">Application Method</div>
-            <div class="value">{{applicationMethod}}</div>
+          <div class="info-item" matTooltip="Coverage">
+            <mat-icon class="info-icon">attach_money</mat-icon>
+            <span class="value">{{amount}}</span>
           </div>
-          <div class="detail-item">
-            <div class="label">Assigned UW</div>
-            <div class="value">{{assignedUW}}</div>
+          <div class="info-item hide-xs" matTooltip="Gender/Age">
+            <mat-icon class="info-icon">face</mat-icon>
+            <span class="value">{{gender}} / {{age}} yrs</span>
           </div>
-          <div class="detail-item">
-            <div class="label">Total Active & Pending Face Amount</div>
-            <div class="value">{{totalFaceAmount}}</div>
+          <div class="info-item hide-sm" matTooltip="Product">
+            <mat-icon class="info-icon">inventory_2</mat-icon>
+            <span class="value">{{product}}</span>
+          </div>
+          <div class="info-item" matTooltip="Status">
+            <mat-icon class="info-icon">pending</mat-icon>
+            <span class="value highlight">{{status}}</span>
           </div>
         </div>
+        <button mat-icon-button class="toggle-details-btn" (click)="$event.stopPropagation()">
+          <mat-icon [style.transform]="isRedesignedDetailsCollapsed ? 'rotate(0deg)' : 'rotate(180deg)'">expand_more</mat-icon>
+        </button>
       </div>
-      
-      <div class="details-section">
-        <h3 class="section-title">Case Status</h3>
-        <div class="details-grid">
-          <div class="detail-item">
-            <div class="label">Overall Trending Decision (w/o Rx)</div>
-            <div class="value highlight">{{status}}</div>
+      <div class="card-content" [hidden]="isRedesignedDetailsCollapsed">
+        <div class="details-grid-modern">
+          <!-- Application Details -->
+          <div class="detail-group">
+            <h4 class="group-title">Application Details</h4>
+            <div class="detail-row">
+              <div class="detail-item-modern">
+                <div class="icon-container">
+                  <mat-icon>badge</mat-icon>
+                </div>
+                <div class="detail-content">
+                  <div class="label">Application Number</div>
+                  <div class="value">{{applicationNumber}}</div>
+                </div>
+              </div>
+              
+              <div class="detail-item-modern">
+                <div class="icon-container">
+                  <mat-icon>how_to_reg</mat-icon>
+                </div>
+                <div class="detail-content">
+                  <div class="label">Application Method</div>
+                  <div class="value">{{applicationMethod}}</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="detail-row">
+              <div class="detail-item-modern">
+                <div class="icon-container">
+                  <mat-icon>person</mat-icon>
+                </div>
+                <div class="detail-content">
+                  <div class="label">Assigned UW</div>
+                  <div class="value">{{assignedUW}}</div>
+                </div>
+              </div>
+              
+              <div class="detail-item-modern">
+                <div class="icon-container">
+                  <mat-icon>attach_money</mat-icon>
+                </div>
+                <div class="detail-content">
+                  <div class="label">Total Active & Pending Face Amount</div>
+                  <div class="value">{{totalFaceAmount}}</div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="detail-item">
-            <div class="label">Reason(s)</div>
-            <div class="value">{{reason}}</div>
+          
+          <!-- Case Status -->
+          <div class="detail-group">
+            <h4 class="group-title">Case Status</h4>
+            <div class="status-container">
+              <div class="status-indicator" [ngClass]="{'pending': true}">
+                <mat-icon>pending</mat-icon>
+                <span>{{status}}</span>
+              </div>
+              
+              <div class="status-details">
+                <div class="status-item">
+                  <div class="label">Reason(s)</div>
+                  <div class="value">{{reason}}</div>
+                </div>
+                <div class="status-item">
+                  <div class="label">Last Updated</div>
+                  <div class="value">Today, 2:30 PM</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Compact Application Tracker -->
+  <!-- Application Tracker -->
   <div class="application-tracker" role="region" aria-label="Application Progress Tracker" *ngIf="!isHeaderCollapsed">
     <div class="tracker-header">
       <h3 class="section-title">Application Progress</h3>

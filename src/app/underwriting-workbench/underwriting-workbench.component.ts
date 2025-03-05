@@ -106,6 +106,7 @@ export class UnderwritingWorkbenchComponent implements OnInit, AfterViewInit {
   isEditMode = false;
   isNavCollapsed = false;
   isHeaderCollapsed = false;
+  isRedesignedDetailsCollapsed = false;
   activeRoute = 'workboard';
 
   @ViewChild('leftIndicator') leftIndicator!: ElementRef;
@@ -167,6 +168,10 @@ export class UnderwritingWorkbenchComponent implements OnInit, AfterViewInit {
 
   toggleHeader() {
     this.isHeaderCollapsed = !this.isHeaderCollapsed;
+  }
+
+  toggleRedesignedDetails(): void {
+    this.isRedesignedDetailsCollapsed = !this.isRedesignedDetailsCollapsed;
   }
 
   navigateTo(route: string) {

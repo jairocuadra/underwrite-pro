@@ -2,7 +2,7 @@
   <!-- Group header components in a sticky container -->
   <div class="header-wrapper">
     <app-header (sidenavToggle)="sidenav.toggle()"></app-header>
-    <app-mode-banner *ngIf="isWorkbenchRoute" [isEditMode]="isEditMode" (editModeChange)="onEditModeChange($event)"></app-mode-banner>
+    <app-mode-banner [isEditMode]="isEditMode" (editModeChange)="onEditModeChange($event)"></app-mode-banner>
   </div>
   
   <mat-sidenav-container>
@@ -10,19 +10,19 @@
       <nav class="sidenav-nav">
         <a mat-button class="nav-item" routerLink="/workbench" routerLinkActive="active">
           <mat-icon>work</mat-icon>
-          <span>Workbench</span>
+          <span class="nav-text">Workbench</span>
         </a>
         <a mat-button class="nav-item" routerLink="/cases" routerLinkActive="active">
           <mat-icon>folder</mat-icon>
-          <span>Cases</span>
+          <span class="nav-text">Cases</span>
         </a>
         <a mat-button class="nav-item" routerLink="/reports" routerLinkActive="active">
           <mat-icon>bar_chart</mat-icon>
-          <span>Reports</span>
+          <span class="nav-text">Reports</span>
         </a>
         <a mat-button class="nav-item" routerLink="/settings" routerLinkActive="active">
           <mat-icon>settings</mat-icon>
-          <span>Settings</span>
+          <span class="nav-text">Settings</span>
         </a>
       </nav>
     </mat-sidenav>

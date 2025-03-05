@@ -289,6 +289,32 @@ mat-sidenav-content {
     overflow: hidden !important;
     border-radius: 4px !important;
   }
+  
+  // Fix for primary buttons
+  .mat-raised-button.mat-primary,
+  .mat-flat-button.mat-primary,
+  .mat-mdc-raised-button.mat-primary,
+  .mat-mdc-unelevated-button.mat-primary {
+    color: white !important;
+    letter-spacing: normal !important;
+  }
+  
+  // Fix for form field label overlap
+  .mat-form-field-label {
+    transform: translateY(-1.5em) scale(0.75) !important;
+  }
+  
+  .mat-form-field-label-wrapper {
+    top: -1.5em !important;
+  }
+  
+  .mat-form-field-infix {
+    padding: 1em 0 1em 0 !important;
+  }
+  
+  textarea.mat-input-element {
+    margin-top: 0.5em !important;
+  }
 }
 
 // Dark mode specific dialog panel
@@ -309,6 +335,7 @@ mat-sidenav-content {
   
   .mat-form-field-label {
     color: var(--label-text) !important;
+    transform: translateY(-1.5em) scale(0.75) !important;
   }
   
   .mat-hint {
@@ -316,12 +343,14 @@ mat-sidenav-content {
   }
   
   .mat-raised-button.mat-primary {
-    color: var(--button-text) !important;
+    color: white !important;
     background-color: var(--primary-color) !important;
+    letter-spacing: normal !important;
   }
   
   .mat-button {
     color: var(--text-primary) !important;
+    letter-spacing: normal !important;
   }
 }
 
@@ -476,6 +505,142 @@ mat-sidenav-content {
   max-width: none !important;
   overflow: visible !important;
   min-width: 112px !important;
+}
+
+// Global styles for buttons and links to normalize letter spacing
+button, 
+.mat-button, 
+.mat-raised-button, 
+.mat-flat-button, 
+.mat-stroked-button,
+.mat-menu-item,
+a {
+  letter-spacing: normal !important;
+}
+
+// Fix for Material button alignment with icons
+.mat-mdc-button,
+.mat-mdc-raised-button,
+.mat-mdc-outlined-button,
+.mat-mdc-unelevated-button {
+  .mdc-button__label {
+    display: flex !important;
+    align-items: center !important;
+    text-align: left !important;
+    letter-spacing: normal !important;
+  }
+}
+
+// Ensure primary buttons have proper text color
+.mat-raised-button.mat-primary,
+.mat-flat-button.mat-primary,
+.mat-mdc-raised-button.mat-primary,
+.mat-mdc-unelevated-button.mat-primary {
+  color: white !important;
+}
+
+// Dark theme specific button overrides
+.dark-theme {
+  .mat-raised-button.mat-primary,
+  .mat-flat-button.mat-primary,
+  .mat-mdc-raised-button.mat-primary,
+  .mat-mdc-unelevated-button.mat-primary {
+    color: white !important;
+  }
+}
+
+// Ensure navigation items are properly aligned
+.nav-item {
+  justify-content: flex-start !important;
+  text-align: left !important;
+  
+  .mdc-button__label {
+    justify-content: flex-start !important;
+    text-align: left !important;
+  }
+  
+  span {
+    text-align: left !important;
+  }
+}
+
+// More specific fixes for Material button alignment
+.sidenav-nav .nav-item.mat-mdc-button {
+  display: flex !important;
+  justify-content: flex-start !important;
+  text-align: left !important;
+  width: 100% !important;
+  
+  .mdc-button__label {
+    display: flex !important;
+    justify-content: flex-start !important;
+    text-align: left !important;
+    width: 100% !important;
+  }
+  
+  span:not(.mat-mdc-button-persistent-ripple):not(.mat-mdc-focus-indicator):not(.mat-ripple):not(.mat-mdc-button-touch-target) {
+    text-align: left !important;
+    justify-content: flex-start !important;
+    width: 100% !important;
+  }
+}
+
+// Override Material button styles for navigation
+.mat-mdc-button {
+  &.nav-item {
+    padding: 0 16px !important;
+    height: auto !important;
+    line-height: normal !important;
+    
+    .mdc-button__label {
+      justify-content: flex-start !important;
+      text-align: left !important;
+      width: 100% !important;
+    }
+    
+    .nav-text {
+      text-align: left !important;
+      display: block !important;
+      width: 100% !important;
+    }
+  }
+}
+
+// Updated navigation styles for better spacing and click area
+.sidenav-nav .nav-item.mat-mdc-button {
+  padding: 14px 16px !important;
+  min-height: 48px !important;
+  margin: 0 8px !important;
+  border-radius: 6px !important;
+  
+  .nav-text {
+    font-size: 15px !important;
+  }
+  
+  mat-icon {
+    font-size: 22px !important;
+    width: 22px !important;
+    height: 22px !important;
+  }
+}
+
+// Fix for textarea label and placeholder overlap
+.mat-form-field-appearance-outline textarea.mat-input-element {
+  margin-top: 1.5em !important;
+  padding-top: 8px !important;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-infix {
+  padding-top: 1em !important;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-label {
+  top: 1.5em !important;
+  margin-top: -0.5em !important;
+}
+
+.mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
+  transform: translateY(-1.5em) scale(0.75) !important;
 }
 
 // Add any additional global styles below
