@@ -11,6 +11,24 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
   <script src="assets/cache-buster.js?v=1.0.0"></script>
+  
+  <!-- GitHub Pages routing fix -->
+  <script>
+    // Check if we were redirected from 404.html
+    (function() {
+      var redirectUrl = sessionStorage.getItem('redirectUrl');
+      if (redirectUrl) {
+        sessionStorage.removeItem('redirectUrl');
+        var baseHref = document.querySelector('base').getAttribute('href');
+        var pathname = new URL(redirectUrl).pathname;
+        var appPath = pathname.substring(pathname.indexOf('/underwrite-pro') + '/underwrite-pro'.length);
+        if (appPath && appPath !== '/') {
+          history.replaceState(null, null, baseHref + '#' + appPath);
+        }
+      }
+    })();
+  </script>
+  
   <style>
     /* Loading screen styles */
     .app-loading {

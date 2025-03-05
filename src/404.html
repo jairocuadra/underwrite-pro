@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Underwrite Pro</title>
+  <script>
+    // Store the URL the user was trying to access
+    sessionStorage.setItem('redirectUrl', window.location.href);
+    
+    // Get the base href from the document
+    var baseTag = document.querySelector('base');
+    var baseHref = baseTag ? baseTag.getAttribute('href') : '/';
+    
+    // Redirect to the base URL
+    var segmentCount = 1; // Adjust this value based on your GitHub Pages setup
+    var location = window.location;
+    var href = location.href;
+    
+    // Redirect to the index.html page with the correct base href
+    var redirectUrl = location.protocol + '//' + location.hostname + 
+                     (location.port ? ':' + location.port : '') + 
+                     '/underwrite-pro/index.html';
+    
+    window.location.href = redirectUrl;
+  </script>
+</head>
+<body>
+  <h1>Redirecting...</h1>
+  <p>If you are not redirected automatically, please click <a href="index.html">here</a>.</p>
+</body>
+</html> 
