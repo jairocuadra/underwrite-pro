@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { EditModeModalComponent } from '../shared/edit-mode-modal/edit-mode-modal.component';
 import { filter } from 'rxjs/operators';
 import { NavigationEnd } from '@angular/router';
+import { trigger, state, style, animate, transition } from '@angular/animations';
 
 interface BusinessPolicy {
   policy: string;
@@ -26,7 +27,28 @@ interface NavItem {
 @Component({
   selector: 'app-underwriting-workbench',
   templateUrl: './underwriting-workbench.component.html',
-  styleUrls: ['./underwriting-workbench.component.scss']
+  styleUrls: ['./underwriting-workbench.component.scss'],
+  animations: [
+    trigger('expandCollapse', [
+      state('collapsed', style({
+        height: '0',
+        opacity: '0',
+        overflow: 'hidden',
+        padding: '0 1.5rem',
+        transform: 'translateY(-20px)',
+        borderTop: '0px solid transparent'
+      })),
+      state('expanded', style({
+        height: '*',
+        opacity: '1',
+        overflow: 'hidden',
+        padding: '1.5rem',
+        transform: 'translateY(0)',
+        borderTop: '1px solid var(--border-color)'
+      })),
+      transition('collapsed <=> expanded', animate('400ms cubic-bezier(0.4, 0, 0.2, 1)'))
+    ])
+  ]
 })
 export class UnderwritingWorkbenchComponent implements OnInit, AfterViewInit {
   applicationId = '5000000055';
@@ -111,10 +133,16 @@ export class UnderwritingWorkbenchComponent implements OnInit, AfterViewInit {
 
   @ViewChild('leftIndicator') leftIndicator!: ElementRef;
   @ViewChild('rightIndicator') rightIndicator!: ElementRef;
+  @ViewChild('trackerSteps') trackerSteps!: ElementRef;
+  @ViewChild('trackerLeftIndicator') trackerLeftIndicator!: ElementRef;
+  @ViewChild('trackerRightIndicator') trackerRightIndicator!: ElementRef;
 
   canScrollLeft = false;
   canScrollRight = false;
+  canScrollTrackerLeft = false;
+  canScrollTrackerRight = false;
   private scrollAmount = 200;
+  private trackerScrollAmount = 300;
 
   constructor(private dialog: MatDialog, private router: Router) {}
 
@@ -140,6 +168,15 @@ export class UnderwritingWorkbenchComponent implements OnInit, AfterViewInit {
     setTimeout(() => {
       this.setupScrollIndicators();
     }, 100);
+    
+    // Setup scroll indicators for the tracker
+    this.setupTrackerScrollIndicators();
+    
+    // Listen for window resize to update indicators
+    window.addEventListener('resize', () => {
+      this.setupScrollIndicators();
+      this.setupTrackerScrollIndicators();
+    });
   }
 
   onEditModeChange(enabled: boolean) {
@@ -172,6 +209,15 @@ export class UnderwritingWorkbenchComponent implements OnInit, AfterViewInit {
 
   toggleRedesignedDetails(): void {
     this.isRedesignedDetailsCollapsed = !this.isRedesignedDetailsCollapsed;
+    
+    if (!this.isRedesignedDetailsCollapsed) {
+      setTimeout(() => {
+        const detailsCard = document.querySelector('.details-card');
+        if (detailsCard) {
+          detailsCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 100);
+    }
   }
 
   navigateTo(route: string) {
@@ -232,5 +278,47 @@ export class UnderwritingWorkbenchComponent implements OnInit, AfterViewInit {
     updateIndicators();
     scrollContainer.addEventListener('scroll', updateIndicators);
     window.addEventListener('resize', updateIndicators);
+  }
+
+  scrollTrackerLeft() {
+    if (this.trackerSteps && this.trackerSteps.nativeElement) {
+      const container = this.trackerSteps.nativeElement;
+      container.scrollLeft -= this.trackerScrollAmount;
+      setTimeout(() => this.updateTrackerScrollIndicators(), 300);
+    }
+  }
+
+  scrollTrackerRight() {
+    if (this.trackerSteps && this.trackerSteps.nativeElement) {
+      const container = this.trackerSteps.nativeElement;
+      container.scrollLeft += this.trackerScrollAmount;
+      setTimeout(() => this.updateTrackerScrollIndicators(), 300);
+    }
+  }
+
+  setupTrackerScrollIndicators() {
+    if (this.trackerSteps && this.trackerSteps.nativeElement) {
+      const container = this.trackerSteps.nativeElement;
+      
+      // Initial check
+      this.updateTrackerScrollIndicators();
+      
+      // Add scroll event listener
+      container.addEventListener('scroll', () => {
+        this.updateTrackerScrollIndicators();
+      });
+    }
+  }
+
+  updateTrackerScrollIndicators() {
+    if (this.trackerSteps && this.trackerSteps.nativeElement) {
+      const container = this.trackerSteps.nativeElement;
+      
+      // Check if can scroll left
+      this.canScrollTrackerLeft = container.scrollLeft > 0;
+      
+      // Check if can scroll right
+      this.canScrollTrackerRight = container.scrollLeft < (container.scrollWidth - container.clientWidth - 5);
+    }
   }
 } 

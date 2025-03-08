@@ -3,7 +3,7 @@
   color: var(--text-primary);
   font-size: 15px;
   font-weight: 600;
-  margin-bottom: 16px;
+  margin-bottom: 8px;
   letter-spacing: 0.3px;
 }
 
@@ -17,7 +17,7 @@
   border-radius: 8px;
   padding: 16px;
   box-shadow: var(--shadow-sm);
-  margin-bottom: 16px;
+  margin-bottom: 8px;
   transition: all 0.3s ease;
 
   &.collapsed {
@@ -135,45 +135,104 @@
 }
 
 .application-tracker {
-  padding: 16px;
-  background: linear-gradient(to right, var(--bg-secondary), var(--card-bg));
-  border-radius: 8px;
-  box-shadow: var(--shadow-md);
-  margin-bottom: 16px;
+  margin-bottom: 8px;
+  position: relative;
+  padding: 0;
+  background: none;
+  border-radius: 0;
+  box-shadow: none;
 
-  .tracker-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 12px;
-
-    .section-title {
-      margin-bottom: 0;
-    }
-  }
-
-  .tracker-steps {
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    padding: 8px 0;
-    gap: 0;
+  .tracker-scroll-container {
     position: relative;
-    scrollbar-width: thin;
-    scrollbar-color: var(--border-color) var(--bg-secondary);
+    
+    .tracker-steps {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      padding: 24px 0;
+      gap: 0;
+      position: relative;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border-color) transparent;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch; // Smooth scrolling on iOS
 
-    &::-webkit-scrollbar {
-      height: 6px;
+      &::-webkit-scrollbar {
+        height: 4px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: transparent;
+        border-radius: 2px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: var(--border-color);
+        border-radius: 2px;
+      }
     }
-
-    &::-webkit-scrollbar-track {
-      background: var(--bg-secondary);
-      border-radius: 3px;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background-color: var(--border-color);
-      border-radius: 3px;
+    
+    // Scroll indicators
+    .scroll-indicator {
+      position: absolute;
+      top: 50%;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--card-bg);
+      transform: translateY(-50%);
+      opacity: 0;
+      transition: opacity 0.3s ease, background-color 0.2s ease;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-color);
+      cursor: pointer;
+      padding: 0;
+      margin: 0;
+      
+      &:hover {
+        background: var(--bg-secondary);
+        border-color: var(--primary-color);
+        
+        mat-icon {
+          color: var(--primary-color);
+        }
+      }
+      
+      &:active {
+        transform: translateY(-50%) scale(0.95);
+      }
+      
+      &.visible {
+        opacity: 1;
+      }
+      
+      &.left {
+        left: 4px;
+        
+        mat-icon {
+          transform: translateX(-1px);
+        }
+      }
+      
+      &.right {
+        right: 4px;
+        
+        mat-icon {
+          transform: translateX(1px);
+        }
+      }
+      
+      mat-icon {
+        font-size: 18px;
+        width: 18px;
+        height: 18px;
+        color: var(--text-secondary);
+        transition: color 0.2s ease;
+      }
     }
   }
 
@@ -322,7 +381,7 @@
 
 .main-content {
   display: flex;
-  gap: 16px;
+  gap: 8px;
 
   .left-nav {
     width: 280px;
@@ -645,18 +704,18 @@
 
 @media (max-width: 768px) {
   .application-tracker {
-    padding: 12px;
+    padding: 0;
 
-    .tracker-steps {
-      padding: 4px 0;
-      gap: 0;
+    .tracker-scroll-container {
+      .tracker-steps {
+        padding: 16px 0;
+      }
     }
 
     .step {
       flex: 0 0 auto;
       min-width: 80px;
       max-width: 100px;
-      padding: 0;
 
       .step-content {
         padding: 0 2px;
@@ -903,9 +962,22 @@
         color: var(--text-secondary);
         flex-shrink: 0;
         z-index: 2; // Ensure button is above the clickable area
+        transition: all 0.2s ease;
+        background-color: rgba(var(--bg-tertiary-rgb, 0, 0, 0), 0.05);
+        border-radius: 50%;
+        
+        &:hover {
+          color: var(--primary-color);
+          background-color: rgba(var(--primary-rgb, 0, 0, 0), 0.1);
+          transform: scale(1.05);
+        }
+        
+        &:active {
+          transform: scale(0.95);
+        }
         
         mat-icon {
-          transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
         }
       }
     }

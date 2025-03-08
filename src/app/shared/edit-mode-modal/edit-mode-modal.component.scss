@@ -34,6 +34,10 @@
     padding: 16px;
     background-color: var(--bg-secondary);
     border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 8px;
 
     button + button {
       margin-left: 8px;
@@ -61,12 +65,14 @@
 
   ::placeholder {
     color: var(--input-placeholder) !important;
-    opacity: 0.7;
+    opacity: 1 !important;
+    font-weight: 500 !important;
   }
 
   .mat-form-field-label {
     color: var(--label-text);
     transform: translateY(-1.5em) scale(0.75) !important;
+    font-weight: 500 !important;
   }
 
   .mat-form-field.mat-focused .mat-form-field-label {
@@ -89,10 +95,12 @@
   ::ng-deep {
     .mat-form-field-appearance-outline .mat-form-field-outline {
       color: var(--input-border);
+      opacity: 1;
     }
     
     .mat-form-field-appearance-outline .mat-form-field-outline-thick {
       color: var(--input-border);
+      opacity: 1;
     }
     
     .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
@@ -127,6 +135,7 @@
     .mat-form-field-appearance-outline .mat-form-field-flex {
       background-color: var(--input-bg);
       border-radius: 4px;
+      border: 2px solid var(--input-border);
     }
     
     .mat-error {
@@ -161,6 +170,194 @@
       
       textarea.mat-input-element {
         margin-top: 1.75em !important;
+      }
+    }
+    
+    // Placeholder text fix for all browsers
+    input::placeholder,
+    textarea::placeholder {
+      color: var(--input-placeholder) !important;
+      opacity: 1 !important;
+      font-weight: 500 !important;
+    }
+    
+    // Dark mode specific improvements for better legibility
+    .dark-theme & {
+      .mat-form-field-label,
+      .mat-label,
+      .mdc-floating-label,
+      .mat-mdc-floating-label,
+      .mat-mdc-form-field-label {
+        color: rgba(255, 255, 255, 0.9) !important;
+        font-weight: 600 !important;
+        z-index: 10 !important;
+      }
+      
+      .mat-input-element,
+      .mat-mdc-input-element {
+        color: rgba(255, 255, 255, 0.9) !important;
+        font-weight: 500 !important;
+        background-color: transparent !important;
+        border: none !important;
+      }
+      
+      .mat-select-value,
+      .mat-mdc-select-value {
+        color: rgba(255, 255, 255, 0.9) !important;
+        font-weight: 500 !important;
+      }
+      
+      .mat-form-field-appearance-outline .mat-form-field-outline,
+      .mdc-notched-outline__leading,
+      .mdc-notched-outline__notch,
+      .mdc-notched-outline__trailing {
+        color: rgba(180, 180, 180, 0.8) !important;
+        border-color: rgba(180, 180, 180, 0.8) !important;
+        opacity: 1 !important;
+      }
+      
+      .mat-form-field-appearance-outline .mat-form-field-flex,
+      .mat-mdc-text-field-wrapper,
+      .mdc-text-field--outlined,
+      .mat-mdc-form-field-flex {
+        background-color: #0f172a !important;
+        border: none !important;
+      }
+      
+      .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick,
+      .mat-mdc-form-field.mat-focused .mdc-notched-outline__leading,
+      .mat-mdc-form-field.mat-focused .mdc-notched-outline__notch,
+      .mat-mdc-form-field.mat-focused .mdc-notched-outline__trailing {
+        color: var(--primary-color) !important;
+        border-color: var(--primary-color) !important;
+      }
+      
+      input::placeholder,
+      textarea::placeholder {
+        color: rgba(200, 200, 200, 0.8) !important;
+        opacity: 1 !important;
+        font-weight: 500 !important;
+      }
+      
+      ::placeholder {
+        color: rgba(200, 200, 200, 0.8) !important;
+        opacity: 1 !important;
+        font-weight: 500 !important;
+      }
+      
+      .mat-hint,
+      .mat-mdc-form-field-hint {
+        color: rgba(200, 200, 200, 0.8) !important;
+        opacity: 1 !important;
+      }
+      
+      // Improve select dropdown
+      .mat-select-panel,
+      .mat-mdc-select-panel {
+        background-color: #0f172a !important;
+        border: 1px solid rgba(180, 180, 180, 0.8) !important;
+      }
+      
+      .mat-option,
+      .mat-mdc-option {
+        color: rgba(255, 255, 255, 0.9) !important;
+        
+        &:hover:not(.mat-option-disabled),
+        &:hover:not(.mat-mdc-option-disabled) {
+          background-color: var(--user-menu-hover) !important;
+        }
+      }
+      
+      // Fix for textarea specifically
+      textarea.mat-input-element,
+      textarea.mat-mdc-input-element {
+        background-color: transparent !important;
+        color: rgba(255, 255, 255, 0.9) !important;
+        border: none !important;
+      }
+      
+      // Fix for MDC field wrap - only apply border to the outer elements
+      .mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__leading,
+      .mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__notch,
+      .mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__trailing {
+        border-color: rgba(180, 180, 180, 0.8) !important;
+        border-width: 1px !important;
+      }
+      
+      // Ensure the notch for the label is properly visible
+      .mdc-notched-outline__notch {
+        border-top: none !important;
+        border-right: none !important;
+        border-left: none !important;
+      }
+      
+      .mat-mdc-form-field-text-prefix,
+      .mat-mdc-form-field-text-suffix {
+        color: rgba(255, 255, 255, 0.9) !important;
+      }
+    }
+  }
+}
+
+// Responsive adjustments for smaller screens
+@media (max-width: 600px) {
+  .edit-mode-modal {
+    min-width: 100%;
+    max-width: 100%;
+    padding: 12px;
+    
+    h2 {
+      font-size: 18px;
+      margin-bottom: 16px;
+    }
+    
+    .edit-mode-dialog-content {
+      form {
+        gap: 12px;
+      }
+    }
+    
+    .edit-mode-dialog-actions {
+      margin: 16px -12px -12px;
+      padding: 12px;
+      justify-content: center;
+      
+      button {
+        flex: 1;
+        min-width: 0;
+        padding: 0 8px;
+        
+        & + button {
+          margin-left: 0;
+        }
+      }
+    }
+    
+    ::ng-deep {
+      .mat-form-field-infix {
+        width: 100% !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .edit-mode-modal {
+    min-width: 100%;
+    padding: 8px;
+    
+    h2 {
+      font-size: 16px;
+      margin-bottom: 12px;
+    }
+    
+    .edit-mode-dialog-actions {
+      margin: 12px -8px -8px;
+      padding: 8px;
+      flex-direction: column;
+      
+      button {
+        width: 100%;
       }
     }
   }

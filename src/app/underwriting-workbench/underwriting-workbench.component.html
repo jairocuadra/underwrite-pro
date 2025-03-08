@@ -72,11 +72,11 @@
             <span class="value highlight">{{status}}</span>
           </div>
         </div>
-        <button mat-icon-button class="toggle-details-btn" (click)="$event.stopPropagation()">
+        <button mat-icon-button class="toggle-details-btn" (click)="toggleRedesignedDetails(); $event.stopPropagation()">
           <mat-icon [style.transform]="isRedesignedDetailsCollapsed ? 'rotate(0deg)' : 'rotate(180deg)'">expand_more</mat-icon>
         </button>
       </div>
-      <div class="card-content" [hidden]="isRedesignedDetailsCollapsed">
+      <div class="card-content" [@expandCollapse]="isRedesignedDetailsCollapsed ? 'collapsed' : 'expanded'">
         <div class="details-grid-modern">
           <!-- Application Details -->
           <div class="detail-group">
@@ -152,134 +152,139 @@
     </div>
   </div>
 
-  <!-- Application Tracker -->
+  <!-- Application Tracker - Directly on background -->
   <div class="application-tracker" role="region" aria-label="Application Progress Tracker" *ngIf="!isHeaderCollapsed">
-    <div class="tracker-header">
-      <h3 class="section-title">Application Progress</h3>
-    </div>
-    <div class="tracker-steps" role="list">
-      <div class="step completed" role="listitem">
-        <div class="step-indicator">
-          <div class="step-icon">
-            <mat-icon>done</mat-icon>
+    <div class="tracker-scroll-container">
+      <div class="tracker-steps" role="list" #trackerSteps>
+        <div class="step completed" role="listitem">
+          <div class="step-indicator">
+            <div class="step-icon">
+              <mat-icon>done</mat-icon>
+            </div>
+            <div class="step-line"></div>
           </div>
-          <div class="step-line"></div>
+          <div class="step-content">
+            <span class="step-label">New</span>
+            <span class="step-date">Jan 15</span>
+          </div>
         </div>
-        <div class="step-content">
-          <span class="step-label">New</span>
-          <span class="step-date">Jan 15</span>
-        </div>
-      </div>
 
-      <div class="step completed" role="listitem">
-        <div class="step-indicator">
-          <div class="step-icon">
-            <mat-icon>done</mat-icon>
+        <div class="step completed" role="listitem">
+          <div class="step-indicator">
+            <div class="step-icon">
+              <mat-icon>done</mat-icon>
+            </div>
+            <div class="step-line"></div>
           </div>
-          <div class="step-line"></div>
+          <div class="step-content">
+            <span class="step-label">App Started</span>
+            <span class="step-date">Jan 16</span>
+          </div>
         </div>
-        <div class="step-content">
-          <span class="step-label">App Started</span>
-          <span class="step-date">Jan 16</span>
-        </div>
-      </div>
 
-      <div class="step completed" role="listitem">
-        <div class="step-indicator">
-          <div class="step-icon">
-            <mat-icon>done</mat-icon>
+        <div class="step completed" role="listitem">
+          <div class="step-indicator">
+            <div class="step-icon">
+              <mat-icon>done</mat-icon>
+            </div>
+            <div class="step-line"></div>
           </div>
-          <div class="step-line"></div>
+          <div class="step-content">
+            <span class="step-label">App Signed</span>
+            <span class="step-date">Jan 17</span>
+          </div>
         </div>
-        <div class="step-content">
-          <span class="step-label">App Signed</span>
-          <span class="step-date">Jan 17</span>
-        </div>
-      </div>
 
-      <div class="step active" role="listitem" aria-current="step">
-        <div class="step-indicator">
-          <div class="step-icon">
-            <mat-icon>pending_actions</mat-icon>
+        <div class="step active" role="listitem" aria-current="step">
+          <div class="step-indicator">
+            <div class="step-icon">
+              <mat-icon>pending_actions</mat-icon>
+            </div>
+            <div class="step-line"></div>
           </div>
-          <div class="step-line"></div>
+          <div class="step-content">
+            <span class="step-label">Evidence Required</span>
+            <span class="step-date">Current</span>
+          </div>
         </div>
-        <div class="step-content">
-          <span class="step-label">Evidence Required</span>
-          <span class="step-date">Current</span>
-        </div>
-      </div>
 
-      <div class="step" role="listitem">
-        <div class="step-indicator">
-          <div class="step-icon">
-            <mat-icon>radio_button_unchecked</mat-icon>
+        <div class="step" role="listitem">
+          <div class="step-indicator">
+            <div class="step-icon">
+              <mat-icon>radio_button_unchecked</mat-icon>
+            </div>
+            <div class="step-line"></div>
           </div>
-          <div class="step-line"></div>
+          <div class="step-content">
+            <span class="step-label">UW Review</span>
+          </div>
         </div>
-        <div class="step-content">
-          <span class="step-label">UW Review</span>
-        </div>
-      </div>
 
-      <div class="step" role="listitem">
-        <div class="step-indicator">
-          <div class="step-icon">
-            <mat-icon>radio_button_unchecked</mat-icon>
+        <div class="step" role="listitem">
+          <div class="step-indicator">
+            <div class="step-icon">
+              <mat-icon>radio_button_unchecked</mat-icon>
+            </div>
+            <div class="step-line"></div>
           </div>
-          <div class="step-line"></div>
+          <div class="step-content">
+            <span class="step-label">Approved</span>
+          </div>
         </div>
-        <div class="step-content">
-          <span class="step-label">Approved</span>
-        </div>
-      </div>
 
-      <div class="step" role="listitem">
-        <div class="step-indicator">
-          <div class="step-icon">
-            <mat-icon>radio_button_unchecked</mat-icon>
+        <div class="step" role="listitem">
+          <div class="step-indicator">
+            <div class="step-icon">
+              <mat-icon>radio_button_unchecked</mat-icon>
+            </div>
+            <div class="step-line"></div>
           </div>
-          <div class="step-line"></div>
+          <div class="step-content">
+            <span class="step-label">Offer Made</span>
+          </div>
         </div>
-        <div class="step-content">
-          <span class="step-label">Offer Made</span>
-        </div>
-      </div>
 
-      <div class="step" role="listitem">
-        <div class="step-indicator">
-          <div class="step-icon">
-            <mat-icon>radio_button_unchecked</mat-icon>
+        <div class="step" role="listitem">
+          <div class="step-indicator">
+            <div class="step-icon">
+              <mat-icon>radio_button_unchecked</mat-icon>
+            </div>
+            <div class="step-line"></div>
           </div>
-          <div class="step-line"></div>
+          <div class="step-content">
+            <span class="step-label">Offer Accepted</span>
+          </div>
         </div>
-        <div class="step-content">
-          <span class="step-label">Offer Accepted</span>
-        </div>
-      </div>
 
-      <div class="step" role="listitem">
-        <div class="step-indicator">
-          <div class="step-icon">
-            <mat-icon>radio_button_unchecked</mat-icon>
+        <div class="step" role="listitem">
+          <div class="step-indicator">
+            <div class="step-icon">
+              <mat-icon>radio_button_unchecked</mat-icon>
+            </div>
+            <div class="step-line"></div>
           </div>
-          <div class="step-line"></div>
+          <div class="step-content">
+            <span class="step-label">Paid</span>
+          </div>
         </div>
-        <div class="step-content">
-          <span class="step-label">Paid</span>
-        </div>
-      </div>
 
-      <div class="step" role="listitem">
-        <div class="step-indicator">
-          <div class="step-icon">
-            <mat-icon>radio_button_unchecked</mat-icon>
+        <div class="step" role="listitem">
+          <div class="step-indicator">
+            <div class="step-icon">
+              <mat-icon>radio_button_unchecked</mat-icon>
+            </div>
+          </div>
+          <div class="step-content">
+            <span class="step-label">Active</span>
           </div>
         </div>
-        <div class="step-content">
-          <span class="step-label">Active</span>
-        </div>
       </div>
+      <button class="scroll-indicator left" #trackerLeftIndicator (click)="scrollTrackerLeft()" [class.visible]="canScrollTrackerLeft">
+        <mat-icon>chevron_left</mat-icon>
+      </button>
+      <button class="scroll-indicator right" #trackerRightIndicator (click)="scrollTrackerRight()" [class.visible]="canScrollTrackerRight">
+        <mat-icon>chevron_right</mat-icon>
+      </button>
     </div>
   </div>
 
