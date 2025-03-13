@@ -1,0 +1,78 @@
+.policy-dates-container {
+  padding: 16px;
+  background-color: var(--bg-color);
+}
+
+.dates-container {
+  background: var(--card-bg);
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+}
+
+.section-title {
+  color: var(--primary-color);
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  letter-spacing: 0.3px;
+}
+
+.section-divider {
+  height: 1px;
+  background-color: var(--border-color);
+  margin: 24px 0;
+}
+
+.dates-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 16px;
+
+  .date-item {
+    padding: 8px 0;
+
+    .date-label {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-bottom: 4px;
+      font-weight: 500;
+    }
+
+    .date-value {
+      font-size: 16px;
+      color: var(--text-primary);
+      font-weight: 500;
+
+      &:empty::after {
+        content: 'N/A';
+        color: var(--text-tertiary);
+        font-style: italic;
+      }
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .dates-container {
+    padding: 16px;
+  }
+
+  .dates-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .section-divider {
+    margin: 16px 0;
+  }
+}
+
+// Dark theme adjustments
+:host-context(.dark-theme) {
+  .section-divider {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}

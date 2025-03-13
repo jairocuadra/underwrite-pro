@@ -4,6 +4,7 @@ import { UnderwritingWorkbenchComponent } from './underwriting-workbench/underwr
 import { KanbanBoardComponent } from './workboard/kanban-board/kanban-board.component';
 import { RelatedPoliciesComponent } from './related-policies/related-policies.component';
 import { TestComponent } from './test/test.component';
+import { PolicyDatesComponent } from './policy-dates/policy-dates.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/underwriting/workboard', pathMatch: 'full' },
@@ -15,6 +16,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'workboard', pathMatch: 'full' },
       { path: 'workboard', component: KanbanBoardComponent },
       { path: 'related-business-policies', component: RelatedPoliciesComponent },
+      { path: 'policy-dates', component: PolicyDatesComponent },
       // Add more child routes for other navigation items as needed
     ]
   }

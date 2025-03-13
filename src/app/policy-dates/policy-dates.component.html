@@ -1,0 +1,46 @@
+<div class="policy-dates-container">
+  <!-- Single container for all date sections -->
+  <div class="dates-container">
+    <!-- Policy Dates Section -->
+    <h2 class="section-title">Policy Dates</h2>
+    <div class="dates-grid">
+      <div class="date-item" *ngFor="let date of policyDates">
+        <div class="date-label">{{ date.label }}</div>
+        <div class="date-value">{{ date.value }}</div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- Signature Dates - Proposed Insured Section -->
+    <h2 class="section-title">Signature Dates - Proposed Insured</h2>
+    <div class="dates-grid">
+      <div class="date-item" *ngFor="let date of proposedInsuredDates">
+        <div class="date-label">{{ date.label }}</div>
+        <div class="date-value">{{ date.value }}</div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- Signature Dates - Policy Owner Section -->
+    <h2 class="section-title">Signature Dates - Policy Owner</h2>
+    <div class="dates-grid">
+      <div class="date-item" *ngFor="let date of policyOwnerDates">
+        <div class="date-label">{{ date.label }}</div>
+        <div class="date-value">{{ date.value }}</div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- Cycle Time Section -->
+    <h2 class="section-title">Cycle Time Information</h2>
+    <div class="dates-grid">
+      <div class="date-item" *ngFor="let date of cycleTimeDates">
+        <div class="date-label">{{ date.label }}</div>
+        <div class="date-value">{{ date.value }}</div>
+      </div>
+    </div>
+  </div>
+</div>

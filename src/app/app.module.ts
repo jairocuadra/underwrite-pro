@@ -32,6 +32,7 @@ import { EditModeModalComponent } from './shared/edit-mode-modal/edit-mode-modal
 import { KanbanBoardComponent } from './workboard/kanban-board/kanban-board.component';
 import { RelatedPoliciesComponent } from './related-policies/related-policies.component';
 import { TestComponent } from './test/test.component';
+import { PolicyDatesComponent } from './policy-dates/policy-dates.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { TestComponent } from './test/test.component';
     EditModeModalComponent,
     KanbanBoardComponent,
     RelatedPoliciesComponent,
-    TestComponent
+    TestComponent,
+    PolicyDatesComponent
   ],
   imports: [
     BrowserModule,
