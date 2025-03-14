@@ -12,6 +12,7 @@ import { ThemeService } from './shared/services/theme.service';
 export class AppComponent implements OnInit, OnDestroy {
   title = 'underwrite-pro';
   isWorkbenchRoute = false;
+  isChatbotRoute = false;
   isEditMode = false;
   darkMode$: Observable<boolean>;
   private routeSubscription: Subscription | null = null;
@@ -28,6 +29,7 @@ export class AppComponent implements OnInit, OnDestroy {
       filter(event => event instanceof NavigationEnd)
     ).subscribe((event: any) => {
       this.isWorkbenchRoute = event.url.includes('underwriting');
+      this.isChatbotRoute = event.url.includes('ai-chatbot');
     });
   }
 

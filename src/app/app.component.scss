@@ -41,6 +41,12 @@ mat-sidenav-container {
   max-width: 1400px;
   margin: 0 auto;
   /* min-height removed */ // Subtract header height and padding
+  
+  &.full-height {
+    padding: 0;
+    max-width: none;
+    height: 100%;
+  }
 }
 
 mat-sidenav {

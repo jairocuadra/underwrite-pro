@@ -1,6 +1,6 @@
 <div class="app-root" [ngClass]="{'dark-theme': darkMode$ | async}">
-  <!-- Group header components in a sticky container -->
-  <div class="header-wrapper">
+  <!-- Group header components in a sticky container - hide on chatbot page -->
+  <div class="header-wrapper" *ngIf="!isChatbotRoute">
     <app-header (sidenavToggle)="sidenav.toggle()"></app-header>
     <app-mode-banner [isEditMode]="isEditMode" (editModeChange)="onEditModeChange($event)"></app-mode-banner>
   </div>
@@ -28,11 +28,15 @@
           <mat-icon>widgets</mat-icon>
           <span class="nav-text">Component Library</span>
         </a>
+        <a mat-button class="nav-item" routerLink="/ai-chatbot" routerLinkActive="active">
+          <mat-icon>smart_toy</mat-icon>
+          <span class="nav-text">AI Chatbot</span>
+        </a>
       </nav>
     </mat-sidenav>
     
     <mat-sidenav-content>
-      <div class="app-container">
+      <div class="app-container" [ngClass]="{'full-height': isChatbotRoute}">
         <router-outlet></router-outlet>
       </div>
     </mat-sidenav-content>

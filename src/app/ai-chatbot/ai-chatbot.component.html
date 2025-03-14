@@ -1,0 +1,189 @@
+<div class="chatbot-fullpage">
+  <div class="chatbot-compact-header">
+    <div class="chatbot-left-actions">
+      <!-- Toggle history sidebar button -->
+      <button mat-icon-button (click)="toggleHistorySidebar()" matTooltip="Chat History">
+        <mat-icon>history</mat-icon>
+      </button>
+      
+      <!-- New chat button -->
+      <button mat-icon-button (click)="clearChat()" matTooltip="New Chat">
+        <mat-icon>add_circle_outline</mat-icon>
+      </button>
+      
+      <div class="chatbot-title">
+        <mat-icon class="robot-icon">auto_awesome</mat-icon>
+        <h1>Underwrite Pro AI Assistant</h1>
+      </div>
+    </div>
+    
+    <div class="chatbot-actions">
+      <button mat-icon-button matTooltip="Toggle dark mode" (click)="toggleDarkMode()">
+        <mat-icon>{{ isDarkMode ? 'light_mode' : 'dark_mode' }}</mat-icon>
+      </button>
+      <button mat-icon-button matTooltip="Clear chat" (click)="clearChat()">
+        <mat-icon>delete_sweep</mat-icon>
+      </button>
+      <mat-slide-toggle 
+        [color]="'primary'" 
+        matTooltip="Toggle advanced features"
+        (change)="toggleAdvancedView($event.checked)"
+        *ngIf="(chatSession$ | async)?.isAdvancedView !== undefined">
+        Advanced
+      </mat-slide-toggle>
+    </div>
+  </div>
+
+  <div class="chatbot-main-container">
+    <!-- Chat history sidebar -->
+    <div class="chat-history-sidebar" [class.open]="isHistorySidebarOpen">
+      <div class="history-header">
+        <h2>Chat History</h2>
+        <button mat-icon-button (click)="toggleHistorySidebar()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+      <div class="history-list">
+        <div class="history-item" *ngFor="let item of chatHistory; let i = index" (click)="loadChatHistory(i)">
+          <div class="history-item-content">
+            <mat-icon>chat</mat-icon>
+            <div class="history-item-details">
+              <span class="history-title">Chat {{ i + 1 }}</span>
+              <span class="history-date">{{ formatHistoryDate(item.date) }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="empty-history" *ngIf="chatHistory.length === 0">
+          <p>No chat history yet</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main chat area - now separate from input area -->
+    <div class="chat-main-area">
+      <div class="chat-container" #chatContainer>
+        <div class="content-container">
+          <!-- Welcome message -->
+          <div class="welcome-message" *ngIf="showWelcomeMessage">
+            <div class="welcome-header">
+              <mat-icon class="welcome-icon">auto_awesome</mat-icon>
+              <h2>Welcome to Underwrite Pro AI Assistant</h2>
+            </div>
+            <p>I'm here to help you with underwriting questions, policy information, and workflow guidance.</p>
+            <div class="suggested-questions">
+              <h3>Try asking me:</h3>
+              <div class="question-chips">
+                <button mat-stroked-button 
+                  *ngFor="let question of suggestedQuestions" 
+                  (click)="useSuggestedQuestion(question)">
+                  {{question}}
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Chat messages -->
+          <ng-container *ngIf="chatSession$ | async as session">
+            <div class="message-container" *ngFor="let message of session.messages; let last = last" [class.last-message]="last">
+              <!-- User message -->
+              <div class="message user-message" *ngIf="message.sender === 'user'">
+                <div class="message-content">
+                  <p>{{message.text}}</p>
+                  <div class="attachments" *ngIf="message.attachments && message.attachments.length > 0">
+                    <div class="attachment" *ngFor="let attachment of message.attachments">
+                      <mat-icon class="attachment-icon">attach_file</mat-icon>
+                      <span>{{attachment}}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Bot message -->
+              <div class="message bot-message" *ngIf="message.sender === 'bot'">
+                <div class="bot-avatar">
+                  <mat-icon class="bot-icon">auto_awesome</mat-icon>
+                </div>
+                <div class="message-content">
+                  <div class="typing-indicator" *ngIf="message.isLoading">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                  <p *ngIf="!message.isLoading">{{message.text}}</p>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Add extra spacing after the last message -->
+            <div *ngIf="session.messages.length > 0" class="extra-bottom-space"></div>
+          </ng-container>
+          
+          <!-- Empty spacer to ensure consistent background color at bottom -->
+          <div class="chat-bottom-spacer"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Input area - now completely separate from chat container -->
+  <div class="input-area-container">
+    <div class="input-content">
+      <!-- Selected files display -->
+      <div class="selected-files" *ngIf="selectedFiles.length > 0">
+        <div class="file-chip" *ngFor="let file of selectedFiles; let i = index">
+          <mat-icon class="file-icon">insert_drive_file</mat-icon>
+          <span class="file-name">{{file.name}}</span>
+          <button mat-icon-button class="remove-file" (click)="removeFile(i)">
+            <mat-icon class="close-icon">close</mat-icon>
+          </button>
+        </div>
+      </div>
+
+      <!-- Message input -->
+      <div class="message-input-container">
+        <mat-form-field appearance="outline" class="message-input">
+          <textarea 
+            matInput 
+            [formControl]="messageInput" 
+            placeholder="Type your message here..." 
+            (keydown)="onKeyPress($event)"
+            (input)="triggerResize()"
+            cdkTextareaAutosize
+            #autosize="cdkTextareaAutosize"
+            #messageTextarea
+            cdkAutosizeMinRows="1"
+            cdkAutosizeMaxRows="5"
+            [cdkAutosizeMinRows]="1"
+            [cdkAutosizeMaxRows]="5"></textarea>
+        </mat-form-field>
+
+        <!-- Advanced features -->
+        <ng-container *ngIf="(chatSession$ | async)?.isAdvancedView">
+          <button 
+            mat-icon-button 
+            class="action-button"
+            matTooltip="Upload file" 
+            (click)="triggerFileInput()">
+            <mat-icon>attach_file</mat-icon>
+          </button>
+          <input 
+            type="file" 
+            #fileInput 
+            style="display: none" 
+            (change)="onFileSelected($event)" 
+            multiple>
+        </ng-container>
+
+        <button 
+          mat-fab 
+          color="primary" 
+          class="send-button" 
+          matTooltip="Send message"
+          [disabled]="!messageInput.value && selectedFiles.length === 0"
+          (click)="sendMessage()">
+          <mat-icon class="send-icon">send</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
