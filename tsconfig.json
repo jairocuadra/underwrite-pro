@@ -20,7 +20,13 @@
     "lib": [
       "es2020",
       "dom"
-    ]
+    ],
+    "paths": {
+      "underwrite-pro-ui": [
+        "dist/underwrite-pro-ui",
+        "projects/underwrite-pro-ui/src/public-api"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

@@ -1,0 +1,9 @@
+<div [ngClass]="cardClasses">
+  <div class="uwp-card-header" *ngIf="title || subtitle">
+    <h2 class="uwp-card-title" *ngIf="title">{{ title }}</h2>
+    <p class="uwp-card-subtitle" *ngIf="subtitle">{{ subtitle }}</p>
+  </div>
+  <div class="uwp-card-content">
+    <ng-content></ng-content>
+  </div>
+</div>

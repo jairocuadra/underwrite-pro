@@ -1,0 +1,21 @@
+<div [ngClass]="checkboxClasses" (click)="toggle($event)">
+  <label *ngIf="label && labelPosition === 'left'" class="uwp-checkbox-label uwp-checkbox-label-left">
+    {{ label }}
+  </label>
+  
+  <div class="uwp-checkbox-box">
+    <div class="uwp-checkbox-background"></div>
+    <div class="uwp-checkbox-checkmark">
+      <svg viewBox="0 0 24 24" *ngIf="checked && !indeterminate">
+        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"></path>
+      </svg>
+      <svg viewBox="0 0 24 24" *ngIf="indeterminate">
+        <path d="M19 13H5v-2h14v2z"></path>
+      </svg>
+    </div>
+  </div>
+  
+  <label *ngIf="label && labelPosition === 'right'" class="uwp-checkbox-label uwp-checkbox-label-right">
+    {{ label }}
+  </label>
+</div>

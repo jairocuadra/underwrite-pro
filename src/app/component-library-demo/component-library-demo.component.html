@@ -1,0 +1,318 @@
+<div class="demo-container">
+  <h1 class="demo-main-title">Underwrite Pro UI Component Library</h1>
+  
+  <section class="demo-section">
+    <h2 class="demo-section-title">Card Component</h2>
+    
+    <div class="demo-row">
+      <div class="demo-col">
+        <uwp-card title="Basic Card">
+          <p>This is a basic card with a title and content.</p>
+        </uwp-card>
+      </div>
+      
+      <div class="demo-col">
+        <uwp-card title="With Subtitle" subtitle="Card subtitle">
+          <p>This card has a subtitle.</p>
+        </uwp-card>
+      </div>
+      
+      <div class="demo-col">
+        <uwp-card title="High Elevation" [elevation]="'high'">
+          <p>This card has high elevation.</p>
+        </uwp-card>
+      </div>
+    </div>
+    
+    <div class="demo-row">
+      <div class="demo-col">
+        <uwp-card title="Large Padding" [padding]="'large'">
+          <p>This card has large padding.</p>
+        </uwp-card>
+      </div>
+      
+      <div class="demo-col">
+        <uwp-card title="No Border" [noBorder]="true">
+          <p>This card has no border.</p>
+        </uwp-card>
+      </div>
+      
+      <div class="demo-col">
+        <uwp-card>
+          <p>This card has no title or subtitle.</p>
+        </uwp-card>
+      </div>
+    </div>
+  </section>
+  
+  <section class="demo-section">
+    <h2 class="demo-section-title">Section Title Component</h2>
+    
+    <div class="demo-row">
+      <div class="demo-col">
+        <uwp-section-title title="Primary Color (Default)" subtitle="With subtitle"></uwp-section-title>
+        <p>This is content below a primary color section title.</p>
+      </div>
+      
+      <div class="demo-col">
+        <uwp-section-title title="Accent Color" subtitle="With subtitle" [color]="'accent'"></uwp-section-title>
+        <p>This is content below an accent color section title.</p>
+      </div>
+      
+      <div class="demo-col">
+        <uwp-section-title title="Default Color" subtitle="With subtitle" [color]="'default'"></uwp-section-title>
+        <p>This is content below a default color section title.</p>
+      </div>
+    </div>
+    
+    <div class="demo-row">
+      <div class="demo-col">
+        <uwp-section-title title="With Divider (Default)" [withDivider]="true"></uwp-section-title>
+        <p>This section title has a divider.</p>
+      </div>
+      
+      <div class="demo-col">
+        <uwp-section-title title="Without Divider" [withDivider]="false"></uwp-section-title>
+        <p>This section title has no divider.</p>
+      </div>
+      
+      <div class="demo-col">
+        <uwp-section-title title="Title Only"></uwp-section-title>
+        <p>This section title has no subtitle.</p>
+      </div>
+    </div>
+  </section>
+  
+  <section class="demo-section">
+    <h2 class="demo-section-title">Button Component</h2>
+    
+    <div class="demo-row">
+      <div class="demo-col">
+        <h3>Button Variants</h3>
+        <div class="demo-buttons">
+          <uwp-button label="Primary" (buttonClick)="onButtonClick($event)"></uwp-button>
+          <uwp-button label="Secondary" [variant]="'secondary'" (buttonClick)="onButtonClick($event)"></uwp-button>
+          <uwp-button label="Outline" [variant]="'outline'" (buttonClick)="onButtonClick($event)"></uwp-button>
+          <uwp-button label="Text" [variant]="'text'" (buttonClick)="onButtonClick($event)"></uwp-button>
+        </div>
+      </div>
+      
+      <div class="demo-col">
+        <h3>Button Sizes</h3>
+        <div class="demo-buttons">
+          <uwp-button label="Small" [size]="'small'" (buttonClick)="onButtonClick($event)"></uwp-button>
+          <uwp-button label="Medium" (buttonClick)="onButtonClick($event)"></uwp-button>
+          <uwp-button label="Large" [size]="'large'" (buttonClick)="onButtonClick($event)"></uwp-button>
+        </div>
+      </div>
+      
+      <div class="demo-col">
+        <h3>Button States</h3>
+        <div class="demo-buttons">
+          <uwp-button label="Normal" (buttonClick)="onButtonClick($event)"></uwp-button>
+          <uwp-button label="Disabled" [disabled]="true" (buttonClick)="onButtonClick($event)"></uwp-button>
+          <uwp-button label="Loading" [loading]="true" (buttonClick)="onButtonClick($event)"></uwp-button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="demo-row">
+      <div class="demo-col">
+        <h3>Full Width Button</h3>
+        <uwp-button label="Full Width Button" [fullWidth]="true" (buttonClick)="onButtonClick($event)"></uwp-button>
+      </div>
+    </div>
+  </section>
+  
+  <section class="demo-section">
+    <h2 class="demo-section-title">Badge Component</h2>
+    
+    <div class="demo-row">
+      <div class="demo-col">
+        <h3>Badge Variants</h3>
+        <div class="demo-badges">
+          <uwp-badge text="Primary"></uwp-badge>
+          <uwp-badge text="Success" [variant]="'success'"></uwp-badge>
+          <uwp-badge text="Warning" [variant]="'warning'"></uwp-badge>
+          <uwp-badge text="Error" [variant]="'error'"></uwp-badge>
+          <uwp-badge text="Info" [variant]="'info'"></uwp-badge>
+          <uwp-badge text="Default" [variant]="'default'"></uwp-badge>
+        </div>
+      </div>
+      
+      <div class="demo-col">
+        <h3>Badge Styles</h3>
+        <div class="demo-badges">
+          <uwp-badge text="Default"></uwp-badge>
+          <uwp-badge text="Rounded" [rounded]="true"></uwp-badge>
+          <uwp-badge text="Outlined" [outlined]="true"></uwp-badge>
+          <uwp-badge text="Outlined Rounded" [outlined]="true" [rounded]="true"></uwp-badge>
+        </div>
+      </div>
+      
+      <div class="demo-col">
+        <h3>Badge Sizes</h3>
+        <div class="demo-badges">
+          <uwp-badge text="Small" [size]="'small'"></uwp-badge>
+          <uwp-badge text="Medium"></uwp-badge>
+          <uwp-badge text="Large" [size]="'large'"></uwp-badge>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="demo-section">
+    <h2 class="demo-section-title">Form Field Component</h2>
+    
+    <div class="demo-row">
+      <div class="demo-col">
+        <uwp-form-field label="Text Input" labelFor="text-input" helperText="Helper text goes here">
+          <input id="text-input" type="text" placeholder="Enter text...">
+        </uwp-form-field>
+        
+        <uwp-form-field label="Required Input" labelFor="required-input" [required]="true">
+          <input id="required-input" type="text" placeholder="Required field...">
+        </uwp-form-field>
+      </div>
+      
+      <div class="demo-col">
+        <uwp-form-field label="Select Input" labelFor="select-input">
+          <select id="select-input">
+            <option value="">Select an option</option>
+            <option value="1">Option 1</option>
+            <option value="2">Option 2</option>
+            <option value="3">Option 3</option>
+          </select>
+        </uwp-form-field>
+        
+        <uwp-form-field label="With Error" labelFor="error-input" errorText="This field has an error">
+          <input id="error-input" type="text" value="Invalid input">
+        </uwp-form-field>
+      </div>
+      
+      <div class="demo-col">
+        <uwp-form-field label="Textarea" labelFor="textarea-input">
+          <textarea id="textarea-input" rows="3" placeholder="Enter multiple lines..."></textarea>
+        </uwp-form-field>
+        
+        <uwp-form-field label="Disabled Input" labelFor="disabled-input" [disabled]="true">
+          <input id="disabled-input" type="text" disabled value="Disabled input">
+        </uwp-form-field>
+      </div>
+    </div>
+    
+    <div class="demo-row">
+      <div class="demo-col">
+        <uwp-form-field label="Full Width Input" labelFor="full-width-input" [fullWidth]="true">
+          <input id="full-width-input" type="text" placeholder="This input takes up the full width">
+        </uwp-form-field>
+      </div>
+    </div>
+  </section>
+  
+  <section class="demo-section">
+    <h2 class="demo-section-title">Toggle Component</h2>
+    
+    <div class="demo-row">
+      <div class="demo-col">
+        <h3>Toggle Variants</h3>
+        <div class="demo-toggles">
+          <uwp-toggle label="Primary" [checked]="true" (toggleChange)="onToggleChange($event)"></uwp-toggle>
+          <uwp-toggle label="Accent" [color]="'accent'" [checked]="true" (toggleChange)="onToggleChange($event)"></uwp-toggle>
+          <uwp-toggle label="Success" [color]="'success'" [checked]="true" (toggleChange)="onToggleChange($event)"></uwp-toggle>
+          <uwp-toggle label="Warning" [color]="'warning'" [checked]="true" (toggleChange)="onToggleChange($event)"></uwp-toggle>
+          <uwp-toggle label="Error" [color]="'error'" [checked]="true" (toggleChange)="onToggleChange($event)"></uwp-toggle>
+        </div>
+      </div>
+      
+      <div class="demo-col">
+        <h3>Toggle Sizes</h3>
+        <div class="demo-toggles">
+          <uwp-toggle label="Small" [size]="'small'" [checked]="true" (toggleChange)="onToggleChange($event)"></uwp-toggle>
+          <uwp-toggle label="Medium" [checked]="true" (toggleChange)="onToggleChange($event)"></uwp-toggle>
+          <uwp-toggle label="Large" [size]="'large'" [checked]="true" (toggleChange)="onToggleChange($event)"></uwp-toggle>
+        </div>
+      </div>
+      
+      <div class="demo-col">
+        <h3>Toggle States</h3>
+        <div class="demo-toggles">
+          <uwp-toggle label="Unchecked" (toggleChange)="onToggleChange($event)"></uwp-toggle>
+          <uwp-toggle label="Checked" [checked]="true" (toggleChange)="onToggleChange($event)"></uwp-toggle>
+          <uwp-toggle label="Disabled" [disabled]="true" (toggleChange)="onToggleChange($event)"></uwp-toggle>
+          <uwp-toggle label="Disabled Checked" [checked]="true" [disabled]="true" (toggleChange)="onToggleChange($event)"></uwp-toggle>
+        </div>
+      </div>
+    </div>
+    
+    <div class="demo-row">
+      <div class="demo-col">
+        <h3>Label Position</h3>
+        <div class="demo-toggles">
+          <uwp-toggle label="Label Right (Default)" [checked]="true" (toggleChange)="onToggleChange($event)"></uwp-toggle>
+          <uwp-toggle label="Label Left" [labelPosition]="'left'" [checked]="true" (toggleChange)="onToggleChange($event)"></uwp-toggle>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="demo-section">
+    <h2 class="demo-section-title">Checkbox Component</h2>
+    
+    <div class="demo-row">
+      <div class="demo-col">
+        <h3>Checkbox Variants</h3>
+        <div class="demo-checkboxes">
+          <uwp-checkbox label="Primary" [checked]="true" (checkboxChange)="onCheckboxChange($event)"></uwp-checkbox>
+          <uwp-checkbox label="Accent" [color]="'accent'" [checked]="true" (checkboxChange)="onCheckboxChange($event)"></uwp-checkbox>
+          <uwp-checkbox label="Success" [color]="'success'" [checked]="true" (checkboxChange)="onCheckboxChange($event)"></uwp-checkbox>
+          <uwp-checkbox label="Warning" [color]="'warning'" [checked]="true" (checkboxChange)="onCheckboxChange($event)"></uwp-checkbox>
+          <uwp-checkbox label="Error" [color]="'error'" [checked]="true" (checkboxChange)="onCheckboxChange($event)"></uwp-checkbox>
+        </div>
+      </div>
+      
+      <div class="demo-col">
+        <h3>Checkbox Sizes</h3>
+        <div class="demo-checkboxes">
+          <uwp-checkbox label="Small" [size]="'small'" [checked]="true" (checkboxChange)="onCheckboxChange($event)"></uwp-checkbox>
+          <uwp-checkbox label="Medium" [checked]="true" (checkboxChange)="onCheckboxChange($event)"></uwp-checkbox>
+          <uwp-checkbox label="Large" [size]="'large'" [checked]="true" (checkboxChange)="onCheckboxChange($event)"></uwp-checkbox>
+        </div>
+      </div>
+      
+      <div class="demo-col">
+        <h3>Checkbox States</h3>
+        <div class="demo-checkboxes">
+          <uwp-checkbox label="Unchecked" (checkboxChange)="onCheckboxChange($event)"></uwp-checkbox>
+          <uwp-checkbox label="Checked" [checked]="true" (checkboxChange)="onCheckboxChange($event)"></uwp-checkbox>
+          <uwp-checkbox label="Indeterminate" [indeterminate]="true" (checkboxChange)="onCheckboxChange($event)"></uwp-checkbox>
+          <uwp-checkbox label="Disabled" [disabled]="true" (checkboxChange)="onCheckboxChange($event)"></uwp-checkbox>
+          <uwp-checkbox label="Disabled Checked" [checked]="true" [disabled]="true" (checkboxChange)="onCheckboxChange($event)"></uwp-checkbox>
+        </div>
+      </div>
+    </div>
+    
+    <div class="demo-row">
+      <div class="demo-col">
+        <h3>Label Position</h3>
+        <div class="demo-checkboxes">
+          <uwp-checkbox label="Label Right (Default)" [checked]="true" (checkboxChange)="onCheckboxChange($event)"></uwp-checkbox>
+          <uwp-checkbox label="Label Left" [labelPosition]="'left'" [checked]="true" (checkboxChange)="onCheckboxChange($event)"></uwp-checkbox>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="demo-section">
+    <h2 class="demo-section-title">Coming Soon</h2>
+    <p>More components will be added to the library soon, including:</p>
+    <ul>
+      <li>Dropdown component</li>
+      <li>Radio button component</li>
+      <li>Tabs component</li>
+      <li>Modal component</li>
+      <li>Toast notification component</li>
+      <li>And more...</li>
+    </ul>
+  </section>
+</div>

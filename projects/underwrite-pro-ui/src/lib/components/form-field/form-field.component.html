@@ -1,0 +1,18 @@
+<div [ngClass]="formFieldClasses">
+  <label *ngIf="label" [for]="labelFor" class="uwp-form-field-label">
+    {{ label }}
+    <span class="uwp-form-field-required" *ngIf="required">*</span>
+  </label>
+  
+  <div class="uwp-form-field-content">
+    <ng-content></ng-content>
+  </div>
+  
+  <div class="uwp-form-field-helper-text" *ngIf="helperText && !errorText">
+    {{ helperText }}
+  </div>
+  
+  <div class="uwp-form-field-error-text" *ngIf="errorText">
+    {{ errorText }}
+  </div>
+</div>

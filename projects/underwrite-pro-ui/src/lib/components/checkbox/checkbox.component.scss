@@ -1,0 +1,195 @@
+@import '../../styles/variables';
+
+:host {
+  display: inline-block;
+}
+
+.uwp-checkbox {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  
+  &.uwp-checkbox-disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    
+    .uwp-checkbox-label {
+      cursor: not-allowed;
+    }
+  }
+  
+  // Size variants
+  &.uwp-checkbox-small {
+    .uwp-checkbox-box {
+      width: 16px;
+      height: 16px;
+    }
+    
+    .uwp-checkbox-checkmark {
+      svg {
+        width: 12px;
+        height: 12px;
+      }
+    }
+    
+    .uwp-checkbox-label {
+      font-size: 12px;
+    }
+  }
+  
+  &.uwp-checkbox-medium {
+    .uwp-checkbox-box {
+      width: 20px;
+      height: 20px;
+    }
+    
+    .uwp-checkbox-checkmark {
+      svg {
+        width: 16px;
+        height: 16px;
+      }
+    }
+    
+    .uwp-checkbox-label {
+      font-size: 14px;
+    }
+  }
+  
+  &.uwp-checkbox-large {
+    .uwp-checkbox-box {
+      width: 24px;
+      height: 24px;
+    }
+    
+    .uwp-checkbox-checkmark {
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+    
+    .uwp-checkbox-label {
+      font-size: 16px;
+    }
+  }
+  
+  // Color variants
+  &.uwp-checkbox-primary {
+    &.uwp-checkbox-checked, &.uwp-checkbox-indeterminate {
+      .uwp-checkbox-background {
+        background-color: var(--primary-color, $primary-color);
+        border-color: var(--primary-color, $primary-color);
+      }
+    }
+  }
+  
+  &.uwp-checkbox-accent {
+    &.uwp-checkbox-checked, &.uwp-checkbox-indeterminate {
+      .uwp-checkbox-background {
+        background-color: var(--accent-color, $accent-color);
+        border-color: var(--accent-color, $accent-color);
+      }
+    }
+  }
+  
+  &.uwp-checkbox-success {
+    &.uwp-checkbox-checked, &.uwp-checkbox-indeterminate {
+      .uwp-checkbox-background {
+        background-color: var(--success, $success-color);
+        border-color: var(--success, $success-color);
+      }
+    }
+  }
+  
+  &.uwp-checkbox-warning {
+    &.uwp-checkbox-checked, &.uwp-checkbox-indeterminate {
+      .uwp-checkbox-background {
+        background-color: var(--warning, $warning-color);
+        border-color: var(--warning, $warning-color);
+      }
+    }
+  }
+  
+  &.uwp-checkbox-error {
+    &.uwp-checkbox-checked, &.uwp-checkbox-indeterminate {
+      .uwp-checkbox-background {
+        background-color: var(--error, $error-color);
+        border-color: var(--error, $error-color);
+      }
+    }
+  }
+}
+
+.uwp-checkbox-box {
+  position: relative;
+  display: inline-block;
+  border-radius: 2px;
+  transition: background-color 0.2s;
+}
+
+.uwp-checkbox-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 2px;
+  border: 2px solid var(--text-secondary, $light-text-secondary);
+  background-color: transparent;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.uwp-checkbox-checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  svg {
+    fill: white;
+    opacity: 0;
+    transform: scale(0);
+    transition: opacity 0.2s, transform 0.2s;
+  }
+}
+
+.uwp-checkbox-checked, .uwp-checkbox-indeterminate {
+  .uwp-checkbox-checkmark {
+    svg {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+}
+
+.uwp-checkbox-label {
+  cursor: pointer;
+  color: var(--text-primary, $light-text-primary);
+  
+  &.uwp-checkbox-label-left {
+    margin-right: 8px;
+  }
+  
+  &.uwp-checkbox-label-right {
+    margin-left: 8px;
+  }
+}
+
+// Dark theme adjustments
+:host-context(.dark-theme) {
+  .uwp-checkbox {
+    .uwp-checkbox-background {
+      border-color: var(--text-secondary, $dark-text-secondary);
+    }
+  }
+  
+  .uwp-checkbox-label {
+    color: var(--text-primary, $dark-text-primary);
+  }
+}
+

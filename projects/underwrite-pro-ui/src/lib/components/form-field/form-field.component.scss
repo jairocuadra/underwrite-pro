@@ -1,0 +1,127 @@
+@import '../../styles/variables';
+
+:host {
+  display: block;
+  margin-bottom: 16px;
+}
+
+.uwp-form-field {
+  display: flex;
+  flex-direction: column;
+  
+  &.uwp-form-field-full-width {
+    width: 100%;
+  }
+  
+  &.uwp-form-field-disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    
+    .uwp-form-field-label {
+      cursor: not-allowed;
+    }
+  }
+  
+  &.uwp-form-field-error {
+    .uwp-form-field-content {
+      ::ng-deep input,
+      ::ng-deep select,
+      ::ng-deep textarea {
+        border-color: var(--error, $error-color) !important;
+        
+        &:focus {
+          box-shadow: 0 0 0 2px rgba($error-color, 0.2) !important;
+        }
+      }
+    }
+  }
+}
+
+.uwp-form-field-label {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 6px;
+  color: var(--text-primary, $light-text-primary);
+  cursor: pointer;
+}
+
+.uwp-form-field-required {
+  color: var(--error, $error-color);
+  margin-left: 2px;
+}
+
+.uwp-form-field-content {
+  margin-bottom: 4px;
+  
+  ::ng-deep input,
+  ::ng-deep select,
+  ::ng-deep textarea {
+    width: 100%;
+    padding: 8px 12px;
+    font-size: 14px;
+    border: 1px solid var(--border-color, $light-border-color);
+    border-radius: 4px;
+    background-color: var(--bg-primary, $light-bg-primary);
+    color: var(--text-primary, $light-text-primary);
+    transition: all 0.2s ease;
+    
+    &:focus {
+      outline: none;
+      border-color: var(--primary-color, $primary-color);
+      box-shadow: 0 0 0 2px rgba($primary-color, 0.2);
+    }
+    
+    &::placeholder {
+      color: var(--text-tertiary, $light-text-tertiary);
+      opacity: 0.8;
+    }
+    
+    &:disabled {
+      background-color: var(--bg-secondary, $light-bg-secondary);
+      cursor: not-allowed;
+    }
+  }
+}
+
+.uwp-form-field-helper-text {
+  font-size: 12px;
+  color: var(--text-secondary, $light-text-secondary);
+  margin-top: 4px;
+}
+
+.uwp-form-field-error-text {
+  font-size: 12px;
+  color: var(--error, $error-color);
+  margin-top: 4px;
+}
+
+// Dark theme adjustments
+:host-context(.dark-theme) {
+  .uwp-form-field-label {
+    color: var(--text-primary, $dark-text-primary);
+  }
+  
+  .uwp-form-field-content {
+    ::ng-deep input,
+    ::ng-deep select,
+    ::ng-deep textarea {
+      border-color: var(--border-color, $dark-border-color);
+      background-color: var(--bg-primary, $dark-bg-primary);
+      color: var(--text-primary, $dark-text-primary);
+      
+      &::placeholder {
+        color: var(--text-tertiary, $dark-text-tertiary);
+      }
+      
+      &:disabled {
+        background-color: var(--bg-secondary, $dark-bg-secondary);
+      }
+    }
+  }
+  
+  .uwp-form-field-helper-text {
+    color: var(--text-secondary, $dark-text-secondary);
+  }
+}
+
+

@@ -1,0 +1,22 @@
+<button 
+  [type]="type" 
+  [ngClass]="buttonClasses" 
+  [disabled]="disabled || loading"
+  (click)="onClick($event)">
+  
+  <span class="uwp-button-icon uwp-button-icon-left" *ngIf="icon && iconPosition === 'left'">
+    <ng-content select="[icon-left]"></ng-content>
+  </span>
+  
+  <span class="uwp-button-label">{{ label }}</span>
+  
+  <span class="uwp-button-icon uwp-button-icon-right" *ngIf="icon && iconPosition === 'right'">
+    <ng-content select="[icon-right]"></ng-content>
+  </span>
+  
+  <span class="uwp-button-loading-indicator" *ngIf="loading">
+    <svg class="uwp-button-spinner" viewBox="0 0 24 24">
+      <circle class="uwp-button-spinner-path" cx="12" cy="12" r="10" fill="none" stroke-width="3"></circle>
+    </svg>
+  </span>
+</button>

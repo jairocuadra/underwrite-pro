@@ -37,6 +37,14 @@
           <mat-icon>{{ (darkMode$ | async) ? 'light_mode' : 'dark_mode' }}</mat-icon>
           <span>{{ (darkMode$ | async) ? 'Light Mode' : 'Dark Mode' }}</span>
         </button>
+        <button mat-menu-item routerLink="/component-library">
+          <mat-icon>widgets</mat-icon>
+          <span>Component Library</span>
+        </button>
+        <button mat-menu-item routerLink="/documentation">
+          <mat-icon>description</mat-icon>
+          <span>Documentation</span>
+        </button>
         <mat-divider></mat-divider>
         <button mat-menu-item>
           <mat-icon>exit_to_app</mat-icon>

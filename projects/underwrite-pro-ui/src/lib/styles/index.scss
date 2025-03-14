@@ -1,0 +1,101 @@
+@import './variables';
+
+// Mixins
+@mixin light-theme {
+  --bg-color: #{$light-bg-color};
+  --bg-secondary: #{$light-bg-secondary};
+  --bg-tertiary: #{$light-bg-tertiary};
+  --card-bg: #{$light-card-bg};
+  --header-bg: #{$light-header-bg};
+  --sidebar-bg: #{$light-sidebar-bg};
+  --text-primary: #{$light-text-primary};
+  --text-secondary: #{$light-text-secondary};
+  --text-tertiary: #{$light-text-tertiary};
+  --border-color: #{$light-border-color};
+  --border-light: #{$light-border-light};
+  --primary-color: #{$primary-color};
+  --primary-light: #{$primary-light};
+  --primary-dark: #{$primary-dark};
+  --accent-color: #{$accent-color};
+  --success: #{$success-color};
+  --warning: #{$warning-color};
+  --error: #{$error-color};
+  --info: #{$info-color};
+  --shadow-sm: #{$shadow-sm};
+  --shadow-md: #{$shadow-md};
+  --shadow-lg: #{$shadow-lg};
+  --transition-speed: #{$transition-speed};
+  --workbench-header-bg: #{$light-card-bg};
+  --workbench-nav-bg: #{$light-card-bg};
+  --primary-bg-subtle: rgba(33, 150, 243, 0.1);
+}
+
+@mixin dark-theme {
+  --bg-color: #{$dark-bg-color};
+  --bg-secondary: #{$dark-bg-secondary};
+  --bg-tertiary: #{$dark-bg-tertiary};
+  --card-bg: #{$dark-card-bg};
+  --header-bg: #{$dark-header-bg};
+  --sidebar-bg: #{$dark-sidebar-bg};
+  --text-primary: #{$dark-text-primary};
+  --text-secondary: #{$dark-text-secondary};
+  --text-tertiary: #{$dark-text-tertiary};
+  --border-color: #{$dark-border-color};
+  --border-light: #{$dark-border-light};
+  --primary-color: #{$primary-light};
+  --primary-light: #{$primary-color};
+  --primary-dark: #{$primary-dark};
+  --accent-color: #{$accent-color};
+  --success: #{$success-color};
+  --warning: #{$warning-color};
+  --error: #{$error-color};
+  --info: #{$info-color};
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.3);
+  --transition-speed: #{$transition-speed};
+  --workbench-header-bg: #{$dark-card-bg};
+  --workbench-nav-bg: #{$dark-card-bg};
+  --primary-bg-subtle: rgba(33, 150, 243, 0.15);
+}
+
+// Common styles for components
+.uwp-card {
+  background: var(--card-bg);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+}
+
+.uwp-section-title {
+  color: var(--primary-color);
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  letter-spacing: 0.3px;
+}
+
+.uwp-section-divider {
+  height: 1px;
+  background-color: var(--border-color);
+  margin: 24px 0;
+}
+
+// Responsive utilities
+@media (max-width: $breakpoint-sm) {
+  .uwp-card {
+    padding: 16px;
+  }
+  
+  .uwp-section-divider {
+    margin: 16px 0;
+  }
+}
+
+// Dark theme adjustments
+.dark-theme {
+  .uwp-section-divider {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+} 

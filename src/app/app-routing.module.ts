@@ -5,10 +5,16 @@ import { KanbanBoardComponent } from './workboard/kanban-board/kanban-board.comp
 import { RelatedPoliciesComponent } from './related-policies/related-policies.component';
 import { TestComponent } from './test/test.component';
 import { PolicyDatesComponent } from './policy-dates/policy-dates.component';
+import { ComponentLibraryDemoComponent } from './component-library-demo/component-library-demo.component';
+import { DocumentationComponent } from './documentation/documentation.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/underwriting/workboard', pathMatch: 'full' },
+  { path: 'workbench', redirectTo: '/underwriting/workboard', pathMatch: 'full' },
   { path: 'test', component: TestComponent },
+  { path: 'policy-dates', component: PolicyDatesComponent },
+  { path: 'component-library', component: ComponentLibraryDemoComponent },
+  { path: 'documentation', component: DocumentationComponent },
   { 
     path: 'underwriting', 
     component: UnderwritingWorkbenchComponent,

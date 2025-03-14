@@ -1,0 +1,81 @@
+@import '../../styles/variables';
+
+:host {
+  display: block;
+  margin-bottom: 16px;
+}
+
+.uwp-section-title-container {
+  margin-bottom: 8px;
+}
+
+.uwp-section-title {
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  margin: 0 0 4px 0;
+  
+  &.uwp-section-title-primary {
+    color: var(--primary-color, $primary-color);
+  }
+  
+  &.uwp-section-title-accent {
+    color: var(--accent-color, $accent-color);
+  }
+  
+  &.uwp-section-title-default {
+    color: var(--text-primary, $light-text-primary);
+  }
+  
+  &.uwp-section-title-small {
+    font-size: 16px;
+  }
+  
+  &.uwp-section-title-medium {
+    font-size: 18px;
+  }
+  
+  &.uwp-section-title-large {
+    font-size: 22px;
+  }
+}
+
+.uwp-section-subtitle {
+  color: var(--text-secondary, $light-text-secondary);
+  font-size: 14px;
+  margin: 0 0 8px 0;
+}
+
+.uwp-section-divider {
+  height: 1px;
+  background-color: var(--border-color, $light-border-color);
+  margin: 8px 0 16px 0;
+}
+
+// Responsive adjustments
+@media (max-width: $breakpoint-sm) {
+  .uwp-section-title {
+    &.uwp-section-title-large {
+      font-size: 20px;
+    }
+  }
+  
+  .uwp-section-divider {
+    margin: 8px 0 12px 0;
+  }
+}
+
+// Dark theme adjustments
+:host-context(.dark-theme) {
+  .uwp-section-title {
+    &.uwp-section-title-default {
+      color: var(--text-primary, $dark-text-primary);
+    }
+  }
+  
+  .uwp-section-divider {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+
+

@@ -1,0 +1,623 @@
+<div class="documentation-container">
+  <h1 class="documentation-title">Underwrite Pro UI Component Library Documentation</h1>
+  
+  <section class="documentation-section">
+    <h2 class="documentation-section-title">Introduction</h2>
+    <p>
+      The Underwrite Pro UI Component Library is a collection of reusable Angular components designed to provide a consistent look and feel across the Underwrite Pro application. This documentation provides information on how to use these components in your application.
+    </p>
+  </section>
+  
+  <section class="documentation-section">
+    <h2 class="documentation-section-title">Installation</h2>
+    <p>To use the Underwrite Pro UI Component Library in your Angular project:</p>
+    
+    <div class="documentation-code-block">
+      <pre><code>
+// Import the module in your app.module.ts
+import {{ '{' }} UnderwriteProUiModule {{ '}' }} from 'underwrite-pro-ui';
+
+@NgModule({{ '{' }}
+  imports: [
+    // other imports
+    UnderwriteProUiModule
+  ],
+  // ...
+{{ '}' }})
+export class AppModule {{ '{' }} {{ '}' }}
+      </code></pre>
+    </div>
+  </section>
+  
+  <section class="documentation-section">
+    <h2 class="documentation-section-title">Components</h2>
+    
+    <div class="documentation-component">
+      <h3 class="documentation-component-title">Card Component</h3>
+      <p>A versatile card component for displaying content in a contained format.</p>
+      
+      <h4>Usage</h4>
+      <div class="documentation-code-block">
+        <pre><code>
+&lt;uwp-card 
+  title="Card Title" 
+  [subtitle]="Optional subtitle"
+  [elevation]="'low' | 'medium' | 'high'"
+  [padding]="'small' | 'medium' | 'large'"
+  [noBorder]="true | false"&gt;
+  
+  &lt;!-- Card content goes here --&gt;
+  &lt;p&gt;This is the card content.&lt;/p&gt;
+  
+&lt;/uwp-card&gt;
+        </code></pre>
+      </div>
+      
+      <h4>Properties</h4>
+      <table class="documentation-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>title</td>
+            <td>string</td>
+            <td>undefined</td>
+            <td>The title of the card.</td>
+          </tr>
+          <tr>
+            <td>subtitle</td>
+            <td>string</td>
+            <td>undefined</td>
+            <td>The subtitle of the card.</td>
+          </tr>
+          <tr>
+            <td>elevation</td>
+            <td>'low' | 'medium' | 'high'</td>
+            <td>'medium'</td>
+            <td>The elevation (shadow) of the card.</td>
+          </tr>
+          <tr>
+            <td>padding</td>
+            <td>'small' | 'medium' | 'large'</td>
+            <td>'medium'</td>
+            <td>The padding inside the card.</td>
+          </tr>
+          <tr>
+            <td>noBorder</td>
+            <td>boolean</td>
+            <td>false</td>
+            <td>Whether to remove the border from the card.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="documentation-component">
+      <h3 class="documentation-component-title">Section Title Component</h3>
+      <p>A component for creating consistent section titles throughout the application.</p>
+      
+      <h4>Usage</h4>
+      <div class="documentation-code-block">
+        <pre><code>
+&lt;uwp-section-title 
+  title="Section Title" 
+  [subtitle]="Optional subtitle"
+  [color]="'primary' | 'accent' | 'default'"
+  [withDivider]="true | false"&gt;
+&lt;/uwp-section-title&gt;
+        </code></pre>
+      </div>
+      
+      <h4>Properties</h4>
+      <table class="documentation-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>title</td>
+            <td>string</td>
+            <td>required</td>
+            <td>The title text.</td>
+          </tr>
+          <tr>
+            <td>subtitle</td>
+            <td>string</td>
+            <td>undefined</td>
+            <td>The subtitle text.</td>
+          </tr>
+          <tr>
+            <td>color</td>
+            <td>'primary' | 'accent' | 'default'</td>
+            <td>'primary'</td>
+            <td>The color of the title.</td>
+          </tr>
+          <tr>
+            <td>withDivider</td>
+            <td>boolean</td>
+            <td>true</td>
+            <td>Whether to show a divider below the title.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="documentation-component">
+      <h3 class="documentation-component-title">Button Component</h3>
+      <p>A customizable button component with various styles and states.</p>
+      
+      <h4>Usage</h4>
+      <div class="documentation-code-block">
+        <pre><code>
+&lt;uwp-button 
+  label="Button Label" 
+  [type]="'button' | 'submit' | 'reset'"
+  [variant]="'primary' | 'secondary' | 'outline' | 'text'"
+  [size]="'small' | 'medium' | 'large'"
+  [icon]="'icon-name'"
+  [iconPosition]="'left' | 'right'"
+  [fullWidth]="true | false"
+  [disabled]="true | false"
+  [loading]="true | false"
+  (buttonClick)="handleClick($event)"&gt;
+  
+  &lt;!-- Optional icon content --&gt;
+  &lt;mat-icon icon-left&gt;home&lt;/mat-icon&gt;
+  
+&lt;/uwp-button&gt;
+        </code></pre>
+      </div>
+      
+      <h4>Properties</h4>
+      <table class="documentation-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>label</td>
+            <td>string</td>
+            <td>required</td>
+            <td>The button label text.</td>
+          </tr>
+          <tr>
+            <td>type</td>
+            <td>'button' | 'submit' | 'reset'</td>
+            <td>'button'</td>
+            <td>The HTML button type.</td>
+          </tr>
+          <tr>
+            <td>variant</td>
+            <td>'primary' | 'secondary' | 'outline' | 'text'</td>
+            <td>'primary'</td>
+            <td>The button style variant.</td>
+          </tr>
+          <tr>
+            <td>size</td>
+            <td>'small' | 'medium' | 'large'</td>
+            <td>'medium'</td>
+            <td>The button size.</td>
+          </tr>
+          <tr>
+            <td>icon</td>
+            <td>string</td>
+            <td>undefined</td>
+            <td>The name of the icon to display.</td>
+          </tr>
+          <tr>
+            <td>iconPosition</td>
+            <td>'left' | 'right'</td>
+            <td>'left'</td>
+            <td>The position of the icon relative to the label.</td>
+          </tr>
+          <tr>
+            <td>fullWidth</td>
+            <td>boolean</td>
+            <td>false</td>
+            <td>Whether the button should take up the full width of its container.</td>
+          </tr>
+          <tr>
+            <td>disabled</td>
+            <td>boolean</td>
+            <td>false</td>
+            <td>Whether the button is disabled.</td>
+          </tr>
+          <tr>
+            <td>loading</td>
+            <td>boolean</td>
+            <td>false</td>
+            <td>Whether to show a loading spinner in the button.</td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <h4>Events</h4>
+      <table class="documentation-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>buttonClick</td>
+            <td>EventEmitter&lt;MouseEvent&gt;</td>
+            <td>Emitted when the button is clicked.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="documentation-component">
+      <h3 class="documentation-component-title">Badge Component</h3>
+      <p>A badge component for displaying status, labels, or counts.</p>
+      
+      <h4>Usage</h4>
+      <div class="documentation-code-block">
+        <pre><code>
+&lt;uwp-badge 
+  text="Badge Text" 
+  [variant]="'primary' | 'success' | 'warning' | 'error' | 'info' | 'default'"
+  [size]="'small' | 'medium' | 'large'"
+  [rounded]="true | false"
+  [outlined]="true | false"
+  [icon]="'icon-name'"&gt;
+  
+  &lt;!-- Optional icon content --&gt;
+  &lt;mat-icon badge-icon&gt;check&lt;/mat-icon&gt;
+  
+&lt;/uwp-badge&gt;
+        </code></pre>
+      </div>
+      
+      <h4>Properties</h4>
+      <table class="documentation-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>text</td>
+            <td>string</td>
+            <td>required</td>
+            <td>The text to display in the badge.</td>
+          </tr>
+          <tr>
+            <td>variant</td>
+            <td>'primary' | 'success' | 'warning' | 'error' | 'info' | 'default'</td>
+            <td>'default'</td>
+            <td>The color variant of the badge.</td>
+          </tr>
+          <tr>
+            <td>size</td>
+            <td>'small' | 'medium' | 'large'</td>
+            <td>'medium'</td>
+            <td>The size of the badge.</td>
+          </tr>
+          <tr>
+            <td>rounded</td>
+            <td>boolean</td>
+            <td>false</td>
+            <td>Whether the badge has rounded corners.</td>
+          </tr>
+          <tr>
+            <td>outlined</td>
+            <td>boolean</td>
+            <td>false</td>
+            <td>Whether the badge has an outlined style.</td>
+          </tr>
+          <tr>
+            <td>icon</td>
+            <td>string</td>
+            <td>undefined</td>
+            <td>The name of the icon to display.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="documentation-component">
+      <h3 class="documentation-component-title">Form Field Component</h3>
+      <p>A form field wrapper component for consistent form styling.</p>
+      
+      <h4>Usage</h4>
+      <div class="documentation-code-block">
+        <pre><code>
+&lt;uwp-form-field 
+  label="Field Label" 
+  [labelFor]="'input-id'"
+  [helperText]="'Helper text goes here'"
+  [errorText]="formControl.errors ? 'Error message' : null"
+  [required]="true | false"
+  [fullWidth]="true | false"
+  [disabled]="true | false"&gt;
+  
+  &lt;!-- Input element goes here --&gt;
+  &lt;input id="input-id" type="text"&gt;
+  
+&lt;/uwp-form-field&gt;
+        </code></pre>
+      </div>
+      
+      <h4>Properties</h4>
+      <table class="documentation-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>label</td>
+            <td>string</td>
+            <td>undefined</td>
+            <td>The label text for the form field.</td>
+          </tr>
+          <tr>
+            <td>labelFor</td>
+            <td>string</td>
+            <td>undefined</td>
+            <td>The ID of the input element this label is for.</td>
+          </tr>
+          <tr>
+            <td>helperText</td>
+            <td>string</td>
+            <td>undefined</td>
+            <td>Helper text to display below the input.</td>
+          </tr>
+          <tr>
+            <td>errorText</td>
+            <td>string</td>
+            <td>undefined</td>
+            <td>Error message to display when the input is invalid.</td>
+          </tr>
+          <tr>
+            <td>required</td>
+            <td>boolean</td>
+            <td>false</td>
+            <td>Whether the field is required.</td>
+          </tr>
+          <tr>
+            <td>fullWidth</td>
+            <td>boolean</td>
+            <td>false</td>
+            <td>Whether the field should take up the full width of its container.</td>
+          </tr>
+          <tr>
+            <td>disabled</td>
+            <td>boolean</td>
+            <td>false</td>
+            <td>Whether the field is disabled.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="documentation-component">
+      <h3 class="documentation-component-title">Toggle Component</h3>
+      <p>A toggle switch component for boolean inputs.</p>
+      
+      <h4>Usage</h4>
+      <div class="documentation-code-block">
+        <pre><code>
+&lt;uwp-toggle 
+  label="Toggle Label" 
+  [checked]="true | false"
+  [labelPosition]="'left' | 'right'"
+  [color]="'primary' | 'accent' | 'success' | 'warning' | 'error'"
+  [size]="'small' | 'medium' | 'large'"
+  [disabled]="true | false"
+  (toggleChange)="handleToggleChange($event)"&gt;
+&lt;/uwp-toggle&gt;
+        </code></pre>
+      </div>
+      
+      <h4>Properties</h4>
+      <table class="documentation-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>label</td>
+            <td>string</td>
+            <td>undefined</td>
+            <td>The label text for the toggle.</td>
+          </tr>
+          <tr>
+            <td>checked</td>
+            <td>boolean</td>
+            <td>false</td>
+            <td>Whether the toggle is checked.</td>
+          </tr>
+          <tr>
+            <td>labelPosition</td>
+            <td>'left' | 'right'</td>
+            <td>'right'</td>
+            <td>The position of the label relative to the toggle.</td>
+          </tr>
+          <tr>
+            <td>color</td>
+            <td>'primary' | 'accent' | 'success' | 'warning' | 'error'</td>
+            <td>'primary'</td>
+            <td>The color of the toggle when checked.</td>
+          </tr>
+          <tr>
+            <td>size</td>
+            <td>'small' | 'medium' | 'large'</td>
+            <td>'medium'</td>
+            <td>The size of the toggle.</td>
+          </tr>
+          <tr>
+            <td>disabled</td>
+            <td>boolean</td>
+            <td>false</td>
+            <td>Whether the toggle is disabled.</td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <h4>Events</h4>
+      <table class="documentation-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>toggleChange</td>
+            <td>EventEmitter&lt;boolean&gt;</td>
+            <td>Emitted when the toggle state changes.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="documentation-component">
+      <h3 class="documentation-component-title">Checkbox Component</h3>
+      <p>A checkbox component for boolean inputs.</p>
+      
+      <h4>Usage</h4>
+      <div class="documentation-code-block">
+        <pre><code>
+&lt;uwp-checkbox 
+  label="Checkbox Label" 
+  [checked]="true | false"
+  [indeterminate]="true | false"
+  [labelPosition]="'left' | 'right'"
+  [color]="'primary' | 'accent' | 'success' | 'warning' | 'error'"
+  [size]="'small' | 'medium' | 'large'"
+  [disabled]="true | false"
+  (checkboxChange)="handleCheckboxChange($event)"&gt;
+&lt;/uwp-checkbox&gt;
+        </code></pre>
+      </div>
+      
+      <h4>Properties</h4>
+      <table class="documentation-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>label</td>
+            <td>string</td>
+            <td>undefined</td>
+            <td>The label text for the checkbox.</td>
+          </tr>
+          <tr>
+            <td>checked</td>
+            <td>boolean</td>
+            <td>false</td>
+            <td>Whether the checkbox is checked.</td>
+          </tr>
+          <tr>
+            <td>indeterminate</td>
+            <td>boolean</td>
+            <td>false</td>
+            <td>Whether the checkbox is in an indeterminate state.</td>
+          </tr>
+          <tr>
+            <td>labelPosition</td>
+            <td>'left' | 'right'</td>
+            <td>'right'</td>
+            <td>The position of the label relative to the checkbox.</td>
+          </tr>
+          <tr>
+            <td>color</td>
+            <td>'primary' | 'accent' | 'success' | 'warning' | 'error'</td>
+            <td>'primary'</td>
+            <td>The color of the checkbox when checked.</td>
+          </tr>
+          <tr>
+            <td>size</td>
+            <td>'small' | 'medium' | 'large'</td>
+            <td>'medium'</td>
+            <td>The size of the checkbox.</td>
+          </tr>
+          <tr>
+            <td>disabled</td>
+            <td>boolean</td>
+            <td>false</td>
+            <td>Whether the checkbox is disabled.</td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <h4>Events</h4>
+      <table class="documentation-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>checkboxChange</td>
+            <td>EventEmitter&lt;boolean&gt;</td>
+            <td>Emitted when the checkbox state changes.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+  
+  <section class="documentation-section">
+    <h2 class="documentation-section-title">Theming</h2>
+    <p>
+      The Underwrite Pro UI Component Library supports both light and dark themes. To use the dark theme, add the <code>dark-theme</code> class to a parent element:
+    </p>
+    
+    <div class="documentation-code-block">
+      <pre><code>
+&lt;div class="dark-theme"&gt;
+  &lt;!-- Components will use dark theme styles --&gt;
+  &lt;uwp-card title="Dark Theme Card"&gt;
+    &lt;p&gt;This card will use dark theme styles.&lt;/p&gt;
+  &lt;/uwp-card&gt;
+&lt;/div&gt;
+      </code></pre>
+    </div>
+  </section>
+</div>

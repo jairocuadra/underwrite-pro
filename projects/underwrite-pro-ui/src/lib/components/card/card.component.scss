@@ -1,0 +1,106 @@
+@import '../../styles/variables';
+
+:host {
+  display: block;
+  margin-bottom: 16px;
+}
+
+.uwp-card {
+  background: var(--card-bg, #ffffff);
+  border-radius: 8px;
+  border: 1px solid var(--border-color, #e4e9f2);
+  transition: all 0.3s ease;
+  overflow: hidden;
+  
+  &.uwp-card-full-width {
+    width: 100%;
+  }
+  
+  &.uwp-card-no-border {
+    border: none;
+  }
+  
+  // Padding variations
+  &.uwp-card-padding-small {
+    padding: 12px;
+  }
+  
+  &.uwp-card-padding-medium {
+    padding: 20px;
+  }
+  
+  &.uwp-card-padding-large {
+    padding: 28px;
+  }
+  
+  // Elevation variations
+  &.uwp-card-elevation-none {
+    box-shadow: none;
+  }
+  
+  &.uwp-card-elevation-low {
+    box-shadow: var(--shadow-sm, 0 2px 4px rgba(0, 0, 0, 0.05));
+  }
+  
+  &.uwp-card-elevation-medium {
+    box-shadow: var(--shadow-md, 0 4px 8px rgba(0, 0, 0, 0.1));
+  }
+  
+  &.uwp-card-elevation-high {
+    box-shadow: var(--shadow-lg, 0 8px 16px rgba(0, 0, 0, 0.1));
+  }
+}
+
+.uwp-card-header {
+  margin-bottom: 16px;
+  
+  .uwp-card-title {
+    color: var(--text-primary, #2e3a59);
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 4px 0;
+    letter-spacing: 0.3px;
+  }
+  
+  .uwp-card-subtitle {
+    color: var(--text-secondary, #8f9bb3);
+    font-size: 14px;
+    margin: 0;
+  }
+}
+
+.uwp-card-content {
+  color: var(--text-primary, #2e3a59);
+}
+
+// Responsive adjustments
+@media (max-width: $breakpoint-sm) {
+  .uwp-card {
+    &.uwp-card-padding-small {
+      padding: 8px;
+    }
+    
+    &.uwp-card-padding-medium {
+      padding: 16px;
+    }
+    
+    &.uwp-card-padding-large {
+      padding: 20px;
+    }
+  }
+  
+  .uwp-card-header {
+    margin-bottom: 12px;
+  }
+}
+
+// Dark theme adjustments
+:host-context(.dark-theme) {
+  .uwp-card {
+    background: var(--card-bg, #222b45);
+    border-color: var(--border-color, #323b5c);
+  }
+}
+
+
+

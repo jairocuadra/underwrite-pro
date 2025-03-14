@@ -1,0 +1,74 @@
+// Colors
+$primary-color: #2196f3;
+$primary-light: lighten($primary-color, 15%);
+$primary-dark: darken($primary-color, 15%);
+
+$accent-color: #ff9800;
+$accent-light: lighten($accent-color, 15%);
+$accent-dark: darken($accent-color, 15%);
+
+$success-color: #4caf50;
+$warning-color: #ff9800;
+$error-color: #f44336;
+$info-color: #2196f3;
+
+// Light theme
+$light-bg-primary: #ffffff;
+$light-bg-secondary: #f7f9fc;
+$light-bg-tertiary: #edf1f7;
+
+$light-text-primary: #2e3a59;
+$light-text-secondary: #8f9bb3;
+$light-text-tertiary: #b0b7c3;
+
+$light-border-color: #e4e9f2;
+
+// Dark theme
+$dark-bg-primary: #222b45;
+$dark-bg-secondary: #1a2138;
+$dark-bg-tertiary: #151a30;
+
+$dark-text-primary: #ffffff;
+$dark-text-secondary: #b0b7c3;
+$dark-text-tertiary: #8f9bb3;
+
+$dark-border-color: #323c5d;
+
+// Spacing
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 32px;
+
+// Breakpoints
+$breakpoint-xs: 576px;
+$breakpoint-sm: 768px;
+$breakpoint-md: 992px;
+$breakpoint-lg: 1200px;
+
+// Shadows
+$shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+$shadow-md: 0 4px 8px rgba(0, 0, 0, 0.1);
+$shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.15);
+
+// Border radius
+$border-radius-sm: 4px;
+$border-radius-md: 8px;
+$border-radius-lg: 12px;
+$border-radius-xl: 16px;
+
+// Font weights
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+// Z-index
+$z-index-dropdown: 1000;
+$z-index-sticky: 1020;
+$z-index-fixed: 1030;
+$z-index-modal-backdrop: 1040;
+$z-index-modal: 1050;
+$z-index-popover: 1060;
+$z-index-tooltip: 1070; 

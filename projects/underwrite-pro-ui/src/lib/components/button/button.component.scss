@@ -1,0 +1,200 @@
+@import '../../styles/variables';
+
+:host {
+  display: inline-block;
+}
+
+.uwp-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 500;
+  text-align: center;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba($primary-color, 0.3);
+  }
+  
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  
+  // Variants
+  &.uwp-button-primary {
+    background-color: var(--primary-color, $primary-color);
+    color: white;
+    
+    &:hover:not(:disabled) {
+      background-color: var(--primary-dark, $primary-dark);
+    }
+    
+    &:active:not(:disabled) {
+      transform: translateY(1px);
+    }
+  }
+  
+  &.uwp-button-secondary {
+    background-color: var(--accent-color, $accent-color);
+    color: white;
+    
+    &:hover:not(:disabled) {
+      background-color: darken($accent-color, 10%);
+    }
+    
+    &:active:not(:disabled) {
+      transform: translateY(1px);
+    }
+  }
+  
+  &.uwp-button-outline {
+    background-color: transparent;
+    color: var(--primary-color, $primary-color);
+    border: 1px solid var(--primary-color, $primary-color);
+    
+    &:hover:not(:disabled) {
+      background-color: rgba($primary-color, 0.05);
+    }
+    
+    &:active:not(:disabled) {
+      transform: translateY(1px);
+    }
+  }
+  
+  &.uwp-button-text {
+    background-color: transparent;
+    color: var(--primary-color, $primary-color);
+    
+    &:hover:not(:disabled) {
+      background-color: rgba($primary-color, 0.05);
+    }
+    
+    &:active:not(:disabled) {
+      transform: translateY(1px);
+    }
+  }
+  
+  // Sizes
+  &.uwp-button-small {
+    padding: 6px 12px;
+    font-size: 12px;
+    height: 30px;
+    min-width: 60px;
+  }
+  
+  &.uwp-button-medium {
+    padding: 8px 16px;
+    font-size: 14px;
+    height: 36px;
+    min-width: 80px;
+  }
+  
+  &.uwp-button-large {
+    padding: 10px 20px;
+    font-size: 16px;
+    height: 44px;
+    min-width: 100px;
+  }
+  
+  // Full width
+  &.uwp-button-full-width {
+    width: 100%;
+  }
+  
+  // Loading state
+  &.uwp-button-loading {
+    .uwp-button-label, .uwp-button-icon {
+      visibility: hidden;
+    }
+    
+    .uwp-button-loading-indicator {
+      display: flex;
+    }
+  }
+}
+
+.uwp-button-label {
+  display: inline-block;
+  line-height: 1;
+}
+
+.uwp-button-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  
+  &.uwp-button-icon-left {
+    margin-right: 8px;
+  }
+  
+  &.uwp-button-icon-right {
+    margin-left: 8px;
+  }
+}
+
+.uwp-button-loading-indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.uwp-button-spinner {
+  width: 20px;
+  height: 20px;
+  animation: uwp-button-spin 1s linear infinite;
+}
+
+.uwp-button-spinner-path {
+  stroke: currentColor;
+  stroke-linecap: round;
+  animation: uwp-button-dash 1.5s ease-in-out infinite;
+}
+
+@keyframes uwp-button-spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes uwp-button-dash {
+  0% {
+    stroke-dasharray: 1, 150;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -35;
+  }
+  100% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -124;
+  }
+}
+
+// Dark theme adjustments
+:host-context(.dark-theme) {
+  .uwp-button {
+    &.uwp-button-outline {
+      border-color: var(--primary-color, $primary-light);
+    }
+    
+    &.uwp-button-text {
+      color: var(--primary-color, $primary-light);
+    }
+  }
+}
+
+

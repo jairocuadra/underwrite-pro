@@ -33,6 +33,8 @@ import { KanbanBoardComponent } from './workboard/kanban-board/kanban-board.comp
 import { RelatedPoliciesComponent } from './related-policies/related-policies.component';
 import { TestComponent } from './test/test.component';
 import { PolicyDatesComponent } from './policy-dates/policy-dates.component';
+import { ComponentLibraryDemoComponent } from './component-library-demo/component-library-demo.component';
+import { UnderwriteProUiModule } from 'underwrite-pro-ui';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,8 @@ import { PolicyDatesComponent } from './policy-dates/policy-dates.component';
     KanbanBoardComponent,
     RelatedPoliciesComponent,
     TestComponent,
-    PolicyDatesComponent
+    PolicyDatesComponent,
+    ComponentLibraryDemoComponent
   ],
   imports: [
     BrowserModule,
@@ -68,7 +71,8 @@ import { PolicyDatesComponent } from './policy-dates/policy-dates.component';
     MatNativeDateModule,
     MatCardModule,
     MatSnackBarModule,
-    MatGridListModule
+    MatGridListModule,
+    UnderwriteProUiModule
   ],
   providers: [
     { provide: OverlayContainer, useClass: FullscreenOverlayContainer }

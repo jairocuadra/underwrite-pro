@@ -1,0 +1,14 @@
+<div [ngClass]="toggleClasses" (click)="toggle($event)">
+  <label *ngIf="label && labelPosition === 'left'" class="uwp-toggle-label uwp-toggle-label-left">
+    {{ label }}
+  </label>
+  
+  <div class="uwp-toggle-switch">
+    <div class="uwp-toggle-track"></div>
+    <div class="uwp-toggle-thumb"></div>
+  </div>
+  
+  <label *ngIf="label && labelPosition === 'right'" class="uwp-toggle-label uwp-toggle-label-right">
+    {{ label }}
+  </label>
+</div>

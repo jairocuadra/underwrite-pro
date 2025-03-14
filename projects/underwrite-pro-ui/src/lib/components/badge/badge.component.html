@@ -1,0 +1,6 @@
+<span [ngClass]="badgeClasses">
+  <span class="uwp-badge-icon" *ngIf="icon">
+    <ng-content select="[badge-icon]"></ng-content>
+  </span>
+  <span class="uwp-badge-text">{{ text }}</span>
+</span>

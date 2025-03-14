@@ -1,0 +1,130 @@
+@import '../../styles/variables';
+
+:host {
+  display: inline-block;
+}
+
+.uwp-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  font-weight: 500;
+  white-space: nowrap;
+  
+  // Variants
+  &.uwp-badge-primary {
+    background-color: var(--primary-bg-subtle, rgba($primary-color, 0.1));
+    color: var(--primary-color, $primary-color);
+  }
+  
+  &.uwp-badge-success {
+    background-color: rgba($success-color, 0.1);
+    color: var(--success, $success-color);
+  }
+  
+  &.uwp-badge-warning {
+    background-color: rgba($warning-color, 0.1);
+    color: var(--warning, $warning-color);
+  }
+  
+  &.uwp-badge-error {
+    background-color: rgba($error-color, 0.1);
+    color: var(--error, $error-color);
+  }
+  
+  &.uwp-badge-info {
+    background-color: rgba($info-color, 0.1);
+    color: var(--info, $info-color);
+  }
+  
+  &.uwp-badge-default {
+    background-color: var(--bg-tertiary, $light-bg-tertiary);
+    color: var(--text-secondary, $light-text-secondary);
+  }
+  
+  // Sizes
+  &.uwp-badge-small {
+    padding: 2px 6px;
+    font-size: 11px;
+    height: 20px;
+  }
+  
+  &.uwp-badge-medium {
+    padding: 3px 8px;
+    font-size: 12px;
+    height: 24px;
+  }
+  
+  &.uwp-badge-large {
+    padding: 4px 10px;
+    font-size: 13px;
+    height: 28px;
+  }
+  
+  // Rounded
+  &.uwp-badge-rounded {
+    border-radius: 12px;
+  }
+  
+  // Outlined
+  &.uwp-badge-outlined {
+    background-color: transparent;
+    
+    &.uwp-badge-primary {
+      border: 1px solid var(--primary-color, $primary-color);
+    }
+    
+    &.uwp-badge-success {
+      border: 1px solid var(--success, $success-color);
+    }
+    
+    &.uwp-badge-warning {
+      border: 1px solid var(--warning, $warning-color);
+    }
+    
+    &.uwp-badge-error {
+      border: 1px solid var(--error, $error-color);
+    }
+    
+    &.uwp-badge-info {
+      border: 1px solid var(--info, $info-color);
+    }
+    
+    &.uwp-badge-default {
+      border: 1px solid var(--border-color, $light-border-color);
+    }
+  }
+  
+  // With icon
+  &.uwp-badge-with-icon {
+    .uwp-badge-icon {
+      margin-right: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
+
+.uwp-badge-text {
+  line-height: 1;
+}
+
+// Dark theme adjustments
+:host-context(.dark-theme) {
+  .uwp-badge {
+    &.uwp-badge-default {
+      background-color: var(--bg-tertiary, $dark-bg-tertiary);
+      color: var(--text-secondary, $dark-text-secondary);
+    }
+    
+    &.uwp-badge-outlined {
+      &.uwp-badge-default {
+        border-color: var(--border-color, $dark-border-color);
+      }
+    }
+  }
+}
+
+

@@ -1,0 +1,133 @@
+.documentation-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+  color: var(--text-primary);
+}
+
+.documentation-title {
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 32px;
+  color: var(--primary-color);
+}
+
+.documentation-section {
+  margin-bottom: 48px;
+}
+
+.documentation-section-title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-primary);
+}
+
+.documentation-component {
+  margin-bottom: 32px;
+  padding-bottom: 32px;
+  border-bottom: 1px dashed var(--border-color);
+  
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.documentation-component-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: var(--primary-color);
+}
+
+.documentation-code-block {
+  background-color: var(--bg-secondary, #f7f9fc);
+  border-radius: 8px;
+  padding: 16px;
+  margin: 16px 0;
+  overflow-x: auto;
+  
+  pre {
+    margin: 0;
+    
+    code {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 14px;
+      color: var(--text-primary);
+    }
+  }
+}
+
+.documentation-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  
+  th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+  }
+  
+  th {
+    font-weight: 600;
+    background-color: var(--bg-secondary, #f7f9fc);
+  }
+  
+  tr:last-child td {
+    border-bottom: none;
+  }
+}
+
+h4 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 24px 0 12px;
+  color: var(--text-primary);
+}
+
+p {
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+
+code {
+  background-color: var(--bg-secondary, #f7f9fc);
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 14px;
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .documentation-container {
+    padding: 16px;
+  }
+  
+  .documentation-title {
+    font-size: 28px;
+    margin-bottom: 24px;
+  }
+  
+  .documentation-section-title {
+    font-size: 22px;
+  }
+  
+  .documentation-component-title {
+    font-size: 18px;
+  }
+  
+  .documentation-table {
+    display: block;
+    overflow-x: auto;
+    
+    th, td {
+      padding: 8px;
+    }
+  }
+}
+
+
