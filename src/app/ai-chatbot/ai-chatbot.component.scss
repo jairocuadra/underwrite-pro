@@ -927,6 +927,48 @@
       color: #adb5bd;
     }
   }
+  
+  // Fix for mat-menu panel in dark mode
+  ::ng-deep .mat-menu-panel {
+    background-color: #333;
+    
+    .mat-menu-item {
+      color: #e0e0e0;
+      
+      &:hover:not([disabled]) {
+        background-color: rgba(255, 255, 255, 0.04);
+      }
+      
+      .mat-icon {
+        color: #aaa;
+      }
+    }
+    
+    .mat-divider {
+      border-top-color: rgba(255, 255, 255, 0.12);
+    }
+  }
+  
+  // Fix for mat-dialog overlay backdrop in dark mode
+  ::ng-deep .cdk-overlay-dark-backdrop {
+    background: rgba(0, 0, 0, 0.6);
+  }
+  
+  // Fix for mat-tooltip in dark mode
+  ::ng-deep .mat-tooltip {
+    background-color: #616161;
+    color: white;
+  }
+  
+  // Fix for mat-checkbox in dark mode
+  ::ng-deep .mat-checkbox-frame {
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+  
+  // Fix for mat-slide-toggle in dark mode
+  ::ng-deep .mat-slide-toggle-bar {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
 }
 
 // User profile display

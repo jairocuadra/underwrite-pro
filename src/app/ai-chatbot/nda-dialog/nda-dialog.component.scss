@@ -1,3 +1,40 @@
+/* Container styles */
+.nda-dialog-container {
+  &.dark-theme {
+    background-color: #2d2d2d;
+    color: #e0e0e0;
+    
+    .nda-title {
+      color: #e0e0e0;
+    }
+    
+    .nda-content {
+      color: #e0e0e0;
+    }
+    
+    .nda-text {
+      color: #b0b0b0;
+    }
+    
+    .header-icon mat-icon {
+      color: #64b5f6;
+    }
+    
+    .acknowledgment-checkbox {
+      color: #e0e0e0;
+    }
+    
+    .mat-dialog-actions {
+      background-color: #2d2d2d;
+    }
+    
+    .cancel-button {
+      color: #b0b0b0;
+    }
+  }
+}
+
+/* Light theme styles */
 .nda-title {
   font-size: 20px;
   font-weight: 500;
@@ -22,7 +59,7 @@
     font-size: 36px;
     height: 36px;
     width: 36px;
-    color: #1976d2; /* Primary blue instead of red */
+    color: #1976d2;
     opacity: 0.9;
   }
 }
@@ -34,8 +71,6 @@
   font-size: 14px;
   color: #555;
   letter-spacing: 0.1px;
-  
-  /* Format the NDA content to be more readable */
   text-align: justify;
   padding: 0 4px;
 }
@@ -60,30 +95,65 @@ mat-dialog-actions {
   font-weight: 500;
 }
 
-/* Dark theme support */
-:host-context(.dark-theme) {
-  .nda-title {
-    color: #e0e0e0;
+/* Direct styling for Angular Material components in dark mode */
+:host ::ng-deep .dark-theme {
+  .mat-dialog-container,
+  .mat-mdc-dialog-container {
+    background-color: #2d2d2d !important;
+    color: #e0e0e0 !important;
   }
   
-  .header-icon mat-icon {
-    color: #64b5f6; /* Lighter blue for dark mode */
+  .mat-dialog-title,
+  .mat-mdc-dialog-title,
+  h2.mat-dialog-title,
+  h2.mat-mdc-dialog-title {
+    color: #e0e0e0 !important;
   }
   
-  .nda-text {
-    color: #b0b0b0;
+  .mat-dialog-content,
+  .mat-mdc-dialog-content {
+    color: #e0e0e0 !important;
   }
   
-  .acknowledgment-checkbox {
-    color: #e0e0e0;
+  .mat-dialog-content p,
+  .mat-mdc-dialog-content p,
+  .mat-dialog-content div,
+  .mat-mdc-dialog-content div {
+    color: #e0e0e0 !important;
   }
   
-  ::ng-deep .mat-dialog-container {
-    background-color: #2d2d2d;
-    color: #e0e0e0;
+  .mat-dialog-actions,
+  .mat-mdc-dialog-actions {
+    background-color: #2d2d2d !important;
   }
   
-  ::ng-deep .mat-checkbox-label {
-    color: #e0e0e0;
+  .mat-checkbox-frame,
+  .mat-mdc-checkbox-frame {
+    border-color: rgba(255, 255, 255, 0.5) !important;
+  }
+  
+  .mat-checkbox-label,
+  .mat-mdc-checkbox-label {
+    color: #e0e0e0 !important;
+  }
+  
+  .mat-button,
+  .mat-mdc-button {
+    color: #b0b0b0 !important;
+    
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.04) !important;
+    }
+  }
+  
+  .mat-raised-button.mat-primary,
+  .mat-mdc-raised-button.mat-primary {
+    background-color: #1976d2 !important;
+    color: white !important;
+    
+    &[disabled] {
+      background-color: rgba(255, 255, 255, 0.12) !important;
+      color: rgba(255, 255, 255, 0.3) !important;
+    }
   }
 } 

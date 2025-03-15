@@ -312,6 +312,36 @@ mat-sidenav-content {
       background-color: var(--user-menu-hover) !important;
     }
   }
+  
+  /* Menu panel dark theme overrides */
+  .mat-menu-panel,
+  .mat-mdc-menu-panel {
+    background-color: #333 !important;
+    
+    .mat-menu-content,
+    .mat-mdc-menu-content {
+      background-color: #333 !important;
+    }
+    
+    .mat-menu-item,
+    .mat-mdc-menu-item {
+      color: #e0e0e0 !important;
+      
+      &:hover:not([disabled]) {
+        background-color: rgba(255, 255, 255, 0.04) !important;
+      }
+      
+      .mat-icon,
+      .mat-mdc-icon {
+        color: #aaa !important;
+      }
+    }
+    
+    .mat-divider,
+    .mat-mdc-divider {
+      border-top-color: rgba(255, 255, 255, 0.12) !important;
+    }
+  }
 }
 
 // Apply theme to workboard and related components
@@ -930,3 +960,243 @@ a {
 }
 
 // Add any additional global styles below
+
+/* Global dark theme overrides for Angular Material components */
+.dark-theme {
+  /* Menu panel dark theme overrides */
+  .mat-menu-panel,
+  .mat-mdc-menu-panel {
+    background-color: #333 !important;
+    
+    .mat-menu-content,
+    .mat-mdc-menu-content {
+      background-color: #333 !important;
+    }
+    
+    .mat-menu-item,
+    .mat-mdc-menu-item {
+      color: #e0e0e0 !important;
+      
+      &:hover:not([disabled]) {
+        background-color: rgba(255, 255, 255, 0.04) !important;
+      }
+      
+      .mat-icon,
+      .mat-mdc-icon {
+        color: #aaa !important;
+      }
+    }
+    
+    .mat-divider,
+    .mat-mdc-divider {
+      border-top-color: rgba(255, 255, 255, 0.12) !important;
+    }
+  }
+  
+  /* User menu header specific styles */
+  .user-menu-header {
+    background-color: #333 !important;
+    
+    .user-menu-name {
+      color: #e0e0e0 !important;
+    }
+    
+    .user-menu-email,
+    .user-menu-role {
+      color: #aaa !important;
+    }
+  }
+  
+  /* Dialog backdrop */
+  .cdk-overlay-dark-backdrop {
+    background: rgba(0, 0, 0, 0.6) !important;
+  }
+  
+  /* Tooltip */
+  .mat-tooltip {
+    background-color: #616161 !important;
+    color: white !important;
+  }
+}
+
+/* Add this to ensure dark theme is applied to dialogs */
+.dark-theme-dialog {
+  .mat-dialog-container,
+  .mat-mdc-dialog-container {
+    background-color: #2d2d2d !important;
+    color: #e0e0e0 !important;
+  }
+  
+  .mat-dialog-title,
+  .mat-mdc-dialog-title {
+    color: #e0e0e0 !important;
+  }
+  
+  .mat-dialog-content,
+  .mat-mdc-dialog-content {
+    color: #e0e0e0 !important;
+  }
+  
+  .mat-dialog-actions,
+  .mat-mdc-dialog-actions {
+    background-color: #2d2d2d !important;
+  }
+  
+  .mat-button,
+  .mat-mdc-button {
+    color: #b0b0b0 !important;
+    
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.04) !important;
+    }
+  }
+  
+  .mat-raised-button.mat-primary,
+  .mat-mdc-raised-button.mat-primary {
+    background-color: #1976d2 !important;
+    color: white !important;
+    
+    &[disabled] {
+      background-color: rgba(255, 255, 255, 0.12) !important;
+      color: rgba(255, 255, 255, 0.3) !important;
+    }
+  }
+  
+  .mat-checkbox-frame,
+  .mat-mdc-checkbox-frame {
+    border-color: rgba(255, 255, 255, 0.5) !important;
+  }
+  
+  .mat-checkbox-label,
+  .mat-mdc-checkbox-label {
+    color: #e0e0e0 !important;
+  }
+}
+
+/* Add this after the existing dark-theme-dialog styles */
+
+/* More specific dark theme dialog styles */
+body.dark-theme .mat-dialog-container,
+body.dark-theme .cdk-overlay-pane .mat-dialog-container,
+.dark-theme-dialog .mat-dialog-container,
+.dark-theme .mat-dialog-container {
+  background-color: #2d2d2d !important;
+  color: #e0e0e0 !important;
+}
+
+body.dark-theme .mat-dialog-title,
+body.dark-theme .cdk-overlay-pane .mat-dialog-title,
+.dark-theme-dialog .mat-dialog-title,
+.dark-theme .mat-dialog-title,
+body.dark-theme h2.mat-dialog-title,
+.dark-theme-dialog h2.mat-dialog-title,
+.dark-theme h2.mat-dialog-title {
+  color: #e0e0e0 !important;
+}
+
+body.dark-theme .mat-dialog-content,
+body.dark-theme .cdk-overlay-pane .mat-dialog-content,
+.dark-theme-dialog .mat-dialog-content,
+.dark-theme .mat-dialog-content {
+  color: #e0e0e0 !important;
+}
+
+body.dark-theme .mat-dialog-content p,
+body.dark-theme .mat-dialog-content div,
+.dark-theme-dialog .mat-dialog-content p,
+.dark-theme-dialog .mat-dialog-content div,
+.dark-theme .mat-dialog-content p,
+.dark-theme .mat-dialog-content div {
+  color: #e0e0e0 !important;
+}
+
+/* MDC versions */
+body.dark-theme .mat-mdc-dialog-container,
+body.dark-theme .cdk-overlay-pane .mat-mdc-dialog-container,
+.dark-theme-dialog .mat-mdc-dialog-container,
+.dark-theme .mat-mdc-dialog-container {
+  background-color: #2d2d2d !important;
+  color: #e0e0e0 !important;
+}
+
+body.dark-theme .mat-mdc-dialog-title,
+body.dark-theme .cdk-overlay-pane .mat-mdc-dialog-title,
+.dark-theme-dialog .mat-mdc-dialog-title,
+.dark-theme .mat-mdc-dialog-title,
+body.dark-theme h2.mat-mdc-dialog-title,
+.dark-theme-dialog h2.mat-mdc-dialog-title,
+.dark-theme h2.mat-mdc-dialog-title {
+  color: #e0e0e0 !important;
+}
+
+body.dark-theme .mat-mdc-dialog-content,
+body.dark-theme .cdk-overlay-pane .mat-mdc-dialog-content,
+.dark-theme-dialog .mat-mdc-dialog-content,
+.dark-theme .mat-mdc-dialog-content {
+  color: #e0e0e0 !important;
+}
+
+body.dark-theme .mat-mdc-dialog-content p,
+body.dark-theme .mat-mdc-dialog-content div,
+.dark-theme-dialog .mat-mdc-dialog-content p,
+.dark-theme-dialog .mat-mdc-dialog-content div,
+.dark-theme .mat-mdc-dialog-content p,
+.dark-theme .mat-mdc-dialog-content div {
+  color: #e0e0e0 !important;
+}
+
+/* Add this to ensure dark theme is applied to menus */
+body.dark-theme .mat-mdc-menu-panel,
+body.dark-theme .cdk-overlay-pane .mat-mdc-menu-panel,
+.dark-theme .mat-mdc-menu-panel,
+.dark-theme-menu .mat-mdc-menu-panel {
+  background-color: #333 !important;
+  color: #e0e0e0 !important;
+}
+
+body.dark-theme .mat-mdc-menu-content,
+body.dark-theme .cdk-overlay-pane .mat-mdc-menu-content,
+.dark-theme .mat-mdc-menu-content,
+.dark-theme-menu .mat-mdc-menu-content {
+  background-color: #333 !important;
+  color: #e0e0e0 !important;
+}
+
+body.dark-theme .mat-mdc-menu-item,
+body.dark-theme .cdk-overlay-pane .mat-mdc-menu-item,
+.dark-theme .mat-mdc-menu-item,
+.dark-theme-menu .mat-mdc-menu-item {
+  color: #e0e0e0 !important;
+}
+
+body.dark-theme .mat-mdc-menu-item .mat-icon,
+body.dark-theme .cdk-overlay-pane .mat-mdc-menu-item .mat-icon,
+.dark-theme .mat-mdc-menu-item .mat-icon,
+.dark-theme-menu .mat-mdc-menu-item .mat-icon {
+  color: #aaa !important;
+}
+
+/* Ensure the overlay container applies dark theme to menus */
+.dark-theme .cdk-overlay-container, 
+.cdk-overlay-container.dark-theme {
+  .mat-mdc-menu-panel {
+    background-color: #333 !important;
+    color: #e0e0e0 !important;
+    
+    .mat-mdc-menu-content {
+      background-color: #333 !important;
+    }
+    
+    .mat-mdc-menu-item {
+      color: #e0e0e0 !important;
+      
+      &:hover:not([disabled]) {
+        background-color: rgba(255, 255, 255, 0.04) !important;
+      }
+      
+      .mat-icon {
+        color: #aaa !important;
+      }
+    }
+  }
+}

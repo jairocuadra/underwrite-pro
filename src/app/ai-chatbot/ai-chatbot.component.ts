@@ -90,6 +90,13 @@ This agreement supplements any existing confidentiality agreements you have with
     // Initialize with current theme
     this.themeService.darkMode$.subscribe(isDark => {
       this.isDarkMode = isDark;
+      
+      // Ensure dark theme class is applied to body
+      if (isDark) {
+        this.document.body.classList.add('dark-theme');
+      } else {
+        this.document.body.classList.remove('dark-theme');
+      }
     });
     
     // Load mock chat history
@@ -172,6 +179,13 @@ This agreement supplements any existing confidentiality agreements you have with
   toggleDarkMode(): void {
     this.isDarkMode = !this.isDarkMode;
     this.themeService.toggleDarkMode();
+    
+    // Ensure dark theme class is applied to body
+    if (this.isDarkMode) {
+      this.document.body.classList.add('dark-theme');
+    } else {
+      this.document.body.classList.remove('dark-theme');
+    }
   }
   
   // Toggle history sidebar
@@ -387,11 +401,32 @@ This agreement supplements any existing confidentiality agreements you have with
   
   // Open NDA dialog
   openNdaDialog(): void {
-    const dialogRef = this.dialog.open(NdaDialogComponent, {
+    // Create dialog config with panelClass for dark mode
+    const dialogConfig = {
       width: '600px',
-      disableClose: !this.ndaAcknowledged, // Prevent closing by clicking outside if not acknowledged
-      data: { ndaContent: this.ndaContent }
-    });
+      disableClose: !this.ndaAcknowledged,
+      data: { ndaContent: this.ndaContent, isDarkMode: this.isDarkMode },
+      panelClass: this.isDarkMode ? ['dark-theme-dialog', 'dark-theme'] : '',
+      backdropClass: this.isDarkMode ? 'dark-theme-backdrop' : ''
+    };
+
+    // Add dark-theme class to body to ensure proper styling
+    if (this.isDarkMode) {
+      this.document.body.classList.add('dark-theme');
+    }
+
+    const dialogRef = this.dialog.open(NdaDialogComponent, dialogConfig);
+
+    // Apply dark theme class directly to dialog container
+    if (this.isDarkMode) {
+      setTimeout(() => {
+        const dialogContainer = this.document.querySelector('.mat-dialog-container') as HTMLElement;
+        if (dialogContainer) {
+          dialogContainer.classList.add('dark-theme');
+          dialogContainer.classList.add('dark-theme-dialog');
+        }
+      }, 0);
+    }
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === true) {

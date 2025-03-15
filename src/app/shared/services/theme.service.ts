@@ -56,6 +56,9 @@ export class ThemeService {
       const overlayElement = this.overlayContainer.getContainerElement();
       overlayElement.classList.add('dark-theme');
       
+      // Add specific class for menus
+      overlayElement.classList.add('dark-theme-menu');
+      
       // Update meta theme color for mobile browsers
       this.updateMetaThemeColor('#121212'); // Dark background color
     } else {
@@ -63,6 +66,7 @@ export class ThemeService {
       // Make sure to remove the class from the overlay container
       const overlayElement = this.overlayContainer.getContainerElement();
       overlayElement.classList.remove('dark-theme');
+      overlayElement.classList.remove('dark-theme-menu');
       
       // Update meta theme color for mobile browsers
       this.updateMetaThemeColor('#f5f7fa'); // Light background color
