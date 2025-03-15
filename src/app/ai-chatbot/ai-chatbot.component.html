@@ -1,19 +1,19 @@
 <div class="chatbot-fullpage">
   <div class="chatbot-compact-header">
     <div class="chatbot-left-actions">
-      <!-- Toggle history sidebar button -->
+      <!-- Toggle history sidebar button with menu icon -->
       <button mat-icon-button (click)="toggleHistorySidebar()" matTooltip="Chat History">
-        <mat-icon>history</mat-icon>
+        <mat-icon>menu</mat-icon>
       </button>
       
-      <!-- New chat button -->
+      <!-- New chat button - moved closer -->
       <button mat-icon-button (click)="clearChat()" matTooltip="New Chat">
         <mat-icon>add_circle_outline</mat-icon>
       </button>
       
       <div class="chatbot-title">
         <mat-icon class="robot-icon">auto_awesome</mat-icon>
-        <h1>Underwrite Pro AI Assistant</h1>
+        <h1>UW Pro AI</h1>
       </div>
     </div>
     
@@ -21,15 +21,13 @@
       <button mat-icon-button matTooltip="Toggle dark mode" (click)="toggleDarkMode()">
         <mat-icon>{{ isDarkMode ? 'light_mode' : 'dark_mode' }}</mat-icon>
       </button>
-      <button mat-icon-button matTooltip="Clear chat" (click)="clearChat()">
-        <mat-icon>delete_sweep</mat-icon>
-      </button>
+      <!-- Removed clear chat button -->
       <mat-slide-toggle 
         [color]="'primary'" 
         matTooltip="Toggle advanced features"
         (change)="toggleAdvancedView($event.checked)"
         *ngIf="(chatSession$ | async)?.isAdvancedView !== undefined">
-        Advanced
+        <span class="toggle-label">Advanced</span>
       </mat-slide-toggle>
     </div>
   </div>
@@ -116,6 +114,9 @@
             
             <!-- Add extra spacing after the last message -->
             <div *ngIf="session.messages.length > 0" class="extra-bottom-space"></div>
+            
+            <!-- Additional spacer for more separation from input -->
+            <div *ngIf="session.messages.length > 0" class="message-input-spacer"></div>
           </ng-container>
           
           <!-- Empty spacer to ensure consistent background color at bottom -->

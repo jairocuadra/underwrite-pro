@@ -259,13 +259,14 @@ export class AiChatbotComponent implements OnInit, AfterViewInit, AfterViewCheck
     this.shouldScroll = true;
     
     // Reset textarea height after sending
-    this.triggerResize();
-    
-    // Reset input container to original size
-    const inputContainer = this.document.querySelector('.input-area-container') as HTMLElement;
-    if (inputContainer) {
-      inputContainer.style.minHeight = '80px';
-    }
+    setTimeout(() => {
+      if (this.messageTextarea) {
+        this.messageTextarea.nativeElement.style.height = '24px';
+      }
+      if (this.autosize) {
+        this.autosize.reset();
+      }
+    }, 0);
     
     // Scroll to bottom immediately and then again after a delay
     this.scrollToBottom();
@@ -337,18 +338,8 @@ export class AiChatbotComponent implements OnInit, AfterViewInit, AfterViewCheck
         }
       }
       
-      // Adjust the input container height based on the textarea height
-      setTimeout(() => {
-        if (this.messageTextarea) {
-          const textareaHeight = this.messageTextarea.nativeElement.offsetHeight;
-          const inputContainer = this.document.querySelector('.input-area-container') as HTMLElement;
-          if (inputContainer) {
-            // Add padding to the calculated height
-            const containerHeight = textareaHeight + 32; // 16px padding top and bottom
-            inputContainer.style.minHeight = `${Math.max(80, containerHeight)}px`;
-          }
-        }
-      }, 0);
+      // We don't need to manually adjust the container height
+      // Let CSS handle the layout with proper padding and flex
     }
   }
 }
