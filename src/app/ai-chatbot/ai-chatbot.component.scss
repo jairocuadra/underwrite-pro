@@ -72,12 +72,12 @@
   position: relative;
   overflow: hidden;
   height: calc(100vh - 56px - 80px); /* Viewport height minus header and input area */
-  margin-top: 56px; /* Add margin to account for fixed header */
+  margin-top: 56px; /* Back to original - just account for header */
   background-color: #f9fafb;
-  transition: padding-left 0.3s ease; /* Add transition for smooth sidebar opening */
+  transition: padding-left 0.3s ease;
   
   &.sidebar-open {
-    padding-left: 280px; /* Add padding when sidebar is open to push content right */
+    padding-left: 280px;
   }
 }
 
@@ -87,8 +87,8 @@
   border-right: 1px solid rgba(0, 0, 0, 0.08);
   display: flex;
   flex-direction: column;
-  position: fixed; /* Change from absolute to fixed */
-  top: 56px; /* Position below header */
+  position: fixed;
+  top: 56px; /* Back to original - just below header */
   bottom: 0;
   left: -280px;
   transition: left 0.3s ease;
@@ -102,7 +102,7 @@
   
   .history-header {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     padding: 16px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.08);
@@ -294,11 +294,11 @@
 }
 
 .message-container {
-  margin-bottom: 24px; /* Increased from 16px */
+  margin-bottom: 24px;
   width: 100%;
   
   &.last-message {
-    margin-bottom: 40px; /* Increased spacing before input area */
+    margin-bottom: 60px;
   }
 }
 
@@ -587,15 +587,15 @@
 }
 
 .extra-bottom-space {
-  height: 40px; /* Adjusted height */
+  height: 60px;
   width: 100%;
-  margin-bottom: 40px; /* Adjusted margin */
+  margin-bottom: 60px;
 }
 
 .message-input-spacer {
-  height: 30px;
+  height: 40px;
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 // Add overlay for mobile
@@ -623,7 +623,7 @@
   .input-content,
   .welcome-message {
     max-width: 100%;
-    padding: 0 16px;
+    padding: 32px 16px; /* Increased padding top/bottom for mobile */
   }
   
   .message {
@@ -631,6 +631,8 @@
   }
   
   .welcome-message {
+    padding: 24px 16px; /* Increased padding for mobile */
+    margin-bottom: 32px; /* More space below welcome message */
     .question-chips {
       button {
         font-size: 12px;
@@ -891,5 +893,101 @@
     .toggle-label {
       color: #e0e0e0;
     }
+  }
+  
+  .user-profile {
+    .user-name {
+      color: #e0e0e0;
+    }
+    
+    .user-role {
+      color: #aaa;
+    }
+  }
+  
+  ::ng-deep .user-menu-header {
+    background-color: #333;
+    
+    .user-menu-name {
+      color: #e0e0e0;
+    }
+    
+    .user-menu-email,
+    .user-menu-role {
+      color: #aaa;
+    }
+  }
+  
+  .welcome-warning {
+    background-color: #2a2a2a;
+    border-left-color: #adb5bd;
+    color: #e0e0e0;
+    
+    mat-icon {
+      color: #adb5bd;
+    }
+  }
+}
+
+// User profile display
+.user-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-right: 8px;
+  
+  .user-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+  }
+  
+  .user-role {
+    font-size: 12px;
+    color: #666;
+  }
+}
+
+// User menu header
+::ng-deep .user-menu-header {
+  padding: 16px;
+  min-width: 200px;
+  
+  .user-menu-name {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+  
+  .user-menu-email {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 4px;
+  }
+  
+  .user-menu-role {
+    font-size: 12px;
+    color: #666;
+  }
+}
+
+// Add styles for the welcome warning
+.welcome-warning {
+  background-color: #f8f9fa;
+  border-left: 3px solid #6c757d;
+  color: #495057;
+  padding: 12px 16px;
+  margin: 16px 0 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  border-radius: 4px;
+  
+  mat-icon {
+    color: #6c757d;
+    font-size: 18px;
+    height: 18px;
+    width: 18px;
   }
 }

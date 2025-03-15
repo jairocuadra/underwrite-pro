@@ -6,6 +6,8 @@ import { ThemeService } from '../shared/services/theme.service';
 import { DOCUMENT } from '@angular/common';
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 import { take } from 'rxjs/operators';
+import { MatDialog } from '@angular/material/dialog';
+import { NdaDialogComponent } from './nda-dialog/nda-dialog.component';
 
 interface ChatHistoryItem {
   date: Date;
@@ -31,6 +33,34 @@ export class AiChatbotComponent implements OnInit, AfterViewInit, AfterViewCheck
   isHistorySidebarOpen = false;
   chatHistory: ChatHistoryItem[] = [];
   
+  // User profile information
+  userProfile = {
+    displayName: 'John Smith',
+    email: 'john.smith@example.com',
+    role: 'Underwriter',
+    department: 'Life Insurance'
+  };
+  
+  // Warning message
+  warningMessage = 'For internal use only. All interactions are logged and monitored.';
+  
+  // NDA acknowledgment
+  showNdaDialog = true;
+  ndaAcknowledged = false;
+  ndaContent = `By accessing this AI assistant, you agree to the following terms:
+
+1. All information accessed through this system is confidential.
+
+2. You will not share information obtained through this system with unauthorized parties.
+
+3. You will use this system only for legitimate business purposes related to underwriting activities.
+
+4. All interactions with this system are logged and may be monitored for compliance.
+
+5. Violation of these terms may result in disciplinary action.
+
+This agreement supplements any existing confidentiality agreements you have with the company.`;
+  
   // Suggested questions for quick access
   suggestedQuestions: string[] = [
     'What are the underwriting guidelines?',
@@ -52,6 +82,7 @@ export class AiChatbotComponent implements OnInit, AfterViewInit, AfterViewCheck
   constructor(
     private chatbotService: AiChatbotService, 
     private themeService: ThemeService,
+    private dialog: MatDialog,
     @Inject(DOCUMENT) private document: Document
   ) {
     this.chatSession$ = this.chatbotService.getChatSession();
@@ -72,6 +103,11 @@ export class AiChatbotComponent implements OnInit, AfterViewInit, AfterViewCheck
     this.messageInput.valueChanges.subscribe(value => {
       setTimeout(() => this.triggerResize(), 0);
     });
+    
+    // Show NDA dialog if not acknowledged
+    if (this.showNdaDialog && !this.ndaAcknowledged) {
+      this.openNdaDialog();
+    }
   }
   
   ngAfterViewChecked(): void {
@@ -341,5 +377,31 @@ export class AiChatbotComponent implements OnInit, AfterViewInit, AfterViewCheck
       // We don't need to manually adjust the container height
       // Let CSS handle the layout with proper padding and flex
     }
+  }
+  
+  // Acknowledge NDA
+  acknowledgeNda(): void {
+    this.ndaAcknowledged = true;
+    this.showNdaDialog = false;
+  }
+  
+  // Open NDA dialog
+  openNdaDialog(): void {
+    const dialogRef = this.dialog.open(NdaDialogComponent, {
+      width: '600px',
+      disableClose: !this.ndaAcknowledged, // Prevent closing by clicking outside if not acknowledged
+      data: { ndaContent: this.ndaContent }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === true) {
+        this.ndaAcknowledged = true;
+        this.showNdaDialog = false;
+      } else if (!this.ndaAcknowledged) {
+        // If user cancels and hasn't acknowledged before, show a message or take appropriate action
+        // For demo purposes, we'll just reopen the dialog
+        setTimeout(() => this.openNdaDialog(), 500);
+      }
+    });
   }
 }

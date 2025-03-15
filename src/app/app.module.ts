@@ -24,6 +24,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -38,6 +39,7 @@ import { PolicyDatesComponent } from './policy-dates/policy-dates.component';
 import { ComponentLibraryDemoComponent } from './component-library-demo/component-library-demo.component';
 import { UnderwriteProUiModule } from 'underwrite-pro-ui';
 import { AiChatbotComponent } from './ai-chatbot/ai-chatbot.component';
+import { NdaDialogComponent } from './ai-chatbot/nda-dialog/nda-dialog.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +53,8 @@ import { AiChatbotComponent } from './ai-chatbot/ai-chatbot.component';
     TestComponent,
     PolicyDatesComponent,
     ComponentLibraryDemoComponent,
-    AiChatbotComponent
+    AiChatbotComponent,
+    NdaDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -78,6 +81,7 @@ import { AiChatbotComponent } from './ai-chatbot/ai-chatbot.component';
     MatGridListModule,
     MatSlideToggleModule,
     MatChipsModule,
+    MatCheckboxModule,
     UnderwriteProUiModule
   ],
   providers: [

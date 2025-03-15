@@ -1,0 +1,16 @@
+<h2 mat-dialog-title class="nda-title">Confidentiality Agreement</h2>
+<mat-dialog-content class="nda-content">
+  <div class="header-icon">
+    <mat-icon>verified_user</mat-icon>
+  </div>
+  <div class="nda-text">{{ data.ndaContent }}</div>
+  <mat-checkbox [(ngModel)]="isAcknowledged" color="primary" class="acknowledgment-checkbox">
+    I have read and agree to the terms of this agreement
+  </mat-checkbox>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close class="cancel-button">Cancel</button>
+  <button mat-raised-button color="primary" [disabled]="!isAcknowledged" (click)="acknowledge()" class="acknowledge-button">
+    Acknowledge & Proceed
+  </button>
+</mat-dialog-actions> 
