@@ -8,12 +8,13 @@
       
       <!-- New chat button - moved closer -->
       <button mat-icon-button (click)="clearChat()" matTooltip="New Chat">
-        <mat-icon>add_circle_outline</mat-icon>
+        <mat-icon>add</mat-icon>
       </button>
       
       <div class="chatbot-title">
         <mat-icon class="robot-icon">auto_awesome</mat-icon>
-        <h1>UW Pro AI</h1>
+        <h1>ChatGPT</h1>
+        <span class="model-info">GPT-4</span>
       </div>
     </div>
     
@@ -52,13 +53,19 @@
       </mat-menu>
       
       <!-- Advanced toggle -->
-      <mat-slide-toggle 
-        [color]="'primary'" 
-        matTooltip="Toggle advanced features"
-        (change)="toggleAdvancedView($event.checked)"
-        *ngIf="(chatSession$ | async)?.isAdvancedView !== undefined">
-        <span class="toggle-label">Advanced</span>
-      </mat-slide-toggle>
+      <div class="advanced-mode-container">
+        <mat-slide-toggle 
+          [color]="'primary'" 
+          matTooltip="Toggle advanced features"
+          (change)="toggleAdvancedView($event.checked)"
+          *ngIf="(chatSession$ | async)?.isAdvancedView !== undefined">
+          <span class="toggle-label">Advanced</span>
+        </mat-slide-toggle>
+        <span class="advanced-badge" *ngIf="(chatSession$ | async)?.isAdvancedView">
+          <mat-icon>stars</mat-icon>
+          <span>Advanced Mode</span>
+        </span>
+      </div>
     </div>
   </div>
 
@@ -94,9 +101,9 @@
           <div class="welcome-message" *ngIf="showWelcomeMessage">
             <div class="welcome-header">
               <mat-icon class="welcome-icon">auto_awesome</mat-icon>
-              <h2>Hello, {{ userProfile.displayName.split(' ')[0] }}! Welcome to Underwrite Pro AI Assistant</h2>
+              <h2>Hello, {{ userProfile.displayName.split(' ')[0] }}! Welcome to ChatGPT Assistant</h2>
             </div>
-            <p>I'm here to help you with underwriting questions, policy information, and workflow guidance.</p>
+            <p>I'm here to help you with any questions or tasks you have.</p>
             
             <!-- Warning message moved to welcome area with more subtle styling -->
             <div class="welcome-warning">
