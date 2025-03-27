@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { WorkboardStateService } from '../../shared/services/workboard-state.service';
 
 type ColumnId = 'todo' | 'in-progress' | 'completed';
 type CardType = 'task' | 'rule' | 'evidence';
@@ -103,9 +104,10 @@ export class KanbanBoardComponent implements OnInit {
     ]
   };
 
-  constructor() { }
+  constructor(private workboardStateService: WorkboardStateService) { }
 
   ngOnInit(): void {
+    this.workboardStateService.setWorkboardComponent(this);
   }
 
   getCardsByColumn(column: ColumnId): KanbanCard[] {

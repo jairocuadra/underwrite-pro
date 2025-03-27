@@ -40,6 +40,8 @@ import { ComponentLibraryDemoComponent } from './component-library-demo/componen
 import { UnderwriteProUiModule } from 'underwrite-pro-ui';
 import { AiChatbotComponent } from './ai-chatbot/ai-chatbot.component';
 import { NdaDialogComponent } from './ai-chatbot/nda-dialog/nda-dialog.component';
+import { ExitModalComponent } from './shared/exit-modal/exit-modal.component';
+import { ActionButtonsComponent } from './shared/action-buttons/action-buttons.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +56,9 @@ import { NdaDialogComponent } from './ai-chatbot/nda-dialog/nda-dialog.component
     PolicyDatesComponent,
     ComponentLibraryDemoComponent,
     AiChatbotComponent,
-    NdaDialogComponent
+    NdaDialogComponent,
+    ExitModalComponent,
+    ActionButtonsComponent
   ],
   imports: [
     BrowserModule,

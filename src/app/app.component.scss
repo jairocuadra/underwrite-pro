@@ -6,12 +6,14 @@
   color: var(--text-primary);
   transition: background-color var(--transition-speed), color var(--transition-speed);
   width: 100%;
-  overflow-x: hidden;
+  overflow: hidden;
+  position: relative;
 }
 
 .header-wrapper {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
   width: 100%;
   z-index: 100;
   background-color: var(--header-bg);
@@ -34,19 +36,8 @@ app-mode-banner {
 mat-sidenav-container {
   flex: 1;
   background-color: var(--bg-color) !important;
-}
-
-.app-container {
-  padding: 0 24px 12px 24px;
-  max-width: 1400px;
-  margin: 0 auto;
-  /* min-height removed */ // Subtract header height and padding
-  
-  &.full-height {
-    padding: 0;
-    max-width: none;
-    height: 100%;
-  }
+  height: 100%;
+  overflow: hidden;
 }
 
 mat-sidenav {
@@ -55,6 +46,32 @@ mat-sidenav {
   color: var(--text-primary);
   border-right: 1px solid var(--border-color);
   transition: background-color var(--transition-speed), color var(--transition-speed), border-color var(--transition-speed);
+  height: 100%;
+  padding-top: 56px;
+  box-sizing: border-box;
+  z-index: 5;
+}
+
+mat-sidenav-content {
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-top: 56px;
+  box-sizing: border-box;
+}
+
+.app-container {
+  padding: 0 24px 12px 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+  
+  &.full-height {
+    padding: 0;
+    max-width: none;
+    height: 100%;
+  }
 }
 
 .sidenav-nav {
@@ -121,11 +138,6 @@ mat-sidenav {
       }
     }
   }
-}
-
-mat-sidenav-content {
-  background-color: var(--bg-color);
-  transition: background-color var(--transition-speed);
 }
 
 // Screen reader only class

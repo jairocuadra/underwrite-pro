@@ -1,0 +1,16 @@
+<div class="exit-modal" [class.highlighted]="isHighlighted()">
+  <h2 mat-dialog-title>{{ getTitle() }}</h2>
+  
+  <mat-dialog-content>
+    <div class="modal-body">
+      <pre>{{ getBody() }}</pre>
+    </div>
+  </mat-dialog-content>
+  
+  <mat-dialog-actions align="end">
+    <button mat-button (click)="onCancel()">Cancel</button>
+    <button mat-raised-button color="primary" (click)="onConfirm()">
+      Yes, I'm Done with the Review
+    </button>
+  </mat-dialog-actions>
+</div> 

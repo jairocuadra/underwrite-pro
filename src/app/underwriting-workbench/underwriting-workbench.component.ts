@@ -35,7 +35,7 @@ interface NavItem {
         opacity: '0',
         overflow: 'hidden',
         padding: '0 1.5rem',
-        transform: 'translateY(-20px)',
+        transform: 'translateY(-10px)',
         borderTop: '0px solid transparent'
       })),
       state('expanded', style({
@@ -46,7 +46,9 @@ interface NavItem {
         transform: 'translateY(0)',
         borderTop: '1px solid var(--border-color)'
       })),
-      transition('collapsed <=> expanded', animate('400ms cubic-bezier(0.4, 0, 0.2, 1)'))
+      transition('collapsed <=> expanded', [
+        animate('300ms cubic-bezier(0.4, 0.0, 0.2, 1)')
+      ])
     ])
   ]
 })
@@ -210,14 +212,7 @@ export class UnderwritingWorkbenchComponent implements OnInit, AfterViewInit {
   toggleRedesignedDetails(): void {
     this.isRedesignedDetailsCollapsed = !this.isRedesignedDetailsCollapsed;
     
-    if (!this.isRedesignedDetailsCollapsed) {
-      setTimeout(() => {
-        const detailsCard = document.querySelector('.details-card');
-        if (detailsCard) {
-          detailsCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      }, 100);
-    }
+    // Removed the auto-scroll behavior to maintain user's scroll position
   }
 
   navigateTo(route: string) {

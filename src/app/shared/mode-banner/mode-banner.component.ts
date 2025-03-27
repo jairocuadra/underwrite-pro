@@ -2,6 +2,8 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { EditModeModalComponent } from '../edit-mode-modal/edit-mode-modal.component';
 import { ThemeService } from '../services/theme.service';
+import { ExitModalService } from '../services/exit-modal.service';
+import { WorkboardStateService } from '../services/workboard-state.service';
 import { take } from 'rxjs/operators';
 
 @Component({
@@ -15,7 +17,9 @@ export class ModeBannerComponent {
 
   constructor(
     private dialog: MatDialog,
-    private themeService: ThemeService
+    private themeService: ThemeService,
+    private exitModalService: ExitModalService,
+    private workboardStateService: WorkboardStateService
   ) {}
 
   toggleEditMode() {
@@ -40,5 +44,29 @@ export class ModeBannerComponent {
       // Exit edit mode
       this.editModeChange.emit(false);
     }
+  }
+  
+  onEditApplication(): void {
+    console.log('Edit application clicked');
+    // Implement edit application logic
+  }
+
+  onExit(): void {
+    let scenario: 'all_completed' | 'incomplete' | 'empty';
+    
+    if (this.workboardStateService.isEmpty()) {
+      scenario = 'empty';
+    } else if (this.workboardStateService.isAllTasksCompleted()) {
+      scenario = 'all_completed';
+    } else {
+      scenario = 'incomplete';
+    }
+
+    this.exitModalService.showExitModal(scenario).subscribe(result => {
+      if (result) {
+        // Handle exit logic here
+        console.log('User confirmed exit');
+      }
+    });
   }
 } 

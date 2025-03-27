@@ -1,0 +1,76 @@
+.action-buttons-container {
+  padding: 16px 24px;
+  background-color: #fff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  position: fixed;
+  top: 104px; /* Adjust this value based on your header + mode banner height */
+  left: 0;
+  right: 0;
+  z-index: 90; /* Below the main header but above content */
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden; /* Prevent horizontal overflow */
+}
+
+.action-buttons-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: flex-end;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+
+  button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 120px;
+    border-color: rgba(0, 0, 0, 0.12);
+    color: rgba(0, 0, 0, 0.87);
+    font-weight: 500;
+    margin: 4px 0; /* Add vertical spacing for wrapped buttons */
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.04);
+    }
+
+    mat-icon {
+      margin-right: 4px;
+      font-size: 18px;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      min-width: 100px;
+      padding: 0 8px;
+    }
+    
+    @media (max-width: 480px) {
+      min-width: 90px;
+      font-size: 12px;
+      
+      mat-icon {
+        font-size: 16px;
+      }
+    }
+  }
+
+  // Style for the More Actions button
+  button[matMenuTriggerFor] {
+    min-width: auto;
+  }
+
+  // Style for the Exit button
+  button[color="warn"] {
+    border-color: rgba(244, 67, 54, 0.5);
+    color: #f44336;
+
+    &:hover {
+      background-color: rgba(244, 67, 54, 0.04);
+    }
+  }
+} 

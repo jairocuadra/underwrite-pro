@@ -10,6 +10,10 @@
 .workbench-container {
   padding: 16px;
   background-color: var(--bg-color);
+  padding-top: 20px; /* Additional padding at the top to create space between header and content */
+  box-sizing: border-box;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  width: 100%;
 }
 
 .workbench-header {
@@ -382,6 +386,9 @@
 .main-content {
   display: flex;
   gap: 8px;
+  flex-wrap: wrap; /* Allow wrapping on small screens */
+  width: 100%;
+  box-sizing: border-box;
 
   .left-nav {
     width: 280px;
@@ -390,6 +397,17 @@
     box-shadow: var(--shadow-sm);
     padding: 16px;
     transition: width 0.3s ease;
+    box-sizing: border-box;
+    
+    /* Responsive adjustments */
+    @media (max-width: 1024px) {
+      width: 240px;
+    }
+    
+    @media (max-width: 768px) {
+      width: 100%;
+      margin-bottom: 8px;
+    }
     
     // Mobile navigation components - hidden by default on desktop
     .mobile-tab-nav {
@@ -640,7 +658,13 @@
     border-radius: 8px;
     box-shadow: var(--shadow-sm);
     padding: 16px;
-    overflow: auto;
+    box-sizing: border-box;
+    min-width: 0; /* Allow content to shrink below min-content width */
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      width: 100%;
+    }
   }
 }
 
@@ -869,6 +893,7 @@
 
 /* Redesigned Application Details Component */
 .redesigned-application-details {
+  margin-top: 50px; /* Increased margin to ensure more space below the header and mode banner */
   margin-bottom: 16px; /* Match other components spacing */
   padding: 0; /* Remove padding to match other components width */
   
@@ -876,7 +901,7 @@
     background-color: var(--card-bg);
     border-radius: 8px;
     box-shadow: var(--shadow-sm);
-    overflow: hidden;
+    overflow: visible; /* Changed from hidden to allow content to expand without changing scroll position */
     transition: all 0.3s ease;
     border: 1px solid var(--border-color);
     
@@ -893,6 +918,8 @@
       background-color: white;
       cursor: pointer;
       transition: background-color 0.2s ease;
+      position: relative; /* Ensure proper stacking context */
+      z-index: 2; /* Higher than content */
       
       &:hover {
         background-color: var(--bg-tertiary);
@@ -984,14 +1011,16 @@
     
     .card-content {
       height: auto;
-      overflow: hidden;
-      transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, padding 0.3s ease;
+      overflow: visible; /* Changed from hidden to allow content to flow naturally */
+      transition: max-height 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
       max-height: 0;
       opacity: 0;
       padding: 0 1.5rem;
+      position: relative; /* Ensure proper positioning */
+      z-index: 1;
       
       &:not([hidden]) {
-        max-height: 2000px; // Large enough to accommodate all content
+        max-height: 2000px; /* Large enough to accommodate all content */
         opacity: 1;
         padding: 1.5rem;
         border-top: 1px solid var(--border-color);

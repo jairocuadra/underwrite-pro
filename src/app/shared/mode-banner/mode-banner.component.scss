@@ -4,6 +4,8 @@
   transition: all 0.3s ease;
   width: 100%;
   display: block;
+  height: 40px; /* Fixed height to ensure consistency */
+  box-sizing: border-box;
   
   &.edit-mode {
     background-color: var(--edit-mode-bg, #e6f2ff);
@@ -13,36 +15,204 @@
   .banner-content {
     display: flex;
     align-items: center;
-    gap: 8px;
+    justify-content: space-between;
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0.35rem 1.5rem;
-
-    mat-icon {
-      font-size: 16px;
-      width: 16px;
-      height: 16px;
-      color: var(--text-secondary);
-    }
-
-    .banner-text {
-      color: var(--text-secondary);
-      font-size: 12px;
-      font-weight: 500;
-      flex-grow: 1;
-    }
-
-    button {
-      font-size: 12px;
-      line-height: 24px;
-      padding: 0 10px;
-      font-weight: 500;
-      color: var(--text-primary);
-      min-height: 24px;
-      letter-spacing: normal;
+    padding: 0 1.5rem;
+    height: 100%;
+    
+    .banner-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+      white-space: nowrap;
+      overflow: hidden;
       
-      &:hover {
-        background-color: var(--bg-tertiary);
+      mat-icon {
+        font-size: 16px;
+        width: 16px;
+        height: 16px;
+        color: var(--text-secondary);
+        flex-shrink: 0;
+      }
+  
+      .banner-text {
+        color: var(--text-secondary);
+        font-size: 13px;
+        font-weight: 500;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        flex-shrink: 1;
+      }
+      
+      .mode-toggle-btn {
+        font-size: 12px;
+        line-height: 24px;
+        height: 28px;
+        padding: 0 10px;
+        font-weight: 500;
+        white-space: nowrap;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        background-color: white;
+        
+        mat-icon {
+          margin-right: 4px;
+          color: inherit;
+        }
+      }
+    }
+    
+    .action-buttons {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-left: 16px;
+      flex-wrap: nowrap; /* Prevent wrapping */
+      justify-content: flex-end;
+      
+      .action-btn {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 11px;
+        line-height: 24px;
+        padding: 0 8px;
+        height: 28px;
+        border-color: rgba(0, 0, 0, 0.12);
+        color: rgba(0, 0, 0, 0.87);
+        font-weight: 500;
+        min-width: 0;
+        flex-shrink: 0;
+        background-color: white; /* Added white background */
+        
+        mat-icon {
+          font-size: 16px;
+          width: 16px;
+          height: 16px;
+          flex-shrink: 0;
+        }
+        
+        &:hover {
+          background-color: rgba(0, 0, 0, 0.04);
+        }
+        
+        &.exit-btn {
+          border-color: rgba(244, 67, 54, 0.5);
+          color: #f44336;
+          
+          &:hover {
+            background-color: rgba(244, 67, 54, 0.04);
+          }
+        }
+      }
+    }
+  }
+  
+  /* Responsive design for smaller screens */
+  @media (max-width: 992px) {
+    .banner-content {
+      .banner-text {
+        max-width: 200px; /* Limit width on medium screens */
+      }
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .banner-content {
+      padding: 0 0.75rem;
+      
+      .banner-left {
+        .banner-text {
+          max-width: 150px; /* Limit width on small screens */
+        }
+      }
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .banner-content {
+      .banner-left {
+        .banner-text {
+          max-width: 100px; /* Further limit width on very small screens */
+        }
+        
+        .mode-toggle-btn span {
+          display: none; /* Hide text on smallest screens */
+        }
+        
+        .mode-toggle-btn {
+          padding: 0;
+          width: 28px;
+          min-width: 28px;
+          
+          mat-icon {
+            margin-right: 0;
+          }
+        }
+      }
+      
+      .action-buttons {
+        gap: 4px;
+        margin-left: 8px;
+        
+        .action-btn .btn-text {
+          display: none; /* Hide text on smallest screens, show only icons */
+        }
+        
+        .action-btn {
+          padding: 0;
+          width: 28px;
+          min-width: 28px;
+        }
+      }
+    }
+  }
+}
+
+/* Dark mode optimizations */
+:host-context(.dark-theme) {
+  .mode-banner {
+    &.edit-mode {
+      background-color: rgba(33, 150, 243, 0.15);
+      border-bottom-color: rgba(33, 150, 243, 0.5);
+    }
+    
+    .banner-content {
+      .banner-left {
+        .mode-toggle-btn {
+          background-color: rgba(255, 255, 255, 0.1);
+          color: rgba(255, 255, 255, 0.9);
+          border-color: rgba(255, 255, 255, 0.2);
+          
+          &:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+          }
+        }
+      }
+      
+      .action-buttons {
+        .action-btn {
+          background-color: rgba(255, 255, 255, 0.1);
+          color: rgba(255, 255, 255, 0.9);
+          border-color: rgba(255, 255, 255, 0.2);
+          
+          &:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+          }
+          
+          &.exit-btn {
+            border-color: rgba(244, 67, 54, 0.5);
+            color: rgba(244, 67, 54, 0.9);
+            
+            &:hover {
+              background-color: rgba(244, 67, 54, 0.15);
+            }
+          }
+        }
       }
     }
   }

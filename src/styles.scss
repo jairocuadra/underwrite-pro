@@ -14,12 +14,14 @@ html, body {
   background-color: var(--bg-color);
   color: var(--text-primary);
   transition: background-color var(--transition-speed), color var(--transition-speed);
-  overflow-x: hidden;
+  overflow: hidden; /* Prevent both horizontal and vertical scrolling */
+  width: 100%;
 }
 
 body {
   display: flex;
   flex-direction: column;
+  overflow: hidden; /* Prevent all scrolling on body */
 }
 
 * {

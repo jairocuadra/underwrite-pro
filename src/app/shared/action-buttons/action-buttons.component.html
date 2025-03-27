@@ -1,0 +1,39 @@
+<div class="action-buttons-container">
+  <div class="action-buttons-group">
+    <!-- Edit Application Button -->
+    <button mat-stroked-button (click)="onEditApplication()">
+      <mat-icon>edit</mat-icon>
+      <span>Edit Application</span>
+    </button>
+
+    <!-- More Actions Menu -->
+    <button mat-stroked-button [matMenuTriggerFor]="moreActionsMenu">
+      <mat-icon>more_horiz</mat-icon>
+      <span>More Actions</span>
+    </button>
+    <mat-menu #moreActionsMenu="matMenu">
+      <button mat-menu-item>
+        <mat-icon>refresh</mat-icon>
+        <span>Reopen Case</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>check_circle</mat-icon>
+        <span>Make Final Decision</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>history</mat-icon>
+        <span>View History</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>print</mat-icon>
+        <span>Print Report</span>
+      </button>
+    </mat-menu>
+
+    <!-- Exit Button -->
+    <button mat-stroked-button color="warn" (click)="onExit()">
+      <mat-icon>exit_to_app</mat-icon>
+      <span>Exit</span>
+    </button>
+  </div>
+</div> 
