@@ -8,6 +8,7 @@ import { PolicyDatesComponent } from './policy-dates/policy-dates.component';
 import { ComponentLibraryDemoComponent } from './component-library-demo/component-library-demo.component';
 import { DocumentationComponent } from './documentation/documentation.component';
 import { AiChatbotComponent } from './ai-chatbot/ai-chatbot.component';
+import { MessageBoxDemoComponent } from './demo/message-box-demo/message-box-demo.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/underwriting/workboard', pathMatch: 'full' },
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'component-library', component: ComponentLibraryDemoComponent },
   { path: 'documentation', component: DocumentationComponent },
   { path: 'ai-chatbot', component: AiChatbotComponent },
+  { path: 'message-box-demo', component: MessageBoxDemoComponent },
   { 
     path: 'underwriting', 
     component: UnderwritingWorkbenchComponent,

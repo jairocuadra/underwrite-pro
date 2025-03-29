@@ -1,0 +1,13 @@
+<div class="message-box" [ngClass]="'message-box-' + type">
+  <div class="message-content">
+    <div class="message-icon" *ngIf="showIcon">
+      <mat-icon>{{icon}}</mat-icon>
+    </div>
+    <div class="message-text">
+      <div class="message-title" *ngIf="title">{{title}}</div>
+      <div class="message-body">
+        <ng-content></ng-content>
+      </div>
+    </div>
+  </div>
+</div>

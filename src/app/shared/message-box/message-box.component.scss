@@ -1,0 +1,123 @@
+.message-box {
+  border-radius: 8px;
+  padding: 16px;
+  margin: 16px 0;
+  display: flex;
+  width: 100%;
+  
+  .message-content {
+    display: flex;
+    width: 100%;
+    gap: 12px;
+    align-items: flex-start;
+    
+    .message-icon {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      
+      mat-icon {
+        font-size: 20px;
+        width: 20px;
+        height: 20px;
+      }
+    }
+    
+    .message-text {
+      flex: 1;
+      
+      .message-title {
+        font-weight: 600;
+        font-size: 16px;
+        margin-bottom: 4px;
+      }
+      
+      .message-body {
+        font-size: 14px;
+        line-height: 1.5;
+      }
+    }
+  }
+  
+  // Info style - blue
+  &.message-box-info {
+    background-color: rgba(33, 150, 243, 0.08);
+    border: 1px solid rgba(33, 150, 243, 0.3);
+    
+    .message-icon {
+      color: #2196F3;
+    }
+    
+    .message-title {
+      color: #1976D2;
+    }
+  }
+  
+  // Warning style - yellow/amber
+  &.message-box-warning {
+    background-color: rgba(255, 193, 7, 0.08);
+    border: 1px solid rgba(255, 193, 7, 0.3);
+    
+    .message-icon {
+      color: #FFC107;
+    }
+    
+    .message-title {
+      color: #F57F17;
+    }
+  }
+  
+  // Error style - red
+  &.message-box-error {
+    background-color: rgba(244, 67, 54, 0.08);
+    border: 1px solid rgba(244, 67, 54, 0.3);
+    
+    .message-icon {
+      color: #F44336;
+    }
+    
+    .message-title {
+      color: #D32F2F;
+    }
+  }
+  
+  // Success style - green
+  &.message-box-success {
+    background-color: rgba(76, 175, 80, 0.08);
+    border: 1px solid rgba(76, 175, 80, 0.3);
+    
+    .message-icon {
+      color: #4CAF50;
+    }
+    
+    .message-title {
+      color: #388E3C;
+    }
+  }
+}
+
+// Dark theme support
+:host-context(.dark-theme) {
+  .message-box {
+    &.message-box-info {
+      background-color: rgba(33, 150, 243, 0.15);
+      border-color: rgba(33, 150, 243, 0.4);
+    }
+    
+    &.message-box-warning {
+      background-color: rgba(255, 193, 7, 0.15);
+      border-color: rgba(255, 193, 7, 0.4);
+    }
+    
+    &.message-box-error {
+      background-color: rgba(244, 67, 54, 0.15);
+      border-color: rgba(244, 67, 54, 0.4);
+    }
+    
+    &.message-box-success {
+      background-color: rgba(76, 175, 80, 0.15);
+      border-color: rgba(76, 175, 80, 0.4);
+    }
+  }
+}

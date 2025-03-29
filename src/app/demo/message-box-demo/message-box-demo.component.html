@@ -1,0 +1,67 @@
+<div class="container">
+  <h1>Message Box Component Demo</h1>
+  
+  <h2>Informational Messages</h2>
+  <app-message-box type="info" title="Information Message">
+    This is an information message with a blue background and border.
+    <strong>It can contain any HTML content</strong> within the message body.
+  </app-message-box>
+  
+  <h2>Warning Messages</h2>
+  <app-message-box type="warning" title="Warning Message">
+    This is a warning message with a yellow background and border.
+    This type could be used for alerts about <strong>incomplete information</strong> or potential issues.
+  </app-message-box>
+  
+  <h2>Error Messages</h2>
+  <app-message-box type="error" title="Error Message">
+    This is an error message with a red background and border.
+    Use this when something has gone wrong or <strong>critical information is missing</strong>.
+  </app-message-box>
+  
+  <h2>Success Messages</h2>
+  <app-message-box type="success" title="Success Message">
+    This is a success message with a green background and border.
+    This could be used to confirm that all requirements have been met,
+    such as <strong>Ready for Final Decision</strong> status.
+  </app-message-box>
+  
+  <h2>Custom Examples</h2>
+  
+  <h3>Incomplete Information Example</h3>
+  <app-message-box type="warning" title="Incomplete Information">
+    <p>The following items need attention before proceeding:</p>
+    <ul>
+      <li>Medical records from previous provider</li>
+      <li>Confirmation of employment status</li>
+      <li>Signature on consent form</li>
+    </ul>
+  </app-message-box>
+  
+  <h3>Ready for Final Decision Example</h3>
+  <app-message-box type="success" title="Ready for Final Decision">
+    <p>All requirements have been met for the following case:</p>
+    <ul>
+      <li><strong>Case Number:</strong> CN-2023-45678</li>
+      <li><strong>Applicant:</strong> John Smith</li>
+      <li><strong>Policy Type:</strong> Term Life Insurance</li>
+      <li><strong>Coverage Amount:</strong> $500,000</li>
+    </ul>
+    <p>The case is now ready for underwriter review and final decision.</p>
+  </app-message-box>
+  
+  <h3>Without Icon</h3>
+  <app-message-box type="info" title="No Icon Example" [showIcon]="false">
+    This message box has the icon hidden.
+  </app-message-box>
+  
+  <h3>Without Title</h3>
+  <app-message-box type="info">
+    This message box has no title, only body content.
+  </app-message-box>
+  
+  <h3>Custom Icon</h3>
+  <app-message-box type="info" title="Custom Icon" icon="auto_awesome">
+    This message box uses a custom icon instead of the default one.
+  </app-message-box>
+</div>

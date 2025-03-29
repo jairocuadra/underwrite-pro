@@ -1,0 +1,25 @@
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  
+  h1 {
+    font-size: 28px;
+    margin-bottom: 24px;
+    color: var(--text-primary);
+  }
+  
+  h2 {
+    font-size: 22px;
+    margin: 24px 0 16px;
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 8px;
+  }
+  
+  h3 {
+    font-size: 18px;
+    margin: 24px 0 12px;
+    color: var(--text-secondary);
+  }
+}

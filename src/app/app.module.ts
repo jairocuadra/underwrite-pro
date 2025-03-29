@@ -42,6 +42,8 @@ import { AiChatbotComponent } from './ai-chatbot/ai-chatbot.component';
 import { NdaDialogComponent } from './ai-chatbot/nda-dialog/nda-dialog.component';
 import { ExitModalComponent } from './shared/exit-modal/exit-modal.component';
 import { ActionButtonsComponent } from './shared/action-buttons/action-buttons.component';
+import { MessageBoxComponent } from './shared/message-box/message-box.component';
+import { MessageBoxDemoComponent } from './demo/message-box-demo/message-box-demo.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +60,9 @@ import { ActionButtonsComponent } from './shared/action-buttons/action-buttons.c
     AiChatbotComponent,
     NdaDialogComponent,
     ExitModalComponent,
-    ActionButtonsComponent
+    ActionButtonsComponent,
+    MessageBoxComponent,
+    MessageBoxDemoComponent
   ],
   imports: [
     BrowserModule,
